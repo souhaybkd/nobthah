@@ -1,6 +1,98 @@
 .register-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-family: "Cairo";
+
+  .form {
+    background: #fff;
+    border: 5px solid #000;
+    border-radius: 1em;
+    box-shadow: 15px 15px 0px 0px #000;
+    width: 60vw;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+    align-items: stretch; /* Changed to ensure child elements stretch to full height */
+    max-height: 90vh;
+    overflow: hidden;
+
+    .left, .right {
+      width: 50%;
+    }
+
+    .left {
+      background: url('https://i.pinimg.com/736x/10/b4/5d/10b45dea6ec447c9151f268d470e9566.jpg') #7B6FB9 no-repeat center center; /* Ensure background is centered */
+      background-size: contain; /* Ensure background covers the entire div */
+      display: flex;
+      border-right: 5px solid #000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .right {
+      padding: 2em;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      line-height: 1;
+      text-align: center;
+    }
+
+    p {
+      font-size: 1.2rem;
+      line-height: 1;
+      margin-top: 0.5em;
+      text-align: center;
+    }
+
+    input {
+      width: 100%;
+      padding: 1em;
+      font-size: 1rem;
+      margin-top: 0.5em;
+      border-radius: 10px;
+      border: 3px solid #000;
+    }
+
+    .name-input {
+      margin-top: 1em !important;
+    }
+
+    button {
+      width: 100%;
+      padding: 1em 1.5em;
+      font-size: 1rem;
+      margin-top: 0.5em;
+      border-radius: 10px;
+      background: var(--button);
+      border: 3px solid #000;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: var(--button-hover);
+      transition: all .5s ease;
+    }
+
+    button:not(:hover) {
+      background: var(--button);
+      transition: all .5s ease;
+    }
+
+    .or {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+      margin: 0.5em 0;
+      
+      .line {
+        width: 50%;
+        border-radius: 100px;
+        height: 5px;
+        background-color: #000;
+      }
+    }
+  }
 }

@@ -6,6 +6,11 @@
   box-sizing: border-box;
 }
 
+:root {
+  --button: #90a8ef;
+  --button-hover: #4772f6;
+}
+
 body {
   background: #F9F5F2;
 }
