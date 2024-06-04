@@ -1,0 +1,9 @@
+.login-page .form {
+    flex-direction: row-reverse !important;
+    box-shadow: -15px 15px 0px 0px #000 !important;
+
+    .left {
+        border: none;
+        border-left: 5px solid #000;
+    }
+}

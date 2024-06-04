@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./register.scss";
+import "./login.scss";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ID } from "appwrite";
@@ -7,8 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { account } from "../../appwrite/appwrite.config";
 import { Link } from "react-router-dom";
 
-export default function Register() {
-  const [name, setName] = useState("");
+export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -27,62 +26,59 @@ export default function Register() {
     getAuthStatus();
   }, [navigate]);
 
-  const handleRegistration = async () => {
+  const handleLogin = async () => {
     if (email && password) {
-      const accountCreationPromise = account.create(ID.unique(), email, password, name);
-      toast.promise(
-        accountCreationPromise,
-        {
-          pending: "Creating account...",
-          success: "Account created successfully!",
-          error: "Error creating account. Please try again."
-        }
-      ).then(() => {
-        navigate("/dashboard");
-      }).catch(error => {
-        console.error("Registration failed:", error);
-      });
+      const loginPromise = account.createEmailPasswordSession(email, password);
+      toast
+        .promise(loginPromise, {
+          pending: "Logging In To Your Account...",
+          success: "Logged In successfully!",
+          error: "Incorrect email/password.",
+        })
+        .then(() => {
+          console.log("Navigating to dashboard");
+          navigate("/dashboard"); // Assuming your dashboard route is "/dashboard"
+        })
+        .catch((error) => {
+          console.error("Login failed:", error);
+        });
     } else {
-      toast.error("Please enter all required fields.");
+      toast.error("Please enter both email and password.");
     }
   };
 
   return (
-    <main className="register-page">
+    <main className="register-page login-page">
       <div className="form">
         <div className="left">
-          x
+          {/* You can remove this section if not required */}
+          {/* x */}
         </div>
         <div className="right">
           <h2>Welcome To Nobthah</h2>
           <p>Create beautiful resumes at speed</p>
+          {/* Removed name input as per your requirement */}
           <input
+            type="text"
             className="name-input"
-            type="text"
-            placeholder="Enter Your Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <input
-            type="text"
             placeholder="Enter Your Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
             type="password"
-            placeholder="Create A New Password"
+            placeholder="Enter Your Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button onClick={handleRegistration}>Create A New Account</button>
+          <button onClick={handleLogin}>Log In</button>
           <div className="or">
             <div className="line"></div>
             <span>OR</span>
             <div className="line"></div>
           </div>
-          <Link to="/login">
-            <button>Visit Login Page</button>
+          <Link to="/register">
+            <button>Create A New Account</button>
           </Link>
           <button>Forgot Your Password</button>
         </div>
@@ -96,7 +92,7 @@ export default function Register() {
         closeOnClick
         rtl={false}
         style={{
-          width: "500px"
+          width: "500px",
         }}
         pauseOnFocusLoss
         draggable
