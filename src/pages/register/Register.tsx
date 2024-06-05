@@ -54,8 +54,8 @@ export default function Register() {
           x
         </div>
         <div className="right">
-          <h2>Welcome To Nobthah</h2>
-          <p>Create beautiful resumes at speed</p>
+          <h2>Register In Nobthah</h2>
+          <p>Get Hired 10x Faster With Nobthah</p>
           <input
             className="name-input"
             type="text"

@@ -1,9 +1,14 @@
-.login-page .form {
-    flex-direction: row-reverse !important;
-    box-shadow: -15px 15px 0px 0px #000 !important;
-
+.login-page {
     .left {
-        border: none;
-        border-left: 5px solid #000;
+        background: url('https://i.fbcd.co/products/resized/resized-750-500/sub-preview-2ac6a27cfaa5baacfd668fe407f5e86e7e2d14c51d42ba089702b4c82c98e735.webp') #7B6FB9 no-repeat center center !important;
+    }
+
+    .form {
+        width: 60vw;
+.left, .right {
+    width: 50% !important;
+    background-size: cover !important;
+}
     }
 }
+

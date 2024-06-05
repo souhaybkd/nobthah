@@ -10,13 +10,17 @@
     border: 5px solid #000;
     border-radius: 1em;
     box-shadow: 15px 15px 0px 0px #000;
-    width: 60vw;
+    width: 65vw;
     display: flex;
     align-items: stretch; /* Changed to ensure child elements stretch to full height */
     max-height: 90vh;
     overflow: hidden;
 
-    .left, .right {
+    .left {
+      width: 50%;
+    }
+
+    .right{
       width: 50%;
     }
 
