@@ -5,6 +5,8 @@ import Home from "./pages/home/Home"
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
 import Dashboard from "./pages/dashboard/Dashboard";
+import Scratch from "./pages/dashboard/scratch/Scratch";
+import Resume from "./pages/dashboard/resume template/Resume";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
       <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/dashboard/create-resume-from-scratch" element={<Scratch />} />
+      <Route path="/resume" element={<Resume />} />
       {/* <Route path="/register" element={<Register />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/login" element={<Login />} />

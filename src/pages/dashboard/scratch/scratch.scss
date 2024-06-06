@@ -1,0 +1,81 @@
+// scratch.scss
+.mainSection {
+  max-width: 80rem;
+  margin: auto;
+  text-align: center;
+  margin-top: 2em;
+
+  h1 {
+    font-size: 3rem;
+    line-height: 1.5;
+  }
+
+  p {
+    font-size: 1.5rem;
+    max-width: 80%;
+    margin: auto;
+  }
+
+  .menu {
+    display: flex;
+    // gap: 1em;
+    width: fit-content;
+    align-items: center;
+    // justify-content: space-between;
+    margin: auto;
+    background: #fff;
+    border: 3px solid #000;
+    border-radius: 1em;
+    padding: .5em .5em;
+    margin-top: 1em;
+
+    .tab {
+      position: relative;
+      cursor: pointer;
+      transition: color 0.3s;
+      background: transparent;
+      border: none;
+      padding: 1em 2em;
+      color: #000;
+      outline: none;
+      z-index: 2;
+      width: 33.33%;
+      h2 {
+        font-size: 1.2rem;
+      }
+
+      &:hover {
+        color: #000;
+      }
+
+      .bubble {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--button);
+        border-radius: 10px;
+        border: 3px solid #000;
+        z-index: -1;
+      }
+    }
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1em;
+    margin-top: 2em;
+    margin-bottom: 2em;
+
+    .card {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1/1.41;
+      background: #fff;
+      border-radius: 1em;
+      border: 3px solid #000;
+    }
+  }
+}

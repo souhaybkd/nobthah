@@ -46,9 +46,11 @@ export default function Dashboard() {
           <button>
           <img src="https://media-public.canva.com/7WvN0/MAFV6-7WvN0/1/tl.png" alt="" />
             <h2>Yes, upload from my resume</h2>
-            <p>We'll give you expert guidance to fill out your info and enhance your resume, from start to finish</p>
+            <p>We'll give you expert guidance to fill out your info and enhance your resume</p>
           </button>
-          <button>
+          <button 
+          onClick={() => navigate("create-resume-from-scratch")}
+          >
             <img src="https://media-public.canva.com/6pLcA/MAFLoO6pLcA/1/tl.png" alt="" />
             <h2>No, start from scratch</h2>
             <p>We'll guide you through the whole process so your skills in resume can shine</p>
