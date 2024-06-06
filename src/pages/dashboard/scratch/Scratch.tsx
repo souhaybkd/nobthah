@@ -81,10 +81,11 @@ export default function Scratch() {
           ))}
         </div>
 
-        <div className="grid">
+        <div className="grid" >
           <AnimatePresence mode="wait">
             {tabData[activeTab].map(card => (
               <motion.div
+              onClick={() => navigate("resume")}
                 key={card.key}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
