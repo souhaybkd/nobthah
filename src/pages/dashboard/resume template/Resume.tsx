@@ -6,6 +6,7 @@ import { Briefcase, CalendarDays, Globe, Mail, MapPin, Phone, Trash2, User } fro
 import { Rating } from 'react-simple-star-rating'
 import { useReactToPrint } from 'react-to-print';
 import CreativeTemplateOne from "./templates/CreativeTemplateOne";
+import { useParams } from 'react-router-dom';
 
 export default function Resume() {
   const steps = [
@@ -15,6 +16,7 @@ export default function Resume() {
     { stepNumber: 4, stepTitle: "STEP 4", stepDescription: "Your Skills" },
     { stepNumber: 5, stepTitle: "STEP 5", stepDescription: "Finalize" },
   ];
+  const { id } = useParams();
   const [image, setImage] = useState(null);
   const resumeTemplate = useRef()
   const handlePrint = useReactToPrint({
@@ -643,11 +645,19 @@ export default function Resume() {
         </div>
       );
     } else if (steps.find(step => step.stepNumber === activeStep).stepDescription.toLowerCase() === "finalize") {
+      function getTemplate(id: string) {
+        if (id === "madrid") {
+          return <CreativeTemplateOne  image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences}></CreativeTemplateOne>
+        }
+      }
       return (
         <div className="form resume-final-look">
-
-
-          <CreativeTemplateOne ref={resumeTemplate} image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences}></CreativeTemplateOne>
+          <div ref={resumeTemplate} className="resumeTemplate">
+          {
+            getTemplate(id)
+          }
+          </div>
+          
           <button onClick={() => {
             resumeTemplate.current.style.display = "flex"
             handlePrint()
@@ -710,3 +720,5 @@ export default function Resume() {
     </div>
   );
 }
+
+
