@@ -5,8 +5,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Briefcase, CalendarDays, Globe, Mail, MapPin, Phone, Trash2, User } from "lucide-react";
 import { Rating } from 'react-simple-star-rating'
 import { useReactToPrint } from 'react-to-print';
-import CreativeTemplateOne from "./templates/CreativeTemplateOne";
+import Madrid from "./templates/Madrid/Madrid";
 import { useParams } from 'react-router-dom';
+import TextEditor from "../tiptapEditor/TextEditor"; 
 
 export default function Resume() {
   const steps = [
@@ -45,17 +46,12 @@ export default function Resume() {
 
   // Personal Info state
   const [personalInfo, setPersonalInfo] = useState({
-    linkedin: '',
-    portfolio: '',
-    twitter: '',
-    otherProfile: '',
     firstName: '',
     profession: '',
-    country: '',
-    city: '',
-    pinCode: '',
+    address: '',
     phone: '',
-    email: ''
+    email: '',
+    profileDesc: ""
   });
 
   const [education, setEducation] = useState([{ institutionName: '', degree: '', contribution: '', joiningDate: '', endingDate: '' }]);
@@ -165,152 +161,78 @@ export default function Resume() {
             <div className="right">
               <div className="form-group">
                 <div className="input-icon">
-                  <Globe size={20} />
+                  <User size={20} />
                   <input
                     type="text"
-                    id="linkedin"
-                    value={personalInfo.linkedin}
+                    id="firstName"
+                    value={personalInfo.firstName}
                     onChange={handlePersonalInfoChange}
-                    placeholder="Linkedin Profile URL"
+                    placeholder="Enter Your Name"
                   />
                 </div>
               </div>
               <div className="form-group">
                 <div className="input-icon">
-                  <Globe size={20} />
+                  <Briefcase size={20} />
                   <input
                     type="text"
-                    id="portfolio"
-                    value={personalInfo.portfolio}
+                    id="profession"
+                    value={personalInfo.profession}
                     onChange={handlePersonalInfoChange}
-                    placeholder="Portfolio Website URL"
+                    placeholder="Enter Job Title"
                   />
                 </div>
               </div>
               <div className="form-group">
                 <div className="input-icon">
-                  <Globe size={20} />
+                  <Phone size={20} />
                   <input
                     type="text"
-                    id="twitter"
-                    value={personalInfo.twitter}
+                    id="phone"
+                    value={personalInfo.phone}
                     onChange={handlePersonalInfoChange}
-                    placeholder="Twitter Profile URL"
+                    placeholder="Enter Your Phone Number"
                   />
                 </div>
               </div>
               <div className="form-group">
                 <div className="input-icon">
-                  <Globe size={20} />
+                  <Mail size={20} />
                   <input
                     type="text"
-                    id="otherProfile"
-                    value={personalInfo.otherProfile}
+                    id="email"
+                    value={personalInfo.email}
                     onChange={handlePersonalInfoChange}
-                    placeholder="Other Profile URL"
+                    placeholder="Enter Your Email"
                   />
                 </div>
-              </div>
-            </div>
-          </div>
-          <div className="dual">
-            <div className="form-group">
-              <label htmlFor="firstName">First Name</label>
-              <div className="input-icon">
-                <User size={20} />
-                <input
-                  type="text"
-                  id="firstName"
-                  value={personalInfo.firstName}
-                  onChange={handlePersonalInfoChange}
-                  placeholder="Enter Your First Name"
-                />
-              </div>
-            </div>
-            <div className="form-group">
-              <label htmlFor="profession">Profession</label>
-              <div className="input-icon">
-                <Briefcase size={20} />
-                <input
-                  type="text"
-                  id="profession"
-                  value={personalInfo.profession}
-                  onChange={handlePersonalInfoChange}
-                  placeholder="Enter Your Profession"
-                />
               </div>
             </div>
           </div>
 
-          <div className="triple">
-            <div className="form-group">
-              <label htmlFor="country">Country</label>
-              <div className="input-icon">
-                <MapPin size={20} />
-                <input
-                  type="text"
-                  id="country"
-                  value={personalInfo.country}
-                  onChange={handlePersonalInfoChange}
-                  placeholder="eg:- UAE"
-                />
-              </div>
-            </div>
-            <div className="form-group">
-              <label htmlFor="city">City</label>
-              <div className="input-icon">
-                <MapPin size={20} />
-                <input
-                  type="text"
-                  id="city"
-                  value={personalInfo.city}
-                  onChange={handlePersonalInfoChange}
-                  placeholder="eg:- Dubai"
-                />
-              </div>
-            </div>
-            <div className="form-group">
-              <label htmlFor="pinCode">Pin Code</label>
-              <div className="input-icon">
-                <MapPin size={20} />
-                <input
-                  type="text"
-                  id="pinCode"
-                  value={personalInfo.pinCode}
-                  onChange={handlePersonalInfoChange}
-                  placeholder="eg:- 517001"
-                />
-              </div>
+
+          <div className="form-group">
+            <div className="input-icon">
+              <MapPin size={20} />
+              <input
+                type="text"
+                id="address"
+                value={personalInfo.address}
+                onChange={handlePersonalInfoChange}
+                placeholder="Enter Your Address"
+              />
             </div>
           </div>
-          <div className="dual">
-            <div className="form-group">
-              <label htmlFor="phone">Phone Number</label>
-              <div className="input-icon">
-                <Phone size={20} />
-                <input
-                  type="text"
-                  id="phone"
-                  value={personalInfo.phone}
-                  onChange={handlePersonalInfoChange}
-                  placeholder="Enter Your Phone Number"
-                />
-              </div>
-            </div>
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <div className="input-icon">
-                <Mail size={20} />
-                <input
-                  type="text"
-                  id="email"
-                  value={personalInfo.email}
-                  onChange={handlePersonalInfoChange}
-                  placeholder="Enter Your Email"
-                />
-              </div>
-            </div>
-          </div>
+
+          <textarea placeholder="Write a profile description" value={personalInfo.profileDesc}
+            type="text"
+            id="profileDesc"
+            onChange={handlePersonalInfoChange}
+          ></textarea>
+
+          
+
+
 
           <div className="btns">
             <button className="next-button" onClick={prevStep}>Go Back</button>
@@ -381,7 +303,8 @@ export default function Resume() {
                         </div>
                       </div>
                     </div>
-                    <textarea name={`contribution${index}`} id={`contribution${index}`} placeholder="Discuss About Your Contribution" placeholder="eg:- 7th April 2020" value={experiences[index].joiningDate}
+                    
+                    <textarea name={`contribution${index}`} id={`contribution${index}`} placeholder="Discuss About Your Contribution" value={experiences[index].joiningDate}
                       value={experiences[index].contribution}
                       onChange={(e) => handleExperienceChange(index, 'contribution', e.target.value)}></textarea>
                     <div className="dual">
@@ -647,27 +570,28 @@ export default function Resume() {
     } else if (steps.find(step => step.stepNumber === activeStep).stepDescription.toLowerCase() === "finalize") {
       function getTemplate(id: string) {
         if (id === "madrid") {
-          return <CreativeTemplateOne  image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences}></CreativeTemplateOne>
+          return <Madrid image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences}></Madrid>
         }
       }
       return (
         <div className="form resume-final-look">
+          <h2>Dowload Your Resume</h2>
+          <p className="history-desc">Download Your Customized Resume</p>
           <div ref={resumeTemplate} className="resumeTemplate">
-          {
-            getTemplate(id)
-          }
+            {
+              getTemplate(id)
+            }
           </div>
-          
-          <button onClick={() => {
+
+
+          <div className="btns">
+            <button className="next-button" onClick={prevStep}>Go Back</button>
+            <button className="prev-button" onClick={() => {
             resumeTemplate.current.style.display = "flex"
             handlePrint()
             resumeTemplate.current.style.display = "none"
 
-          }}>Print this out!</button>
-
-          <div className="btns">
-            <button className="next-button" onClick={prevStep}>Go Back</button>
-            <button className="prev-button" onClick={collectData}>Finish</button>
+          }}>Download The Resume</button>
           </div>
         </div>
       );
