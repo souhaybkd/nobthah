@@ -1,3 +1,4 @@
+// @ts-nocheck
 import "./scratch.scss"
 import "../dashboard.scss"
 import React, { useState } from "react"
@@ -5,28 +6,84 @@ import { account } from "../../../appwrite/appwrite.config";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import Madrid from "../../../assets/madrid.jpg"
+import Berlin from "../../../assets/berlin.png"
+
+import Rome from "../../../assets/rome.png"
+import Crisp from "../../../assets/crisp.png"
+import Barcelona from "../../../assets/barcelona.png"
+import Singapore from "../../../assets/singapore.png"
+import Diamond from "../../../assets/diamond.png"
+import Santiago from "../../../assets/santiago.png"
+import London from "../../../assets/london.png"
 
 const tabData = {
-  "Innovative": [
-    <div className="card" key="creative1"></div>,
-    <div className="card" key="creative2"></div>,
-    <div className="card" key="creative3"></div>,
+  Modern: [
+    {
+      html: <div className="card" key="creative1">
+        <img src={Madrid} alt="" />
+      </div>,
+      route: "/madrid"
+    },
+    {
+      html: <div className="card" key="creative2">
+        <img src={Berlin} alt="" />
+      </div>,
+      route: "/berlin"
+    },
+    {
+      html: <div className="card" key="creative3">
+        <img src={Rome} alt="" />
+      </div>,
+      route: "/rome"
+    },
   ],
   Professional: [
-    <div className="card" key="professional1"></div>,
-    <div className="card" key="professional2"></div>,
-    <div className="card" key="professional3"></div>,
+    {
+      html: <div className="card" key="professional1">
+        <img src={Crisp} alt="" />
+      </div>,
+      route: "/crisp"
+    },
+    {
+      html: <div className="card" key="professional2">
+        <img src={Barcelona} alt="" />
+      </div>,
+      route: "/barcelona"
+    },
+    {
+      html: <div className="card" key="professional3">
+        <img src={Diamond} alt="" />
+      </div>,
+      route: "/diamond"
+    },
   ],
   Minimalistic: [
-    <div className="card" key="minimalistic1"></div>,
-    <div className="card" key="minimalistic2"></div>,
-    <div className="card" key="minimalistic3"></div>,
+    {
+      html: <div className="card" key="minimalistic1">
+        <img src={Singapore} alt="" />
+      </div>,
+      route: "/singapore"
+    },
+    {
+      html: <div className="card" key="minimalistic2">
+        <img src={Santiago} alt="" />
+      </div>,
+      route: "/santiago"
+    },
+    {
+      html: <div className="card" key="minimalistic3">
+        <img src={London} alt="" />
+      </div>,
+      route: "/london"
+    },
   ]
 };
 
+
 export default function Scratch() {
   const navigate = useNavigate()
-  const [activeTab, setActiveTab] = useState("Innovative")
+  const [activeTab, setActiveTab] = useState("Modern")
 
   async function logout() {
     const promise = account.deleteSession("current");
@@ -83,16 +140,16 @@ export default function Scratch() {
 
         <div className="grid" >
           <AnimatePresence mode="wait">
-            {tabData[activeTab].map(card => (
+            {tabData[activeTab].map((card, index) => (
               <motion.div
-              onClick={() => navigate("resume")}
-                key={card.key}
+                onClick={() => navigate(`resume${card.route}`)}
+                key={index}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3 }}
               >
-                {card}
+                {card.html}
               </motion.div>
             ))}
           </AnimatePresence>

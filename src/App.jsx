@@ -17,7 +17,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/dashboard/create-resume-from-scratch" element={<Scratch />} />
-      <Route path="/dashboard/create-resume-from-scratch/resume" element={<Resume />} />
+      <Route path="/dashboard/create-resume-from-scratch/resume/:id" element={<Resume />} />
       {/* <Route path="/register" element={<Register />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/login" element={<Login />} />

@@ -647,8 +647,13 @@ export default function Resume() {
         <div className="form resume-final-look">
 
 
-          <CreativeTemplateOne ref={resumeTemplate} personalInfo={personalInfo} skills={skills}></CreativeTemplateOne>
-          <button onClick={handlePrint}>Print this out!</button>
+          <CreativeTemplateOne ref={resumeTemplate} image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences}></CreativeTemplateOne>
+          <button onClick={() => {
+            resumeTemplate.current.style.display = "flex"
+            handlePrint()
+            resumeTemplate.current.style.display = "none"
+
+          }}>Print this out!</button>
 
           <div className="btns">
             <button className="next-button" onClick={prevStep}>Go Back</button>
