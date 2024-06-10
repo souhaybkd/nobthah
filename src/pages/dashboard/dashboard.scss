@@ -8,9 +8,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.5em 0em;
-    max-width: 80rem;
+    font-family: "Cairo";
+    padding: 0.5em 1em;
     margin: auto;
+    position: relative;
 
     h1 {
       font-size: 2rem; /* Adjust as needed */
@@ -61,7 +62,7 @@
         padding: 2em;
         border-radius: 1em;
         box-shadow: 5px 5px 0px 0px #000;
-        width: 50%;
+        width: 100%;
 
         &:hover {
           background: var(--button);
@@ -75,8 +76,8 @@
 
         img {
           width: 25%;
-        aspect-ratio: 1/1;
-        height: auto;
+          aspect-ratio: 1/1;
+          height: auto;
         }
 
         h2 {
@@ -89,6 +90,102 @@
           max-width: 90%;
           margin: auto;
           margin-top: 0.25em;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .mainContainer {
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      > p {
+        font-size: 1.25rem;
+      }
+
+      .btns {
+        button {
+          h2 {
+            font-size: 1.5rem;
+          }
+
+          p {
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    
+    .mainContainer {
+      padding-top: 2em;
+
+      .btns {
+        gap: 1em !important;
+        flex-direction: column;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      > p {
+        font-size: 1rem;
+      }
+
+      .btns {
+        max-width: 90%;
+        gap: 0.5em;
+
+        button {
+          padding: 1.5em;
+          img {
+            width: 20%;
+          }
+
+          h2 {
+            font-size: 1.25rem;
+          }
+
+          p {
+            font-size: 0.875rem;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .mainContainer {
+
+      h1 {
+        font-size: 1.5rem;
+        text-align: center;
+      }
+
+      > p {
+        font-size: 0.875rem;
+        text-align: center;
+      }
+
+      .btns {
+        button {
+          padding: 1em;
+          img {
+            width: 15%;
+          }
+
+          h2 {
+            font-size: 1rem;
+          }
+
+          p {
+            font-size: 0.75rem;
+          }
         }
       }
     }
