@@ -21,7 +21,7 @@ export default function Home() {
           </div>
         </div>
         <div className="right">
-          <img src={Woman} alt="" />
+          <img src={Woman} alt="Woman" />
         </div>
       </div>
     </div>
