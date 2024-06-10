@@ -1,0 +1,123 @@
+// src/components/Resume.scss
+.berlin-template {
+  padding: 2em;
+  font-family: "Cairo";
+  line-height: 1.2;
+  width: 100%;
+.dessc {
+    line-height: 1.5 !important;
+}
+  .header {
+    text-align: center;
+    width: 100%;
+    border-bottom: 2px solid #545353;
+    padding-bottom: 1em;
+    h1 {
+      font-size: 3rem;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+    }
+  }
+
+  .container {
+    display: flex;
+    .left {
+        width: 35%;
+        height: 82vh;
+        border-right: 2px solid #545353;
+        padding: 2em 1em;
+        h2 {
+            font-size: 1.8rem;
+            letter-spacing: 3px;
+        }
+
+        .line {
+            height: 5px;
+            margin-top: .25em;
+            width: 50px;
+            border-radius: 100px;
+            background: #000;
+        }
+
+        .listing {
+            margin-top: 1em;
+            p {
+                width: 80%;
+                font-size: .9rem;
+            }
+        }
+
+        .skills {
+            margin-top: 1.5em !important;
+        }
+
+        .skill {
+            margin-top: 1em;
+            .bar-container {
+                width: 90%;
+                border: 2px solid #000;
+                border-radius: 100px;
+                height: 10px;
+                margin-top: .5em;
+
+                .bar {
+                    width: 50%;
+                    height: 100%;
+                    background: #000;
+                }
+            }
+        }
+    }
+
+    .right {
+        width: 70%;
+        height: 90vh;
+
+        .profile {
+            padding: 2em;
+            p {
+                margin-top: .5em;
+            }
+            border-bottom: 2px solid #545353;   
+            .history {
+                display: flex;
+                flex-direction: column;
+                margin-top: 2em;
+                line-height: 1;
+            }
+
+            article {
+                font-size: .9rem;
+                margin-top: .5em;
+                line-height: 1.5;
+            }
+        }
+
+       
+        h2 {
+            font-size: 1.8rem;
+            letter-spacing: 3px;
+        }
+
+        .line {
+            height: 5px;
+            margin-top: .25em;
+            width: 50px;
+            border-radius: 100px;
+            background: #000;
+        }
+    }
+  }
+
+  .education {
+    padding-top: 1em;
+    border: none !important;
+    .history {
+        margin-top: 1em !important;
+    }
+
+    
+  }
+}
