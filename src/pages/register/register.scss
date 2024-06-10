@@ -100,3 +100,33 @@
     }
   }
 }
+
+
+@media screen and (max-width: 1298px) {
+  .register-page .form {
+    width: 80vw !important;
+  }
+}
+
+
+@media screen and (max-width: 1081px) {
+  .register-page .form {
+   flex-direction: column;
+   max-width: 30rem;
+   width: fit-content !important;
+   .left {
+    display: none;
+   }
+
+   .right {
+    width: 100% !important;
+   }
+  }
+}
+
+@media screen and (max-width: 572px) {
+  .register-page .form {
+   scale: .9;
+   box-shadow: 5px 5px 0px 0px #000;
+  }
+}

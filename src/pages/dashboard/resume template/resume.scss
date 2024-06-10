@@ -3,268 +3,277 @@
 }
 .resumeTemplate {
   display: none;
-  
 }
 
 .resume-form {
-    width: 100%;
-    height: 100vh;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .profilePic {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    
-    .profilePic {
+    margin-bottom: 1em;
+    // align-items: center;
+    gap: 1em;
+    .left,
+    .right {
+      width: 50%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .placeholder {
+      width: 100%;
+      height: 100%;
+      top: 0;
       display: flex;
-      margin-bottom: 1em;
-      // align-items: center;
-      gap: 1em;
-      .left, .right {
-        width: 50%;
-        
+      align-items: center;
+      justify-content: center;
+      left: 0;
+      position: absolute;
+    }
+
+    .left {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--button);
+      border-radius: 1em;
+      border: 3px solid #000;
+      img {
+        width: 200px;
+        height: 200px;
+        aspect-ratio: 1/1;
+        height: auto;
+      }
+    }
+  }
+
+  .mainBox {
+    border: 3px solid #000;
+    width: 70vw;
+    height: 80vh;
+    border-radius: 1em;
+    box-shadow: 10px 10px 0 0;
+    overflow: hidden;
+    display: flex;
+
+    textarea {
+      resize: vertical;
+      font-family: "Cairo";
+      height: 100px;
+      line-height: 1.2;
+      width: 100%;
+      padding: 0.75em 0.75em 0.75em 0.75em;
+      font-size: 1rem;
+      border-radius: 0.5em;
+      outline: none;
+      border: 2px solid #000;
+      transition: border-color 0.3s ease;
+    }
+
+    .date input {
+      padding: 0.75em !important;
+    }
+    .content {
+      width: 70%;
+      height: 100% !important;
+      overflow: auto;
+
+      .history-desc {
+        margin-bottom: 1em !important;
       }
 
-      .left {
+      .history-btns {
+        margin-top: 1em;
+      }
+
+      .history {
+        nav {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          background: var(--button);
+          padding: 0.5em 1em;
+          border: 2px solid #000;
+          border-radius: 0.5em;
+          h2 {
+            font-size: 1.5rem;
+          }
+        }
+
+        .job-cards {
+          display: flex;
+          flex-direction: column-reverse;
+        }
+
+        .jobDetails {
+          padding: 0.5em 1em;
+          background: var(--button);
+          box-shadow: 5px 5px 0 0;
+          border: 2px solid #000;
+          border-radius: 0.5em;
+          margin-top: 1em;
+          .delete-button {
+            width: 100%;
+            padding: 0.8em;
+            font-size: 1rem;
+            background: rgb(255, 100, 100);
+            border: 2px solid #000;
+            outline: none;
+            border-radius: 0.5em;
+            margin-top: -0.25em;
+            cursor: pointer;
+            font-weight: 700;
+          }
+
+          .delete-button:hover {
+            background: rgb(225, 48, 48);
+            transition: all 0.5s ease;
+          }
+
+          .delete-button:not(:hover) {
+            background: rgb(255, 100, 100);
+            transition: all 0.5s ease;
+          }
+        }
+      }
+      .work {
+        background: var(--button);
+        padding: 1em;
+        border: 3px solid #000;
+        border-radius: 1em;
+      }
+      .no-margin {
+        margin: 0 !important;
+      }
+      .textarea {
+        margin-bottom: 0.5em !important;
+      }
+      .form {
+        height: fit-content;
+        padding: 1em 2em;
+        font-family: "Cairo", sans-serif;
+        line-height: 1.5;
+        max-width: 40rem;
+        margin: auto;
+
+        h2 {
+          font-size: 2.5rem;
+          text-align: center;
+        }
+
+        p {
+          text-align: center;
+          font-size: 1.2rem;
+          margin-bottom: 2em;
+        }
+
+        .form-group {
+          margin-bottom: 1em;
+
+          label {
+            display: block;
+            margin-bottom: 0.5em;
+            font-size: 1rem;
+            font-weight: 800;
+          }
+
+          .input-icon {
+            position: relative;
+
+            svg {
+              position: absolute;
+              left: 0.75em;
+              top: 50%;
+              transform: translateY(-50%);
+              color: #666;
+            }
+
+            input,
+            textarea {
+              width: 100%;
+              padding: 0.75em 0.75em 0.75em 2.5em;
+              font-size: 1rem;
+              border-radius: 0.5em;
+              outline: none;
+              border: 2px solid #000;
+              transition: border-color 0.3s ease;
+            }
+          }
+        }
+
+        .dual,
+        .triple {
+          display: flex;
+          gap: 1em;
+        }
+
+        .dual .form-group,
+        .triple .form-group {
+          flex: 1;
+        }
+      }
+
+      .btns {
         display: flex;
-        align-items: center;
-        justify-content: center;
-                background: var(--button);
-                border-radius: 1em;
-                border: 3px solid #000;
-        img {
-          width: 200px;
-          height: 200px;
-          aspect-ratio: 1/1;
-          height: auto;
+        gap: 1em;
+        .next-button {
+          padding: 0.8em;
+          background: var(--button);
+          border: 3px solid #000;
+          border-radius: 0.5em;
+          font-weight: 700;
+          font-size: 1rem;
+          width: 50%;
+          cursor: pointer;
+        }
+
+        .prev-button {
+          padding: 0.8em;
+          background: var(--button);
+          border: 3px solid #000;
+          border-radius: 0.5em;
+          font-weight: 700;
+          cursor: pointer;
+
+          font-size: 1rem;
+          width: 50%;
         }
       }
     }
-  
-    .mainBox {
-      border: 3px solid #000;
-      width: 70vw;
-      height: 80vh;
-      border-radius: 1em;
-      box-shadow: 10px 10px 0 0;
-      overflow: hidden;
-      display: flex;
+    .sideBar {
+      background: var(--button);
+      width: 30%;
+      height: 100%;
+      font-family: "Cairo";
+      padding: 1.5em;
+      border-right: 2px solid #000;
 
-      textarea {
-        resize: vertical;
-        font-family: 'Cairo';
-        height: 100px;
-        line-height: 1.2;
-        width: 100%;
-        padding: 0.75em 0.75em 0.75em .75em;
-        font-size: 1rem;
-        border-radius: 0.5em;
-        outline: none;
-        border: 2px solid #000;
-        transition: border-color 0.3s ease;
-      }
+      .steps {
+        .step {
+          display: flex;
+          position: relative;
+          margin-bottom: 0.5em;
+          border-radius: 0.5em;
+          padding: 0.8em 1em;
+          cursor: pointer;
 
-      .date input{
-        padding:.75em !important;  
-      }
-      .content {
-        width: 70%;
-        height: 100% !important;
-        overflow:auto;
-
-        .history-desc {
-          margin-bottom: 1em !important;
-        }
-
-        .history-btns {
-          margin-top: 1em;
-        }
-        
-        .history {
-          
-          nav {
+          .circle {
+            border-radius: 50%;
+            border: 2px solid #000;
+            width: 50px;
+            height: 50px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            background: var(--button);
-            padding: .5em 1em;
-            border: 2px solid #000;
-            border-radius: .5em;
-            h2 {
-              font-size: 1.5rem;
-            }
+            justify-content: center;
+            margin-right: 1em;
+            z-index: 2 !important;
           }
 
-          .job-cards {
-            display: flex;
-            flex-direction: column-reverse;
-          }
-
-          .jobDetails{
-            padding: .5em 1em;
-            background: var(--button);
-            box-shadow: 5px 5px 0 0;
-            border: 2px solid #000;
-            border-radius: .5em;
-            margin-top: 1em;
-            .delete-button {
-              width: 100%;
-              padding: .8em;
-              font-size: 1rem;
-              background: rgb(255, 100, 100);
-              border: 2px solid #000;
-              outline: none;
-              border-radius: .5em;
-              margin-top: -.25em;
-              cursor: pointer;
-              font-weight: 700;
-            }
-            
-            .delete-button:hover {
-              background: rgb(225, 48, 48);
-              transition: all .5s ease;
-            }
-
-            .delete-button:not(:hover) {
-              background: rgb(255, 100, 100);
-              transition: all .5s ease;
-            }
-          }
-        }
-        .work {
-          background: var(--button);
-          padding: 1em;
-          border: 3px solid #000;
-          border-radius: 1em;
-        }
-        .no-margin {
-          margin: 0 !important;
-        }
-        .textarea {
-          margin-bottom: .5em !important;
-        }
-        .form {
-            height: fit-content;
-            padding: 1em 2em;
-            font-family: 'Cairo', sans-serif;
-            line-height: 1.5;
-            max-width: 40rem;
-            margin: auto;
-          
-            h2 {
-              font-size: 2.5rem;
-              text-align: center;
-            }
-          
-            p {
-              text-align: center;
-              font-size: 1.2rem;
-              margin-bottom: 2em;
-            }
-          
-            .form-group {
-              margin-bottom: 1em;
-          
-              label {
-                display: block;
-                margin-bottom: 0.5em;
-                font-size: 1rem;
-                font-weight: 800;
-              }
-          
-              .input-icon {
-                position: relative;
-          
-                svg {
-                  position: absolute;
-                  left: 0.75em;
-                  top: 50%;
-                  transform: translateY(-50%);
-                  color: #666;
-                }
-          
-                input, textarea {
-                  width: 100%;
-                  padding: 0.75em 0.75em 0.75em 2.5em;
-                  font-size: 1rem;
-                  border-radius: 0.5em;
-                  outline: none;
-                  border: 2px solid #000;
-                  transition: border-color 0.3s ease;
-          
-                }
-                
-              }
-            }
-          
-            .dual, .triple {
-              display: flex;
-              gap: 1em;
-            }
-          
-            .dual .form-group, .triple .form-group {
-              flex: 1;
-            }
-          }
-
-          .btns {
-            display: flex;
-            gap: 1em;
-            .next-button {
-                padding: .8em;
-                background: var(--button);
-                border: 3px solid #000;
-                border-radius: .5em;
-                font-weight: 700;
-                font-size: 1rem;
-                width: 50%;
-                cursor: pointer;
-              }
-
-              .prev-button {
-                padding: .8em;
-                background: var(--button);
-                border: 3px solid #000;
-                border-radius: .5em;
-                font-weight: 700;
-                cursor: pointer;
-
-                font-size: 1rem;
-                width: 50%;
-              }
-          }
-          
-          
-          
-      }
-      .sideBar {
-        background: var(--button);
-        width: 30%;
-        height: 100%;
-        font-family: "Cairo";
-        padding: 1.5em;
-        border-right: 2px solid #000;
-  
-        .steps {
-          .step {
-            display: flex;
-            position: relative;
-            margin-bottom: .5em;
-            border-radius: 0.5em;
-            padding: .8em 1em;
-            cursor: pointer;
-  
-            .circle {
-              border-radius: 50%;
-              border: 2px solid #000;
-              width: 50px;
-              height: 50px;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              margin-right: 1em;
-              z-index: 2 !important;
-            }
-
-            > div {
+          > div {
             z-index: 2 !important;
 
             h2,
@@ -272,74 +281,187 @@
               margin: 0;
               line-height: 1.2;
             }
-            }
-  
-  
-            .highlight {
-              position: absolute;
-              inset: 0;
-              background: var(--button-hover);
-              z-index: 1;
-              border-radius: 0.5em;
-              border: 3px solid #000;
-              width: 100%;
-              height: 100%;
-              pointer-events: none;
-            }
-
-            
-  
-            // &.active {
-            //   background: var(--button-hover);
-            //   border: 2px solid #000;
-  
-            //   .highlight {
-            //     z-index: -1;
-            //   }
-            // }
           }
-        }
-      }
-    }
 
-    .skills {
-width: 100% !important;
-      .jobDetails {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        gap: 1em;
-        height: fit-content;
-        padding: .5em !important;
-        .form-group {
-          margin: 0 !important;
-          width: 50%;
-        }
-        .rating {
-          width: 40%;
-        }
-        button {
-          background: rgb(255, 100, 100);
-          width: 10%;
-          border-radius: 8px;
-          padding: .5em !important;
-        }
-      }
-      input {
-        padding: .75em;
-        border: 2px solid #000;
-        border-radius: 10px;
-        font-size: 1rem;
+          .highlight {
+            position: absolute;
+            inset: 0;
+            background: var(--button-hover);
+            z-index: 1;
+            border-radius: 0.5em;
+            border: 3px solid #000;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+          }
 
-      }
+          // &.active {
+          //   background: var(--button-hover);
+          //   border: 2px solid #000;
 
-      button {
-        width: fit-content !important;
-        display: grid;
-        place-items: center;
-        padding:0 .5em !important;
-
+          //   .highlight {
+          //     z-index: -1;
+          //   }
+          // }
+        }
       }
     }
   }
-  
+
+  .skills {
+    width: 100% !important;
+    .flexy {
+      display: flex;
+      align-items: center;
+width: 50% !important;
+    }
+    .jobDetails {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      gap: 1em;
+      height: fit-content;
+      padding: 0.5em !important;
+      .form-group {
+        margin: 0 !important;
+        width: 50%;
+      }
+      .rating {
+        width: 95%;
+        
+      }
+      button {
+        background: rgb(255, 100, 100);
+        width: 5%;
+        border-radius: 8px;
+        padding: 0.5em !important;
+      }
+    }
+    input {
+      padding: 0.75em;
+      border: 2px solid #000;
+      border-radius: 10px;
+      font-size: 1rem;
+    }
+
+    button {
+      width: fit-content !important;
+      display: grid;
+      place-items: center;
+      padding: 0 0.5em !important;
+    }
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .mainBox {
+    width: 90vw !important;
+  }
+}
+
+@media screen and (max-width: 1122px) {
+  .mainBox {
+    .steps .step h2 {
+      font-size: 1.5rem !important;
+    }
+  }
+}
+
+@media screen and (max-width: 978px) {
+  .mainBox {
+    flex-direction: column;
+
+    .sideBar {
+      width: 100% !important;
+      height: fit-content !important;
+      padding: 0 !important;
+    }
+    .sideBar .steps {
+      display: flex;
+      flex-direction: row !important;
+      overflow-x: auto;
+      padding: 1em 0.5em 0.5em 0.5em !important;
+
+      .step {
+        min-width: 200px;
+        width: fit-content !important;
+        display: flex;
+        align-items: center;
+        .circle {
+          width: 40px !important;
+          height: 40px !important;
+        }
+        h1 {
+          font-size: 1.8rem !important;
+        }
+        h2 {
+          font-size: 1rem !important;
+        }
+      }
+    }
+
+    .content {
+      width: 100% !important;
+    }
+  }
+}
+
+@media screen and (max-width: 695px) {
+  .rating span:nth-child(2) {
+    background: red;
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+
+
+
+  .skills .jobDetails {
+    flex-direction: column;
+    .form-group {
+      width: 100% !important;
+    }
+
+    .flexy {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      gap: 1em;
+      align-items: center;
+      button {
+        display: flex;
+        gap: .5em;
+        align-items: center;
+        font-size: 1em;
+      }
+      button::after {
+        content: "Delete";
+      }
+    }
+  }
+  .dual,
+  .triple,
+  .profilePic {
+    flex-direction: column;
+    margin-bottom: 0 !important;
+    gap: 0 !important;
+
+   
+    .form-group {
+      width: 100% !important;
+      margin-bottom: 1em !important;
+    }
+
+
+    .right,
+    .left {
+      width: 100% !important;
+    }
+
+    .left {
+      min-height: 200px;
+      margin-bottom: 1em;
+    }
+  }
+}

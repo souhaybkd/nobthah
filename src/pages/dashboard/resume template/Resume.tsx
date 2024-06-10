@@ -7,7 +7,7 @@ import { Rating } from 'react-simple-star-rating'
 import { useReactToPrint } from 'react-to-print';
 import Madrid from "./templates/Madrid/Madrid";
 import { useParams } from 'react-router-dom';
-import TextEditor from "../tiptapEditor/TextEditor"; 
+import TextEditor from "../tiptapEditor/TextEditor";
 import Berlin from "./templates/Berlin/Berlin";
 
 export default function Resume() {
@@ -231,7 +231,7 @@ export default function Resume() {
             onChange={handlePersonalInfoChange}
           ></textarea>
 
-          
+
 
 
 
@@ -304,7 +304,7 @@ export default function Resume() {
                         </div>
                       </div>
                     </div>
-                    
+
                     <textarea name={`contribution${index}`} id={`contribution${index}`} placeholder="Discuss About Your Contribution" value={experiences[index].joiningDate}
                       value={experiences[index].contribution}
                       onChange={(e) => handleExperienceChange(index, 'contribution', e.target.value)}></textarea>
@@ -540,6 +540,7 @@ export default function Resume() {
 
                   </div>
 
+                  <div className="flexy">
                   <div className="form-group rating">
                     <Rating
                       onClick={(rating) => handleRatingChange(index, rating)}
@@ -558,6 +559,7 @@ export default function Resume() {
                   </div>
                   <button>                  <Trash2 onClick={() => deleteSkill(index)} style={{ cursor: "pointer" }} />
                   </button>
+                  </div>
                 </motion.div>
               ))}
             </AnimatePresence>
@@ -590,11 +592,11 @@ export default function Resume() {
           <div className="btns">
             <button className="next-button" onClick={prevStep}>Go Back</button>
             <button className="prev-button" onClick={() => {
-            resumeTemplate.current.style.display = "flex"
-            handlePrint()
-            resumeTemplate.current.style.display = "none"
+              resumeTemplate.current.style.display = "flex"
+              handlePrint()
+              resumeTemplate.current.style.display = "none"
 
-          }}>Download The Resume</button>
+            }}>Download The Resume</button>
           </div>
         </div>
       );
