@@ -23,6 +23,11 @@ export default function Resume() {
   const resumeTemplate = useRef()
   const handlePrint = useReactToPrint({
     content: () => resumeTemplate.current,
+    documentTitle: "RESUME",
+    onBeforePrint: () => console.log("before printing..."),
+    onAfterPrint: () => console.log("after printing..."),
+    removeAfterPrint: true,
+    
   });
   const fileInputRef = useRef(null);
 

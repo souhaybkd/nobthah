@@ -5,11 +5,14 @@ const Madrid = forwardRef(({ personalInfo, education, image, skills, experiences
     return (
         <div ref={ref} className="madrid-template">
             <div className="header">
-                <div className="left">
-                    <img src={image} alt="" />
-                </div>
+                {
+                    image && <div className="left">
+                        <img src={image} alt="" />
+                    </div>
+                }
 
-                <div className="right">
+
+                <div className={image ? "right": "right extra"} >
                     <h1>{personalInfo.firstName}</h1>
                     <h2>{personalInfo.profession}</h2>
                 </div>
