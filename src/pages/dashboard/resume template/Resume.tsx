@@ -10,6 +10,7 @@ import { useParams } from 'react-router-dom';
 import TextEditor from "../tiptapEditor/TextEditor";
 import Berlin from "./templates/Berlin/Berlin";
 import Crisp from "./templates/Crisp/Crisp";
+import Santiago from "./templates/Santiago/Santiago";
 
 export default function Resume() {
   const steps = [
@@ -27,8 +28,7 @@ export default function Resume() {
     documentTitle: "RESUME",
     onBeforePrint: () => console.log("before printing..."),
     onAfterPrint: () => console.log("after printing..."),
-    removeAfterPrint: true,
-    
+    removeAfterPrint: true
   });
   const fileInputRef = useRef(null);
 
@@ -584,6 +584,8 @@ export default function Resume() {
           return <Berlin image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences}></Berlin>
         } else if (id === "crisp") {
           return <Crisp image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences}></Crisp>
+        } else if (id === "santiago") {
+          return <Santiago image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences}/>
         }
       }
       return (
