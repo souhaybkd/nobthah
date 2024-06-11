@@ -9,6 +9,7 @@ import Madrid from "./templates/Madrid/Madrid";
 import { useParams } from 'react-router-dom';
 import TextEditor from "../tiptapEditor/TextEditor";
 import Berlin from "./templates/Berlin/Berlin";
+import Crisp from "./templates/Crisp/Crisp";
 
 export default function Resume() {
   const steps = [
@@ -581,6 +582,8 @@ export default function Resume() {
           return <Madrid image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences}></Madrid>
         } else if (id === "berlin") {
           return <Berlin image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences}></Berlin>
+        } else if (id === "crisp") {
+          return <Crisp image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences}></Crisp>
         }
       }
       return (

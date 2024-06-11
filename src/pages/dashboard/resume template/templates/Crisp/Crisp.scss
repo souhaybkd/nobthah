@@ -1,0 +1,110 @@
+.crisp-resume {
+  padding: 2em;
+  font-family: "Cairo";
+  > h1 {
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+
+  > h2 {
+    font-size: 1.25rem;
+    color: #515151;
+    font-weight: 400;
+  }
+
+  > p {
+    line-height: 1.4 !important;
+  }
+
+  .main {
+    display: flex;
+    width: 100%;
+    height: 50vh;
+    .left {
+      width: 30%;
+
+      height: 100%;
+
+      .personalInfo {
+        margin-top: 2em;
+
+        .skill {
+          .bar-container {
+            width: 100%;
+            border: 2px solid #000;
+            height: 10px;
+            border-radius: 100px;
+            margin-top: 0.5em;
+
+            .bar {
+              width: 50%;
+              height: 100%;
+              background: #000;
+            }
+          }
+        }
+      }
+
+      h3 {
+        display: flex;
+        align-items: center;
+        gap: 0.5em;
+        font-size: 1.2rem;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.25em;
+      }
+
+      svg {
+        background: #000;
+        color: #fff;
+        box-sizing: content-box;
+        padding: 0.25em;
+        border-radius: 100px;
+      }
+
+      .personalInfo h4,
+      .personalInfo p {
+        line-height: 1.5 !important;
+      }
+
+      .personalInfo h4 {
+        margin-top: 1em;
+      }
+    }
+
+    .right {
+      width: 80%;
+      height: 100%;
+
+      padding-left: 3em;
+
+      .experience {
+        margin-top: 1em;
+        display: flex;
+        gap: 1em;
+        .lefty {
+          width: 20%;
+          border-radius: 1em;
+          height: fit-content;
+          h4 {
+            line-height: 1 !important;
+            margin: 0;
+            // font-size: 1.1rem;
+          }
+        }
+
+        .righty {
+            width: 80% !important;
+            h1, h4 {
+                line-height: 1.2;
+                margin: 0;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+      }
+    }
+  }
+}
