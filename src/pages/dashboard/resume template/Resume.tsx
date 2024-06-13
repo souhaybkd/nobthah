@@ -11,6 +11,8 @@ import TextEditor from "../tiptapEditor/TextEditor";
 import Berlin from "./templates/Berlin/Berlin";
 import Crisp from "./templates/Crisp/Crisp";
 import Santiago from "./templates/Santiago/Santiago";
+import London from "./templates/London/London";
+// import London from 
 
 export default function Resume() {
   const steps = [
@@ -586,6 +588,8 @@ export default function Resume() {
           return <Crisp image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences}></Crisp>
         } else if (id === "santiago") {
           return <Santiago image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences}/>
+        } else if (id === "london") {
+          return <London image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences}/>
         }
       }
       return (
