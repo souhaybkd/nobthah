@@ -58,7 +58,7 @@ export default function Resume() {
   const [experiences, setExperiences] = useState([{ employerName: '', jobTitle: '', contribution: '', joiningDate: '', endingDate: '' }]);
   const [skills, setSkills] = useState([{ name: '', rating: 0 }]);
   const [languages, setLanguages] = useState([{ name: '', proficiency: 0 }]);
-  const [certificates, setCertificates] = useState([{ name: '' }]);
+  const [certificates, setCertificates] = useState([{ name: '', date: '' }]);
 
   // Personal Info state
   const [personalInfo, setPersonalInfo] = useState({
@@ -613,7 +613,7 @@ onClick={(rating) => handleProficiencyChange(index, rating)}
     } else if (steps.find(step => step.stepNumber === activeStep).stepDescription.toLowerCase() === "finalize") {
       function getTemplate(id: string) {
         if (id === "madrid") {
-          return <Madrid image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences}></Madrid>
+          return <Madrid languages={languages} certificates={certificates} image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences}></Madrid>
         } else if (id === "berlin") {
           return <Berlin image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences}></Berlin>
         } else if (id === "crisp") {

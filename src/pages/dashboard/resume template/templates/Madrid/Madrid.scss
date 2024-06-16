@@ -5,6 +5,51 @@ zoom: 90%;
 width: 100%;
 height: auto;
 border: 2px solid #000;
+
+
+.dual {
+  display: flex;
+  width: 100%;
+  padding: 2em 5em 0 5em;
+  gap: 2em;
+
+  .educations {
+    padding: 0 !important;
+  }
+
+  .certificate {
+    background: #ffe04a;
+    border: 2px solid #000;
+    padding: .5em;
+    border-radius: .25em;
+  }
+
+  .educations:nth-child(1) {
+    width: 60% !important;
+  }
+
+  .educations:nth-child(2) {
+    width: 40% !important;
+  }
+  .details p {
+    font-size: 1.2rem;
+  }
+
+  
+
+  .skills, .details {
+    width: 50% !important;
+    
+    padding: 1em !important;
+    border-radius: 1em;
+    border: 2px solid #000;
+    background: #ffe04a;
+    .skill {
+      width: 100% !important;
+    }
+  }
+}
+
 .extra {
   text-align: center;
   padding: 2em;
@@ -43,6 +88,8 @@ border: 2px solid #000;
     }
   }
 
+
+
   .details, .profile, .educations, .emplymentHistory, .skills {
     padding: 2em 5em 0 5em;
     font-size: .9rem;
@@ -75,6 +122,10 @@ border: 2px solid #000;
 
   .skills {
     width: 100%;
+
+    .grid.unique {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
     .grid {
         width: 100%;
         display: grid;
