@@ -13,6 +13,7 @@ import Crisp from "./templates/Crisp/Crisp";
 import Santiago from "./templates/Santiago/Santiago";
 import London from "./templates/London/London";
 import Singapore from "./templates/Singapore/Singapore";
+import Rome from "./templates/Rome/Rome";
 // import London from 
 
 export default function Resume() {
@@ -593,6 +594,8 @@ export default function Resume() {
           return <London image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences}/>
         } else if (id === "singapore") {
           return <Singapore image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences}/>
+        } else if (id === "rome") {
+          return <Rome image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences}/>
         }
       }
       return (

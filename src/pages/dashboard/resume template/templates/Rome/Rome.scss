@@ -1,0 +1,150 @@
+.filled {
+    background: #000;
+}
+.rome-resume {
+    width: 100%;
+    font-family: sans-serif;
+
+    .profile {
+        display: flex;
+        width: 100%;
+
+        .left {
+            width: 70%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            .top h1 {
+                font-size: 3rem;
+                width: 70%;
+            }
+
+            .down {
+                h2 {
+                    font-size: 1.2rem;
+                    font-weight: 500;
+                }
+                .split {
+                    margin-top: 1em;
+                    display: flex;
+                    gap: 1em;
+
+                    > div {
+                        width: 50%;
+                    }
+                }
+            }
+        }
+
+        .right {
+            width: 30%;
+        }
+    }
+    .right img {
+        width: 250px;
+        height: 300px;
+    }
+
+    .info {
+        margin-top: 2em;
+        p {
+            margin-top: 1em;
+            width: 80%;
+        }
+        .title {
+            display: flex;
+            gap: 1em;
+            align-items: center;
+
+            h3 {
+                font-size: 2.5rem;
+            }
+        }
+
+        .title > div {
+            padding: 0em;
+            border: 2px solid #000;
+            border-radius: 100px;
+            width: auto;
+            height: 50px;
+            aspect-ratio: 1/1;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            h1 {
+                font-size: 2.5rem;
+            }
+        }
+    }
+
+    .dual {
+        display: flex;
+        gap: 2em;
+
+        .title {
+            margin-bottom: 1em;
+        }
+
+        .info {
+            width: 50%;
+
+            .rating {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-top: .5em;
+                p {
+                    margin: 0;
+                    font-size: 1.2rem;
+                }
+            }
+
+            .circles {
+                display: flex;
+                gap: .1em;
+                .circle {
+                    width: 20px;
+                    height: 20px;
+                    border: 3px solid #000;
+                    border-radius: 100px;
+                }
+            }
+        }
+
+        > p {
+            width: 100%;
+        }
+    }
+
+    .experience-item {
+        margin-top: 1em;
+        .flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            h3 {
+                font-size: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+                font-weight: 500;
+            }
+
+            .time {
+                font-size: 1rem;
+                font-weight: 400;
+            }
+        }
+
+        p {
+            margin-top: .5em;
+            font-size: 1rem;
+            width: 100% !important;
+            line-height: 1.5;
+        }
+    }
+}
