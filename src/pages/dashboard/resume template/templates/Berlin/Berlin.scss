@@ -3,6 +3,7 @@
   padding: 2em;
   font-family: "Cairo";
   line-height: 1.2;
+  zoom: 80%;
   width: 100%;
 .dessc {
     line-height: 1.5 !important;
@@ -25,7 +26,7 @@
     display: flex;
     .left {
         width: 35%;
-        height: 82vh;
+        height: 120vh;
         border-right: 2px solid #545353;
         padding: 2em 1em;
         h2 {
@@ -53,6 +54,13 @@
             margin-top: 1.5em !important;
         }
 
+        .certficate {
+            background: #000;
+            color: #fff;
+            padding: .5em;
+            border-radius: 5px;
+            
+        }
         .skill {
             margin-top: 1em;
             .bar-container {
@@ -86,6 +94,10 @@
                 flex-direction: column;
                 margin-top: 2em;
                 line-height: 1;
+
+                h4 {
+                    font-size: 1.4rem !important;
+                }
             }
 
             article {

@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import "./Madrid.scss"
 
-const Madrid = forwardRef(({ personalInfo, certificates, education, languages, image, skills, experiences }: any, ref: any) => {
+const Madrid = forwardRef(({ personalInfo, education, languages, certificates, image, skills, experiences }: any, ref: any) => {
     return (
         <div ref={ref} className="madrid-template">
             <div className="header">

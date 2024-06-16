@@ -615,7 +615,7 @@ onClick={(rating) => handleProficiencyChange(index, rating)}
         if (id === "madrid") {
           return <Madrid languages={languages} certificates={certificates} image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences}></Madrid>
         } else if (id === "berlin") {
-          return <Berlin image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences}></Berlin>
+          return <Berlin languages={languages} certificates={certificates}  image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences}></Berlin>
         } else if (id === "crisp") {
           return <Crisp image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences}></Crisp>
         } else if (id === "santiago") {

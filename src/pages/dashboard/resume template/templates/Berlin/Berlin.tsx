@@ -2,7 +2,7 @@
 import React, { forwardRef } from 'react';
 import "./Berlin.scss";
 
-const Berlin = forwardRef(({ personalInfo, education, image, skills, experiences }, ref) => {
+const Berlin = forwardRef(({ personalInfo, education, languages, certificates, skills, experiences }, ref) => {
     return (
         <div ref={ref} className="berlin-template">
             <div className="header">
@@ -38,6 +38,26 @@ const Berlin = forwardRef(({ personalInfo, education, image, skills, experiences
                             <div className="bar-container">
                                 <div className="bar" style={{ width: `${(skill.rating / 5) * 100}%` }}></div>
                             </div>
+                        </div>
+                    ))}
+
+                    <h2 className='skills'>Languages</h2>
+                    <div className="line"></div>
+                    {languages.map((skill, index) => (
+                        <div className="skill" key={index}>
+                            <h4>{skill.name}</h4>
+                            <div className="bar-container">
+                                <div className="bar" style={{ width: `${(skill.proficiency / 5) * 100}%` }}></div>
+                            </div>
+                        </div>
+                    ))}
+
+                    <h2 className='skills'>Certficates</h2>
+                    <div className="line"></div>
+                    {certificates.map((skill, index) => (
+                        <div className="skill certficate" key={index}>
+                            <h4>{skill.name}, {skill.date}</h4>
+                            
                         </div>
                     ))}
                 </div>
