@@ -1,7 +1,8 @@
-@page {
-  margin: 20px; /* Adjust as needed to avoid default header/footer */
-}
+
 .santiago-resume {
+  @page {
+    margin: 20px; /* Adjust as needed to avoid default header/footer */
+  }
   padding: 2em;
   font-family: "Times New Roman", Times, serif;
   width: 100%;

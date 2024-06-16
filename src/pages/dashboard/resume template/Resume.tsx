@@ -14,6 +14,7 @@ import Santiago from "./templates/Santiago/Santiago";
 import London from "./templates/London/London";
 import Singapore from "./templates/Singapore/Singapore";
 import Rome from "./templates/Rome/Rome";
+import Diamond from "./templates/Diamond/Diamond";
 // import London from 
 
 export default function Resume() {
@@ -221,7 +222,6 @@ export default function Resume() {
             </div>
           </div>
 
-
           <div className="form-group">
             <div className="input-icon">
               <MapPin size={20} />
@@ -240,10 +240,6 @@ export default function Resume() {
             id="profileDesc"
             onChange={handlePersonalInfoChange}
           ></textarea>
-
-
-
-
 
           <div className="btns">
             <button className="next-button" onClick={prevStep}>Go Back</button>
@@ -596,6 +592,8 @@ export default function Resume() {
           return <Singapore image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences}/>
         } else if (id === "rome") {
           return <Rome image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences}/>
+        } else if (id === "diamond") {
+          return <Diamond image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences}/>
         }
       }
       return (
