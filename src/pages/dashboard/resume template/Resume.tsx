@@ -15,6 +15,7 @@ import London from "./templates/London/London";
 import Singapore from "./templates/Singapore/Singapore";
 import Rome from "./templates/Rome/Rome";
 import Diamond from "./templates/Diamond/Diamond";
+import Barcelona from "./templates/Barcelona/Barcelona";
 // import London from 
 
 export default function Resume() {
@@ -594,6 +595,8 @@ export default function Resume() {
           return <Rome image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences}/>
         } else if (id === "diamond") {
           return <Diamond image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences}/>
+        } else if (id === "barcelona") {
+          return <Barcelona image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences}/>
         }
       }
       return (

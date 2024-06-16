@@ -1,0 +1,77 @@
+.barcelona-resume {
+  padding: 2em;
+  font-family: sans-serif;
+  line-height: 1.5;
+
+  h1 {
+    font-size: 2.5rem;
+  }
+  h2 {
+    font-size: 1.25rem;
+  }
+
+  .grid {
+    margin-top: 1em;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5em 2em;
+  }
+
+  .desc {
+    margin-top: 1em;
+  }
+
+  h3 {
+    font-size: 1.8rem;
+    border-bottom: 2px solid #000;
+    margin-top: .5em;
+    padding-bottom: 0.1em;
+  }
+
+  .exp {
+    display: flex;
+    margin-top: .5em;
+    .left {
+      width: 30%;
+      h4 {
+        font-size: 1.2rem;
+      }
+    }
+
+    .right {
+      width: 70%;
+      h2 {
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  .new-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 1em;
+    gap: 0.5em 2em;
+
+  
+    .skill {
+      display: flex;
+      align-items: center; /* Align items vertically */
+      gap: 1em;
+  
+      h4 {
+        white-space: nowrap; /* Prevent text wrapping */
+      }
+  
+      .rating-box {
+        display: flex;
+        gap: 0.5em;
+  
+        .box {
+          width: 25px;
+          height: 25px;
+          border: 3px solid #000;
+        }
+      }
+    }
+  }
+}
