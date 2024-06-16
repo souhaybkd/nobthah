@@ -2,7 +2,7 @@
 import React, { forwardRef } from 'react';
 import "./Rome.scss";
 
-const Rome = forwardRef(({ personalInfo, education, image, skills, languages, experiences }: any, ref:any) => {
+const Rome = forwardRef(({ personalInfo, education, certificates, image, skills, languages, experiences }: any, ref: any) => {
     return (
         <div className="rome-resume" ref={ref}>
             <div className="profile">
@@ -14,7 +14,7 @@ const Rome = forwardRef(({ personalInfo, education, image, skills, languages, ex
                         <h2>{personalInfo.profession}</h2>
                         <div className="split">
                             <div>
-                                <h2>{personalInfo.city}, {personalInfo.country}</h2>
+                                <h2>{personalInfo.address}</h2>
                             </div>
                             <div>
                                 <h2>{personalInfo.phone}</h2>
@@ -27,14 +27,22 @@ const Rome = forwardRef(({ personalInfo, education, image, skills, languages, ex
                     <img src={image} alt="Profile" />
                 </div>
             </div>
-            <div className="info">
-                <div className="title">
-                    <div>
-                        <h1>1</h1>
+            <div className="dual">
+                <div className="info profile-0">
+                    <div className="title">
+                        <div>
+                            <h1>1</h1>
+                        </div>
+                        <h3>PROFILE</h3>
                     </div>
-                    <h3>PROFILE</h3>
+                    <p>{personalInfo.profileDesc}</p>
                 </div>
-                <p>{personalInfo.profileDesc}</p>
+
+                <div className="certificates">
+                    {certificates.map((skill, index) => (
+                        <h2 className='certificate'>{skill.name}, {skill.date}</h2>
+                    ))}
+                </div>
             </div>
             <div className="dual">
                 <div className="info">
@@ -62,18 +70,40 @@ const Rome = forwardRef(({ personalInfo, education, image, skills, languages, ex
                         </div>
                         <h3>Languages</h3>
                     </div>
-                    {/* {languages.map((language, index) => (
+                    {languages.map((language, index) => (
                         <div className="rating" key={index}>
                             <p>{language.name}</p>
                             <div className="circles">
                                 {[...Array(5)].map((_, i) => (
-                                    <div key={i} className={`circle ${i < language.rating ? 'filled' : ''}`}></div>
+                                    <div key={i} className={`circle ${i < language.proficiency ? 'filled' : ''}`}></div>
                                 ))}
                             </div>
                         </div>
-                    ))} */}
+                    ))}
                 </div>
             </div>
+            <div className="info">
+                <div className="title">
+                    <div>
+                        <h1>4</h1>
+                    </div>
+                    <h3>EDUCATION</h3>
+                </div>
+                <ul>
+                    {education.map((experience, index) => (
+                        <li key={index} className="experience-item">
+                            <div className="flex">
+                                <div>
+                                    <h3>{experience.degree} at {experience.institutionName}</h3>
+                                </div>
+                                <h2 className='time'>{experience.joiningDate} - {experience.endingDate}</h2>
+                            </div>
+                            <p>{experience.contribution}</p>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+
             <div className="info">
                 <div className="title">
                     <div>
@@ -95,6 +125,8 @@ const Rome = forwardRef(({ personalInfo, education, image, skills, languages, ex
                     ))}
                 </ul>
             </div>
+
+
         </div>
     );
 });

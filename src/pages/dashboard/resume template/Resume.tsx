@@ -7,7 +7,6 @@ import { Rating } from 'react-simple-star-rating'
 import { useReactToPrint } from 'react-to-print';
 import Madrid from "./templates/Madrid/Madrid";
 import { useParams } from 'react-router-dom';
-import TextEditor from "../tiptapEditor/TextEditor";
 import Berlin from "./templates/Berlin/Berlin";
 import Crisp from "./templates/Crisp/Crisp";
 import Santiago from "./templates/Santiago/Santiago";
@@ -16,7 +15,6 @@ import Singapore from "./templates/Singapore/Singapore";
 import Rome from "./templates/Rome/Rome";
 import Diamond from "./templates/Diamond/Diamond";
 import Barcelona from "./templates/Barcelona/Barcelona";
-// import London from 
 
 export default function Resume() {
   const steps = [
@@ -172,16 +170,6 @@ function handleProficiencyChange(index, proficiency) {
   function deleteExperience(index) {
     const updatedExperiences = experiences.filter((_, i) => i !== index);
     setExperiences(updatedExperiences);
-  }
-
-  function collectData() {
-    const data = {
-      personalInfo,
-      experiences,
-      education,
-      skills
-    };
-    console.log(data);
   }
 
   function returnUI() {
@@ -625,7 +613,7 @@ onClick={(rating) => handleProficiencyChange(index, rating)}
         } else if (id === "singapore") {
           return <Singapore image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences} />
         } else if (id === "rome") {
-          return <Rome image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences} />
+          return <Rome languages={languages} certificates={certificates}  image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences} />
         } else if (id === "diamond") {
           return <Diamond image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences} />
         } else if (id === "barcelona") {

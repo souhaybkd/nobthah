@@ -1,103 +1,88 @@
 // @ts-nocheck
-import "./scratch.scss"
-import "../dashboard.scss"
-import React, { useState } from "react"
+import "./scratch.scss";
+import "../dashboard.scss";
+import React, { useState, useEffect } from "react";
 import { account } from "../../../appwrite/appwrite.config";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import Madrid from "../../../assets/madrid.jpg"
-import Berlin from "../../../assets/berlin.png"
-
-import Rome from "../../../assets/rome.png"
-import Crisp from "../../../assets/crisp.png"
-import Barcelona from "../../../assets/barcelona.png"
-import Singapore from "../../../assets/singapore.png"
-import Diamond from "../../../assets/diamond.png"
-import Santiago from "../../../assets/santiago.png"
-import London from "../../../assets/london.png"
+import Madrid from "../../../assets/madrid.jpg";
+import Berlin from "../../../assets/berlin.png";
+import Rome from "../../../assets/rome.png";
+import Crisp from "../../../assets/crisp.png";
+import Barcelona from "../../../assets/barcelona.png";
+import Singapore from "../../../assets/singapore.png";
+import Diamond from "../../../assets/diamond.png";
+import Santiago from "../../../assets/santiago.png";
+import London from "../../../assets/london.png";
 
 const tabData = {
   Modern: [
     {
-      html: <div className="card" key="creative1">
-        <img src={Madrid} alt="" />
-      </div>,
+      html: <div className="card" key="creative1"><img src={Madrid} alt="" /></div>,
       route: "/madrid"
     },
     {
-      html: <div className="card" key="creative2">
-        <img src={Berlin} alt="" />
-      </div>,
+      html: <div className="card" key="creative2"><img src={Berlin} alt="" /></div>,
       route: "/berlin"
     },
     {
-      html: <div className="card" key="creative3">
-        <img src={Rome} alt="" />
-      </div>,
+      html: <div className="card" key="creative3"><img src={Rome} alt="" /></div>,
       route: "/rome"
     },
   ],
   Professional: [
     {
-      html: <div className="card" key="professional1">
-        <img src={Crisp} alt="" />
-      </div>,
+      html: <div className="card" key="professional1"><img src={Crisp} alt="" /></div>,
       route: "/crisp"
     },
     {
-      html: <div className="card" key="professional2">
-        <img src={Barcelona} alt="" />
-      </div>,
+      html: <div className="card" key="professional2"><img src={Barcelona} alt="" /></div>,
       route: "/barcelona"
     },
     {
-      html: <div className="card" key="professional3">
-        <img src={Diamond} alt="" />
-      </div>,
+      html: <div className="card" key="professional3"><img src={Diamond} alt="" /></div>,
       route: "/diamond"
     },
   ],
   Minimalistic: [
     {
-      html: <div className="card" key="minimalistic1">
-        <img src={Singapore} alt="" />
-      </div>,
+      html: <div className="card" key="minimalistic1"><img src={Singapore} alt="" /></div>,
       route: "/singapore"
     },
     {
-      html: <div className="card" key="minimalistic2">
-        <img src={Santiago} alt="" />
-      </div>,
+      html: <div className="card" key="minimalistic2"><img src={Santiago} alt="" /></div>,
       route: "/santiago"
     },
     {
-      html: <div className="card" key="minimalistic3">
-        <img src={London} alt="" />
-      </div>,
+      html: <div className="card" key="minimalistic3"><img src={London} alt="" /></div>,
       route: "/london"
     },
   ]
 };
 
-
 export default function Scratch() {
-  const navigate = useNavigate()
-  const [activeTab, setActiveTab] = useState("Modern")
+  const navigate = useNavigate();
+  const [activeTab, setActiveTab] = useState("Modern");
+  const [cards, setCards] = useState(tabData[activeTab]);
+  const [exiting, setExiting] = useState(false);
+
+  useEffect(() => {
+    if (!exiting) {
+      setCards(tabData[activeTab]);
+    }
+  }, [activeTab, exiting]);
 
   async function logout() {
     const promise = account.deleteSession("current");
-    // Show toast notification for the operation
     toast.promise(promise, {
       pending: "Logging Out...",
       success: "Logged Out Successfully!",
       error: "Failed to Logout. Please try again.",
     });
 
-    // Handle promise if needed
     promise
       .then(() => {
-        console.log("Logged out successfully");
         navigate("/");
       })
       .catch((error) => {
@@ -138,16 +123,20 @@ export default function Scratch() {
           ))}
         </div>
 
-        <div className="grid" >
-          <AnimatePresence mode="wait">
-            {tabData[activeTab].map((card, index) => (
+        <div className="grid">
+          <AnimatePresence
+            mode="wait"
+            onExitComplete={() => setExiting(false)}
+          >
+            {cards.map((card, index) => (
               <motion.div
                 onClick={() => navigate(`resume${card.route}`)}
-                key={index}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
+                key={`${activeTab}-${index}`}
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -100 }}
                 transition={{ duration: 0.3 }}
+                onAnimationStart={() => setExiting(true)}
               >
                 {card.html}
               </motion.div>
@@ -163,14 +152,11 @@ export default function Scratch() {
         newestOnTop={false}
         closeOnClick
         rtl={false}
-        style={{
-          width: "500px",
-        }}
         pauseOnFocusLoss
         draggable
         pauseOnHover
         theme="dark"
       />
     </div>
-  )
+  );
 }
