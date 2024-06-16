@@ -12,6 +12,28 @@
   align-items: center;
   justify-content: center;
 
+  .languages nav {
+    margin-top: .5em;
+    margin-bottom: 0 !important;
+  }
+
+  .languages .jobDetails, .languages .btns {
+    margin-top: .5em !important;
+  }
+
+  .certificates {
+    gap: .5em !important;
+    .flexy {
+      width: 8% !important;
+      button {
+        width: 100% !important;
+      }
+    }
+
+    .form-group {
+      width: 92% !important;
+    }
+  }
   .profilePic {
     display: flex;
     margin-bottom: 1em;
@@ -313,7 +335,7 @@
     .flexy {
       display: flex;
       align-items: center;
-width: 50% !important;
+width: 50% ;
     }
     .jobDetails {
       display: flex;
