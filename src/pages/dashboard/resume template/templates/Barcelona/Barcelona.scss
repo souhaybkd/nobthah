@@ -3,6 +3,22 @@
   font-family: sans-serif;
   line-height: 1.5;
 
+  p {
+    font-size: 1.25rem !important;
+  }
+
+  .certificate {
+    background: #000;
+    color: #fff;
+    padding: .8em;
+    border-radius: 10px;
+
+    h4 {
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+  }
+
   h1 {
     font-size: 2.5rem;
   }
@@ -50,14 +66,13 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     margin-top: 1em;
-    gap: 0.5em 2em;
+    gap: 1em 2em;
 
   
     .skill {
       display: flex;
       align-items: center; /* Align items vertically */
       gap: 1em;
-  
       h4 {
         white-space: nowrap; /* Prevent text wrapping */
       }
