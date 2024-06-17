@@ -1,6 +1,25 @@
 .crisp-resume {
   padding: 2em;
+  zoom: 80%;
   font-family: "Cairo";
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5em 1em;
+    margin-top: 0.8em;
+  }
+  .certificate {
+    width: 100%;
+    padding: 0 !important;
+    h4 {
+      background: #000;
+      margin: 0 !important;
+      color: #fff;
+      padding: 0.5em;
+      border-radius: 5px;
+      width: 100%;
+    }
+  }
   > h1 {
     font-size: 2.5rem;
     line-height: 1.2;
@@ -94,15 +113,16 @@
         }
 
         .righty {
-            width: 80% !important;
-            h1, h4 {
-                line-height: 1.2;
-                margin: 0;
-            }
+          width: 80% !important;
+          h1,
+          h4 {
+            line-height: 1.2;
+            margin: 0;
+          }
 
-            h1 {
-                font-size: 1.5rem;
-            }
+          h1 {
+            font-size: 1.5rem;
+          }
         }
       }
     }

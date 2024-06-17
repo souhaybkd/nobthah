@@ -1,9 +1,9 @@
 // @ts-ignore
 import React, { forwardRef } from 'react';
 import "./Crisp.scss"
-import { BookMarked, Languages, Puzzle, User } from 'lucide-react';
+import { BookMarked, Languages, Puzzle, ShieldCheck, User } from 'lucide-react';
 
-const Crisp = forwardRef(({ personalInfo, education, image, skills, experiences }, ref) => {
+const Crisp = forwardRef(({ personalInfo, education, languages, certificates, image, skills, experiences }: any, ref: any) => {
     return (
         <div ref={ref} className='crisp-resume'>
             <h1>{personalInfo.firstName} {personalInfo.lastName}</h1>
@@ -14,7 +14,7 @@ const Crisp = forwardRef(({ personalInfo, education, image, skills, experiences 
                     <div className="personalInfo">
                         <h3><User size={20} /> Personal Info</h3>
                         <h4>Address</h4>
-                        <p>{personalInfo.city}, {personalInfo.country}</p>
+                        <p>{personalInfo.address}</p>
                         <h4>Phone</h4>
                         <p>{personalInfo.phone}</p>
                         <h4>E-Mail</h4>
@@ -37,14 +37,14 @@ const Crisp = forwardRef(({ personalInfo, education, image, skills, experiences 
                     {/* LANGUAGES */}
                     <div className="personalInfo">
                         <h3><Languages size={20} /> Languages</h3>
-                        {/* {personalInfo.languages.map((language, index) => (
+                        {languages.map((language, index) => (
                             <div className="skill" key={index}>
-                                <h4>{language}</h4>
+                                <h4>{language.name}</h4>
                                 <div className="bar-container">
-                                    <div className="bar"></div>
+                                <div className="bar" style={{ width: `${(language.proficiency / 5) * 100}%` }}></div>
                                 </div>
                             </div>
-                        ))} */}
+                        ))}
                     </div>
                 </div>
                 <div className="right left">
@@ -80,6 +80,18 @@ const Crisp = forwardRef(({ personalInfo, education, image, skills, experiences 
                                 </div>
                             </div>
                         ))}
+                    </div>
+
+
+                    <div className="personalInfo">
+                        <h3><ShieldCheck size={20} />Certifications</h3>
+                        <div className="grid">
+                        {certificates.map((edu, index) => (
+                            <div className="certificate" key={index}>
+                                <h4>{edu.name} - {edu.date}</h4>
+                            </div>
+                        ))}
+                        </div>
                     </div>
                 </div>
             </div>

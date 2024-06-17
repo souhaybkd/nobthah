@@ -605,19 +605,19 @@ onClick={(rating) => handleProficiencyChange(index, rating)}
         } else if (id === "berlin") {
           return <Berlin languages={languages} certificates={certificates}  image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences}></Berlin>
         } else if (id === "crisp") {
-          return <Crisp image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences}></Crisp>
+          return <Crisp languages={languages} certificates={certificates} image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences}></Crisp>
         } else if (id === "santiago") {
-          return <Santiago image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences} />
+          return <Santiago languages={languages} certificates={certificates}  image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences} />
         } else if (id === "london") {
-          return <London image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences} />
+          return <London languages={languages} certificates={certificates}  image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences} />
         } else if (id === "singapore") {
-          return <Singapore image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences} />
+          return <Singapore languages={languages} certificates={certificates}  image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences} />
         } else if (id === "rome") {
-          return <Rome languages={languages} certificates={certificates}  image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences} />
+          return <Rome languages={languages} certificates={certificates}  languages={languages} certificates={certificates}  image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences} />
         } else if (id === "diamond") {
-          return <Diamond image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences} />
+          return <Diamond languages={languages} certificates={certificates}  image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences} />
         } else if (id === "barcelona") {
-          return <Barcelona image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences} />
+          return <Barcelona languages={languages} certificates={certificates} image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences} />
         }
       }
       return (
