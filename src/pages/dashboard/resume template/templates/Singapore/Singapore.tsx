@@ -3,7 +3,7 @@ import React, { forwardRef } from 'react';
 import "./Singapore.scss";
 import getSkillLevel from '../../utils';
 
-const Singapore = forwardRef(({ personalInfo, education, image, skills, experiences }, ref) => {
+const Singapore = forwardRef(({ personalInfo, certificates, languages, education, image, skills, experiences }: any, ref: any) => {
     return (
         <div className="singapore-resume" ref={ref}>
             <h1>{personalInfo.firstName} {personalInfo.lastName}</h1>

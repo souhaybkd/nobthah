@@ -1,11 +1,49 @@
 
 .santiago-resume {
-  @page {
-    margin: 20px; /* Adjust as needed to avoid default header/footer */
-  }
   padding: 2em;
+  zoom:80%;
   font-family: "Times New Roman", Times, serif;
   width: 100%;
+.certification {
+  background: #c8c7c7;
+  width: 100% !important;
+  margin-top: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+
+  h3 {
+    margin-top: 0 !important;
+    width: 25%;
+  }
+
+  .grid {
+    width: 75% !important;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  padding: 1em;
+  border-radius: 1em;
+  border: 2px solid #000;
+}
+  .dual {
+    display: flex;
+    width: 100%;
+    gap: 1em;
+    margin-top: 1em;
+
+    .child {
+      background: #c8c7c7;
+      width: 50% !important;
+
+      h3 {
+        margin-top: 0 !important;
+      }
+      padding: 1em;
+      border-radius: 1em;
+      border: 2px solid #000;
+    }
+  }
 
   > h1 {
     font-size: 2.8rem;
@@ -87,7 +125,7 @@
   .grid {
     display: grid;
     gap: 0.8em 1em;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 
   .skill-line {
@@ -110,7 +148,7 @@
   }
 
   .skill-line span {
-    background: white;
+    background: #c8c7c7;
     position: relative;
     z-index: 1;
     padding-left: 1em;

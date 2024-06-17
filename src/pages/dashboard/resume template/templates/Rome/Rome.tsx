@@ -2,7 +2,7 @@
 import React, { forwardRef } from 'react';
 import "./Rome.scss";
 
-const Rome = forwardRef(({ personalInfo, education, certificates, image, skills, languages, experiences }: any, ref: any) => {
+const Rome = forwardRef(({ personalInfo, education, certificates, languages, image, skills, experiences }: any, ref: any) => {
     return (
         <div className="rome-resume" ref={ref}>
             <div className="profile">

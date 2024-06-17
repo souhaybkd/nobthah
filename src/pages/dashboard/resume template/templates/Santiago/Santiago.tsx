@@ -3,7 +3,7 @@ import React, { forwardRef } from 'react';
 import "./Santiago.scss";
 import getSkillLevel from '../../utils';
 
-const Santiago = forwardRef(({ personalInfo, education, image, skills, experiences }, ref) => {
+const Santiago = forwardRef(({ personalInfo, certificates, languages, education, image, skills, experiences }: any, ref: any) => {
     return (
         <div className="santiago-resume" ref={ref}>
             <div className="hide"></div>
@@ -52,14 +52,44 @@ const Santiago = forwardRef(({ personalInfo, education, image, skills, experienc
                 ))}
             </ul>
 
-            <h3>SKILLS</h3>
-            <div className="grid">
-                {skills.map((skill, index) => (
-                    <div className="flex skill-line" key={index}>
-                        <span>{skill.name}</span>
-                        <span>{getSkillLevel(skill.rating)}</span>
+            <div className="dual">
+                <div className="child">
+                    {/* // TODO: */}
+
+                    <h3>Certifications</h3>
+                    <div className="grid">
+                        {certificates.map((skill, index) => (
+                            <div className="flex skill-line" key={index}>
+                                <span>{skill.name}</span>
+                                <span>{(skill.date)}</span>
+                            </div>
+                        ))}
                     </div>
-                ))}
+                </div>
+
+                <div className="child">
+                    <h3>Languages</h3>
+                    <div className="grid">
+                        {languages.map((skill, index) => (
+                            <div className="flex skill-line" key={index}>
+                                <span>{skill.name}</span>
+                                <span>{getSkillLevel(skill.proficiency)}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            <div className="certification">
+                <h3>SKILLS</h3>
+                <div className="grid">
+                    {skills.map((skill, index) => (
+                        <div className="flex skill-line" key={index}>
+                            <span>{skill.name}</span>
+                            <span>{getSkillLevel(skill.rating)}</span>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     );
