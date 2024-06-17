@@ -2,6 +2,11 @@
   height: 100vh;
   width: 100%;
   display: flex;
+
+  a {
+    color: skyblue;
+    text-underline-offset: 4px;
+  }
   .left {
     height: 100%;
     width: 30%;
@@ -44,6 +49,10 @@
     .details {
       margin-top: 2em;
       line-height: 1.5;
+      width: 98%;
+      p {
+        width: 100%;
+      }
     }
 
     .skills {

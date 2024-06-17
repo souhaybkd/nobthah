@@ -2,7 +2,7 @@
 import React, { forwardRef } from 'react';
 import "./Diamond.scss"
 
-const Diamond = forwardRef(({ personalInfo, education, image, skills, experiences }: any, ref: any) => {
+const Diamond = forwardRef(({ personalInfo, education, languages, certificates, image, skills, experiences }: any, ref: any) => {
   return (
     <div ref={ref} className='diamond-resume'>
       <div className="left">
@@ -15,7 +15,9 @@ const Diamond = forwardRef(({ personalInfo, education, image, skills, experience
           <h3>Details</h3>
           <p>{personalInfo.address}</p>
           <p>{personalInfo.phone}</p>
-          <p>{personalInfo.email}</p>
+          <p>
+          <a href={`https://mail.google.com/mail/?view=cm&fs=1&to=${personalInfo.email}`}>G-MAIL</a>
+          </p>
         </div>
 
         <div className="skills">
@@ -26,6 +28,28 @@ const Diamond = forwardRef(({ personalInfo, education, image, skills, experience
               <div className="bar-container">
                 <div className="bar" style={{ width: `${(skill.rating / 5) * 100}%` }}></div>
               </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="skills">
+          <h3>Languages</h3>
+          {languages.map((skill, index) => (
+            <div className="skill" key={index}>
+              <h5>{skill.name}</h5>
+              <div className="bar-container">
+                <div className="bar" style={{ width: `${(skill.proficiency / 5) * 100}%` }}></div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="skills">
+          <h3>Certificates</h3>
+          {certificates.map((skill, index) => (
+            <div className="skill" key={index}>
+              <h5>{skill.name}, {skill.date}</h5>
+              
             </div>
           ))}
         </div>
@@ -52,7 +76,7 @@ const Diamond = forwardRef(({ personalInfo, education, image, skills, experience
             <div className="experience edu">
               <h2>{edu.degree}</h2>
               <h3>{edu.joiningDate} - {edu.endingDate}</h3>
-              <p className='desc'>{edu.institutionName}</p>
+              <p className='desc'>{edu.contribution}</p>
             </div>
           </div>
         ))}
