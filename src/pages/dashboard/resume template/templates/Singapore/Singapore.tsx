@@ -24,6 +24,16 @@ const Singapore = forwardRef(({ personalInfo, certificates, languages, education
                     <h4>Email</h4>
                     <p>{personalInfo.email}</p>
                 </div>
+
+                <div className="item">
+                    <h4>Languages</h4>
+                    <p>{
+                        languages.map((item) => {
+                            return item.name + ", "
+                        })
+                    }</p>
+
+                </div>
             </div>
 
             <div className="profile">
@@ -60,6 +70,41 @@ const Singapore = forwardRef(({ personalInfo, certificates, languages, education
                         </div>
                     </div>
                 ))}
+            </div>
+
+            <div className="dual exp">
+                <div className="card">
+                    <h2>03 TECHNICAL & SOFT SKILLS</h2>
+                    <div className="skills">
+                        {
+                            skills.map((item) => {
+                                return (
+                                    <div className="skill">
+                                        <h4>{item.name}</h4>
+                                        <div className="bar-container">
+                                            <div className="bar" style={{width: (item.rating/5) * 100}}></div>
+                                        </div>
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
+                </div>
+
+                <div className="card v2">
+                    <h2>04 Certifications</h2>
+                    <div className="skills">
+                        {
+                            certificates.map((item) => {
+                                return (
+                                    <div className="skill">
+                                        <h4>{item.name}, {item.date}</h4>
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
+                </div>
             </div>
         </div>
     );
