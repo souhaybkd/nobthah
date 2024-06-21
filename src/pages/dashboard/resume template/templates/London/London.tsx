@@ -4,12 +4,12 @@ import "./London.scss"
 import { BookMarked, Languages, Puzzle, User } from 'lucide-react';
 import getSkillLevel from '../../utils';
 
-const London = forwardRef(({ personalInfo, education, image, skills, experiences }, ref) => {
+const London = forwardRef(({ personalInfo, education, image, skills, experiences, certificates, languages }: any, ref: any) => {
     return (
         <div ref={ref} className='london-resume'>
             <h1>{personalInfo.firstName} {personalInfo.lastName}</h1>
             <h2>
-                <span>{personalInfo.city}, {personalInfo.country}</span>
+                <span>{personalInfo.address}</span>
                 <span>{personalInfo.phone}</span>
                 <span>{personalInfo.email}</span>
             </h2>
@@ -63,6 +63,31 @@ const London = forwardRef(({ personalInfo, education, image, skills, experiences
                             <h4>{skill.name}</h4>
                             <p>{getSkillLevel(skill.rating)}</p>
                         </div>
+                    ))}
+                </div>
+            </div>
+
+            <div className="line"></div>
+            <div className="profile">
+                <h2>Languages</h2>
+                <div className="grid">
+                    {languages.map((skill, index) => (
+                        <div className="skill" key={index}>
+                            <h4>{skill.name}</h4>
+                            <p>{getSkillLevel(skill.proficiency)}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            <div className="line"></div>
+            <div className="profile">
+                <h2>Certifications</h2>
+                <div className="grid">
+                    {certificates.map((skill, index) => (
+                        <div className="skill" key={index}>
+                            <h4>{skill.name}, {skill.date}</h4>
+=                        </div>
                     ))}
                 </div>
             </div>
