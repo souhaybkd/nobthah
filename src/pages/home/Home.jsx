@@ -1,8 +1,11 @@
 import Woman from "../../assets/woman.png";
 import Navbar from "../../components/Navbar/Navbar";
 import "./home.scss";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
+  const navigate = useNavigate()
+  
   return (
     <div className="home-page">
       <Navbar />
@@ -15,7 +18,7 @@ export default function Home() {
             spending hours on it. Get good resumes & get hired quickly & easily. Try Now !!
           </p>
           <div className="btns">
-            <button className="button">
+            <button className="button" onClick={() => navigate("/dashboard/create-resume-from-scratch")}>
               <h2>Create Resume</h2>
             </button>
           </div>

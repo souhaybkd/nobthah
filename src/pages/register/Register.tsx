@@ -18,7 +18,7 @@ export default function Register() {
       try {
         const user = await account.get();
         if (user) {
-          navigate("/dashboard");
+          navigate("/dashboard/create-resume-from-scratch");
         }
       } catch (error) {
         console.log("No user logged in", error);
@@ -38,7 +38,7 @@ export default function Register() {
           error: "Error creating account. Please try again."
         }
       ).then(() => {
-        navigate("/dashboard");
+        navigate("/dashboard/create-resume-from-scratch");
       }).catch(error => {
         console.error("Registration failed:", error);
       });
