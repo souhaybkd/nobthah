@@ -1,12 +1,12 @@
 // @ts-nocheck
 import "./resume.scss";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Briefcase, CalendarDays, Globe, Mail, MapPin, Phone, Trash2, User } from "lucide-react";
 import { Rating } from 'react-simple-star-rating'
 import { useReactToPrint } from 'react-to-print';
 import Madrid from "./templates/Madrid/Madrid";
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Berlin from "./templates/Berlin/Berlin";
 import Crisp from "./templates/Crisp/Crisp";
 import Santiago from "./templates/Santiago/Santiago";
@@ -15,6 +15,8 @@ import Singapore from "./templates/Singapore/Singapore";
 import Rome from "./templates/Rome/Rome";
 import Diamond from "./templates/Diamond/Diamond";
 import Barcelona from "./templates/Barcelona/Barcelona";
+import { toPng } from "html-to-image";
+import { account } from "../../../appwrite/appwrite.config";
 
 export default function Resume() {
   const steps = [
@@ -33,10 +35,22 @@ export default function Resume() {
     documentTitle: "RESUME",
     onBeforePrint: () => console.log("before printing..."),
     onAfterPrint: () => console.log("after printing..."),
-    removeAfterPrint: true
   });
   const fileInputRef = useRef(null);
+  const navigate = useNavigate();
+  let user
+  useEffect(() => {
+    async function getAuthStatus() {
+      try {
+        user = await account.get();
 
+      } catch (error) {
+        console.log("No user logged in", error);
+        navigate("/login")
+      }
+    }
+    getAuthStatus();
+  }, [navigate]);
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -71,22 +85,22 @@ export default function Resume() {
   const [education, setEducation] = useState([{ institutionName: '', degree: '', contribution: '', joiningDate: '', endingDate: '' }]);
   function addLanguage() {
     setLanguages([...languages, { name: '', proficiency: 0 }]);
-}
+  }
 
-function deleteLanguage(index) {
+  function deleteLanguage(index) {
     const updatedLanguages = languages.filter((_, i) => i !== index);
     setLanguages(updatedLanguages);
-}
+  }
 
-function handleLanguageChange(index, field, value) {
+  function handleLanguageChange(index, field, value) {
     const updatedLanguages = languages.map((lang, i) => i === index ? { ...lang, [field]: value } : lang);
     setLanguages(updatedLanguages);
-}
+  }
 
-function handleProficiencyChange(index, proficiency) {
+  function handleProficiencyChange(index, proficiency) {
     const updatedLanguages = languages.map((lang, i) => i === index ? { ...lang, proficiency } : lang);
     setLanguages(updatedLanguages);
-}
+  }
 
   function addEducation() {
     setEducation([...education, { institutionName: '', degree: '', contribution: '', joiningDate: '', endingDate: '' }]);
@@ -133,14 +147,14 @@ function handleProficiencyChange(index, proficiency) {
   function addCertificates() {
     setCertificates([...certificates, { name: '', date: '' }]);
   }
-  
+
   function deleteCertificates(index) {
     const updatedCertificates = certificates.filter((_, i) => i !== index);
     setCertificates(updatedCertificates);
   }
-  
+
   function handleCertificatesChange(index, field, value) {
-    const updatedCertificates = certificates.map((cert, i) => 
+    const updatedCertificates = certificates.map((cert, i) =>
       i === index ? { ...cert, [field]: value } : cert
     );
     setCertificates(updatedCertificates);
@@ -172,104 +186,151 @@ function handleProficiencyChange(index, proficiency) {
     setExperiences(updatedExperiences);
   }
 
+  const downloadResume = async () => {
+    const lemonSqueezyConfig = {
+      API_KEY: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5NGQ1OWNlZi1kYmI4LTRlYTUtYjE3OC1kMjU0MGZjZDY5MTkiLCJqdGkiOiJiMzFkNjU3MjNmYzk4NTcxMGJkZjE2OGU2NTZlMTllODU0ZTdjZDE3YmFkY2NhMDNkODM1ZDdjN2FjYzNmZjhmNGZmN2EwYTUxNjBjYzQyZSIsImlhdCI6MTcxOTIzNDgwNi4wMjkxNzksIm5iZiI6MTcxOTIzNDgwNi4wMjkxODIsImV4cCI6MjAzNDc2NzYwNi4wMDA2NzQsInN1YiI6IjIyOTI3MDEiLCJzY29wZXMiOltdfQ.zHxwQFCumLAlaWTJQoX_iKb78NZ29OCS6_aH_HrduTpRVBWXIf_TPaoSAj-s9VkTgyMhch1RAYISRiNu4AaAcBq8wu-0Ayq3KA6wGWJWKbOAhClaXWqLIE8jOWK3NefNWuqgTDvmxov4MmUkGq_ij23Wp02nBVcXOyHz_SACevrMoyVREUSYP9NrN6eqTiQ-2qcc6Kwa_IazhGRtKSYHHgD1aov5ywhxv-x8SO_7eRjI1dpshdMZqZL-sFYtLl-dRz-6WLl_dAaCuUZK_G2sTwNwOCQFL0j-hwKuJl-lH-YAzA5GkjsRuARo-mfHdQAJFljWa1m5ZMpOxUGDPiO91svVO5NyyICBwz_whKeClec8veSyQNlswiLN5Nh_rSNe2LH74nXlO94C1a1cXR0Yi45G0JJsPEOHf8bcnzV8wGX1M-HKicI6oWvECyYLd9IHr3yVBUyNS6ep2FMQL2BqNeklo8fpoibmpsmQ9fT1EAln5QUmlEzT5FpOvTTS7J-Y",
+      URL: "https://api.lemonsqueezy.com"
+    };
+
+    const headers = {
+      Accept: "application/vnd.api+json",
+      "Content-Type": "application/vnd.api+json",
+      Authorization: "Bearer " + lemonSqueezyConfig.API_KEY,
+    };
+
+    try {
+      console.log(user)
+      const response = await fetch("https://api.lemonsqueezy.com/v1/checkouts", {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify({
+          data: {
+            type: "checkouts",
+            attributes: {
+              checkout_data: {
+                email: user.email,
+                custom: [user.$id],
+              }
+            },
+            relationships: {
+              store: { data: { type: "stores", id: "96692" } },
+              variant: { data: { type: "variants", id: "427561" } },
+            },
+          },
+        }),
+      });
+      const checkout = await response.json();
+      console.log(checkout)
+
+      // const newWindow = window.open(checkout.data.attributes.url, "Lemon Squeezy", "width=500,height=600");
+      resumeTemplate.current.style.display = "flex"
+      handlePrint()
+      resumeTemplate.current.style.display = "none"
+    } catch (error) {
+      console.error("Error creating checkout:", error);
+    }
+  };
+
+
+
   function returnUI() {
     if (steps.find(step => step.stepNumber === activeStep).stepDescription.toLowerCase() === "personal info") {
       return (
-          <div className="form">
-              <h2>Personal Info</h2>
-              <p>Please provide your name, email address, phone number, and languages spoken.</p>
-              <div className="profilePic">
-                  <div className="left">
-                      <div className="image-container" onClick={handleClick}>
-                          {image ? (<img src={image} alt="Profile" className="profile-image" />) : (<div className="placeholder">Click to upload image</div>)}
-                      </div>
-                      <input type="file" accept="image/*" ref={fileInputRef} onChange={handleImageUpload} style={{ display: 'none' }} />
-                  </div>
-                  <div className="right">
-                      <div className="form-group">
-                          <div className="input-icon">
-                              <User size={20} />
-                              <input type="text" id="firstName" value={personalInfo.firstName} onChange={handlePersonalInfoChange} placeholder="Enter Your Name" />
-                          </div>
-                      </div>
-                      <div className="form-group">
-                          <div className="input-icon">
-                              <Briefcase size={20} />
-                              <input type="text" id="profession" value={personalInfo.profession} onChange={handlePersonalInfoChange} placeholder="Enter Job Title" />
-                          </div>
-                      </div>
-                      <div className="form-group">
-                          <div className="input-icon">
-                              <Phone size={20} />
-                              <input type="text" id="phone" value={personalInfo.phone} onChange={handlePersonalInfoChange} placeholder="Enter Your Phone Number" />
-                          </div>
-                      </div>
-                      <div className="form-group">
-                          <div className="input-icon">
-                              <Mail size={20} />
-                              <input type="text" id="email" value={personalInfo.email} onChange={handlePersonalInfoChange} placeholder="Enter Your Email" />
-                          </div>
-                      </div>
-                  </div>
+        <div className="form">
+          <h2>Personal Info</h2>
+          <p>Please provide your name, email address, phone number, and languages spoken.</p>
+          <div className="profilePic">
+            <div className="left">
+              <div className="image-container" onClick={handleClick}>
+                {image ? (<img src={image} alt="Profile" className="profile-image" />) : (<div className="placeholder">Click to upload image</div>)}
+              </div>
+              <input type="file" accept="image/*" ref={fileInputRef} onChange={handleImageUpload} style={{ display: 'none' }} />
+            </div>
+            <div className="right">
+              <div className="form-group">
+                <div className="input-icon">
+                  <User size={20} />
+                  <input type="text" id="firstName" value={personalInfo.firstName} onChange={handlePersonalInfoChange} placeholder="Enter Your Name" />
+                </div>
               </div>
               <div className="form-group">
-                  <div className="input-icon">
-                      <MapPin size={20} />
-                      <input type="text" id="address" value={personalInfo.address} onChange={handlePersonalInfoChange} placeholder="Enter Your Address" />
-                  </div>
+                <div className="input-icon">
+                  <Briefcase size={20} />
+                  <input type="text" id="profession" value={personalInfo.profession} onChange={handlePersonalInfoChange} placeholder="Enter Job Title" />
+                </div>
               </div>
-              <textarea placeholder="Write a profile description" value={personalInfo.profileDesc} type="text" id="profileDesc" onChange={handlePersonalInfoChange}></textarea>
-              <div className="form-group languages history skills">
-                  <nav>
-                      <h4>Add Language</h4>
-                      <svg style={{ cursor: "pointer" }} onClick={addLanguage} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-circle-plus">
-                          <circle cx="12" cy="12" r="10" />
-                          <path d="M8 12h8" />
-                          <path d="M12 8v8" />
-                      </svg>
-                  </nav>
-                  <AnimatePresence>
-                      {languages.length > 0 && languages.map((language, index) => (
-                          <motion.div className="jobDetails" key={index}
-                              initial={{ opacity: 0, scaleY: 0, translateY: -50 }}
-                              animate={{ opacity: 1, scaleY: 1, translateY: 0 }}
-                              exit={{ opacity: 0, translateY: 50, transition: { duration: 0.5, ease: "easeInOut" } }}
-                              style={{ overflow: "hidden" }}
-                              transition={{ type: "spring", stiffness: 260, damping: 20, duration: 0.5, delay: index * 0.1, }}>
-                              <div className="form-group">
-                                  <div className="input-icon">
-                                      <Globe size={20} />
-                                      <input type="text" id={`languageName${index}`} placeholder="e.g., English, Spanish" value={language.name} onChange={(e) => handleLanguageChange(index, 'name', e.target.value)} />
-                                  </div>
-                              </div>
-                              <div className="form-group">
-                                      {/* <Rating allowFraction transition fillColor='orange' emptyColor='gray' SVGstorkeWidth={2} SVGstrokeColor="#000" className='foo' /> */}
-                                      <Rating
-onClick={(rating) => handleProficiencyChange(index, rating)} 
-                        ratingValue={language.proficiency}
-                        size={20}
-                        label
-                        showTooltip={true}
-                        allowFraction={true}
-                        transition
-                        fillColor='orange'
-                        emptyColor='gray'
-                        SVGstorkeWidth={2}
-                        SVGstrokeColor="#000"
-                      />
-                              </div>
-                              <button onClick={() => deleteLanguage(index)} style={{ cursor: "pointer" }}><Trash2 /></button>
-                          </motion.div>
-                      ))}
-                  </AnimatePresence>
+              <div className="form-group">
+                <div className="input-icon">
+                  <Phone size={20} />
+                  <input type="text" id="phone" value={personalInfo.phone} onChange={handlePersonalInfoChange} placeholder="Enter Your Phone Number" />
+                </div>
               </div>
-              <div className="btns">
-                  <button className="next-button" onClick={prevStep}>Go Back</button>
-                  <button className="prev-button" onClick={nextStep}>Next</button>
+              <div className="form-group">
+                <div className="input-icon">
+                  <Mail size={20} />
+                  <input type="text" id="email" value={personalInfo.email} onChange={handlePersonalInfoChange} placeholder="Enter Your Email" />
+                </div>
               </div>
+            </div>
           </div>
+          <div className="form-group">
+            <div className="input-icon">
+              <MapPin size={20} />
+              <input type="text" id="address" value={personalInfo.address} onChange={handlePersonalInfoChange} placeholder="Enter Your Address" />
+            </div>
+          </div>
+          <textarea placeholder="Write a profile description" value={personalInfo.profileDesc} type="text" id="profileDesc" onChange={handlePersonalInfoChange}></textarea>
+          <div className="form-group languages history skills">
+            <nav>
+              <h4>Add Language</h4>
+              <svg style={{ cursor: "pointer" }} onClick={addLanguage} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-circle-plus">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M8 12h8" />
+                <path d="M12 8v8" />
+              </svg>
+            </nav>
+            <AnimatePresence>
+              {languages.length > 0 && languages.map((language, index) => (
+                <motion.div className="jobDetails" key={index}
+                  initial={{ opacity: 0, scaleY: 0, translateY: -50 }}
+                  animate={{ opacity: 1, scaleY: 1, translateY: 0 }}
+                  exit={{ opacity: 0, translateY: 50, transition: { duration: 0.5, ease: "easeInOut" } }}
+                  style={{ overflow: "hidden" }}
+                  transition={{ type: "spring", stiffness: 260, damping: 20, duration: 0.5, delay: index * 0.1, }}>
+                  <div className="form-group">
+                    <div className="input-icon">
+                      <Globe size={20} />
+                      <input type="text" id={`languageName${index}`} placeholder="e.g., English, Spanish" value={language.name} onChange={(e) => handleLanguageChange(index, 'name', e.target.value)} />
+                    </div>
+                  </div>
+                  <div className="form-group">
+                    {/* <Rating allowFraction transition fillColor='orange' emptyColor='gray' SVGstorkeWidth={2} SVGstrokeColor="#000" className='foo' /> */}
+                    <Rating
+                      onClick={(rating) => handleProficiencyChange(index, rating)}
+                      ratingValue={language.proficiency}
+                      size={20}
+                      label
+                      showTooltip={true}
+                      allowFraction={true}
+                      transition
+                      fillColor='orange'
+                      emptyColor='gray'
+                      SVGstorkeWidth={2}
+                      SVGstrokeColor="#000"
+                    />
+                  </div>
+                  <button onClick={() => deleteLanguage(index)} style={{ cursor: "pointer" }}><Trash2 /></button>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
+          <div className="btns">
+            <button className="next-button" onClick={prevStep}>Go Back</button>
+            <button className="prev-button" onClick={nextStep}>Next</button>
+          </div>
+        </div>
       )
-  } else if (steps.find(step => step.stepNumber === activeStep).stepDescription.toLowerCase() === "work history") {
+    } else if (steps.find(step => step.stepNumber === activeStep).stepDescription.toLowerCase() === "work history") {
       return (
         <div className="form">
           <h2>Work History</h2>
@@ -603,19 +664,19 @@ onClick={(rating) => handleProficiencyChange(index, rating)}
         if (id === "madrid") {
           return <Madrid languages={languages} certificates={certificates} image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences}></Madrid>
         } else if (id === "berlin") {
-          return <Berlin languages={languages} certificates={certificates}  image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences}></Berlin>
+          return <Berlin languages={languages} certificates={certificates} image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences}></Berlin>
         } else if (id === "crisp") {
           return <Crisp languages={languages} certificates={certificates} image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences}></Crisp>
         } else if (id === "santiago") {
-          return <Santiago languages={languages} certificates={certificates}  image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences} />
+          return <Santiago languages={languages} certificates={certificates} image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences} />
         } else if (id === "london") {
-          return <London languages={languages} certificates={certificates}  image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences} />
+          return <London languages={languages} certificates={certificates} image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences} />
         } else if (id === "singapore") {
-          return <Singapore languages={languages} certificates={certificates}  image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences} />
+          return <Singapore languages={languages} certificates={certificates} image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences} />
         } else if (id === "rome") {
-          return <Rome languages={languages} certificates={certificates}  languages={languages} certificates={certificates}  image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences} />
+          return <Rome languages={languages} certificates={certificates} languages={languages} certificates={certificates} image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences} />
         } else if (id === "diamond") {
-          return <Diamond languages={languages} certificates={certificates}  image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences} />
+          return <Diamond languages={languages} certificates={certificates} image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences} />
         } else if (id === "barcelona") {
           return <Barcelona languages={languages} certificates={certificates} image={image} personalInfo={personalInfo} education={education} skills={skills} experiences={experiences} />
         }
@@ -624,21 +685,18 @@ onClick={(rating) => handleProficiencyChange(index, rating)}
         <div className="form resume-final-look">
           <h2>Dowload Your Resume</h2>
           <p className="history-desc">Download Your Customized Resume</p>
-          <div ref={resumeTemplate} className="resumeTemplate">
-            {
-              getTemplate(id)
-            }
+          <div className="popup">
+            <div ref={resumeTemplate} className="resumeTemplate">
+              {
+                getTemplate(id)
+              }
+            </div>
           </div>
 
 
           <div className="btns">
             <button className="next-button" onClick={prevStep}>Go Back</button>
-            <button className="prev-button" onClick={() => {
-              resumeTemplate.current.style.display = "flex"
-              handlePrint()
-              resumeTemplate.current.style.display = "none"
-
-            }}>Download The Resume</button>
+            <button className="prev-button" onClick={downloadResume}>Download The Resume</button>
           </div>
         </div>
       );
@@ -711,8 +769,10 @@ onClick={(rating) => handleProficiencyChange(index, rating)}
         </div>
       );
     }
-    
+
+
   }
+
 
   return (
     <div className="resume-form">
