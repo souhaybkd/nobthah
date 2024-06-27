@@ -71,8 +71,7 @@ export default function Resume() {
   const [skills, setSkills] = useState([{ name: '', rating: 0 }]);
   const [languages, setLanguages] = useState([{ name: '', proficiency: 0 }]);
   const [certificates, setCertificates] = useState([{ name: '', date: '' }]);
-
-  // Personal Info state
+  const [dataLoaded, setDataLoaded] = useState(false);
   const [personalInfo, setPersonalInfo] = useState({
     firstName: '',
     profession: '',
@@ -83,6 +82,46 @@ export default function Resume() {
   });
 
   const [education, setEducation] = useState([{ institutionName: '', degree: '', contribution: '', joiningDate: '', endingDate: '' }]);
+  useEffect(() => {
+    const savedData = localStorage.getItem(`resume-${id}`);
+    console.log(savedData);
+    if (savedData) {
+      const parsedData = JSON.parse(savedData);
+      setPersonalInfo(parsedData.personalInfo || {
+        firstName: '',
+        profession: '',
+        address: '',
+        phone: '',
+        email: '',
+        profileDesc: ""
+      });
+      setExperiences(parsedData.experiences || [{ employerName: '', jobTitle: '', contribution: '', joiningDate: '', endingDate: '' }]);
+      setSkills(parsedData.skills || [{ name: '', rating: 0 }]);
+      setLanguages(parsedData.languages || [{ name: '', proficiency: 0 }]);
+      setCertificates(parsedData.certificates || [{ name: '', date: '' }]);
+      setEducation(parsedData.education || [{ institutionName: '', degree: '', contribution: '', joiningDate: '', endingDate: '' }]);
+    }
+    setDataLoaded(true); // Set flag to true after loading data
+  }, [id]);
+
+  useEffect(() => {
+    if (dataLoaded) { // Only save if data has been loaded
+      const dataToSave = {
+        personalInfo,
+        experiences,
+        skills,
+        languages,
+        certificates,
+        education,
+      };
+      localStorage.setItem(`resume-${id}`, JSON.stringify(dataToSave));
+      console.log("SAVED");
+    }
+  }, [personalInfo, experiences, skills, languages, certificates, education, id, dataLoaded]);
+  
+
+  // Personal Info state
+
   function addLanguage() {
     setLanguages([...languages, { name: '', proficiency: 0 }]);
   }
@@ -222,7 +261,7 @@ export default function Resume() {
       const checkout = await response.json();
       console.log(checkout)
 
-      // const newWindow = window.open(checkout.data.attributes.url, "Lemon Squeezy", "width=500,height=600");
+      const newWindow = window.open(checkout.data.attributes.url, "Lemon Squeezy", "width=500,height=600");
       resumeTemplate.current.style.display = "flex"
       handlePrint()
       resumeTemplate.current.style.display = "none"
