@@ -11,7 +11,7 @@ export default async ({ req, res, log, error }) => {
 
   if (req.method === 'POST' && req.path === '/webhook') {
     const order = req.body.data.attributes;
-    log(order);
+    log(req.body);
 
     const userEmail = order.user_email;
     if (!userEmail) {

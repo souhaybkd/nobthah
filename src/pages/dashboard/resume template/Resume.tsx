@@ -251,18 +251,14 @@ export default function Resume() {
             attributes: {
               checkout_data: {
                 email: user.email,
+                resumeId: "FOOL"
               }
             },
             relationships: {
               store: { data: { type: "stores", id: "96692" } },
               variant: { data: { type: "variants", id: "427561" } },
             },
-            meta: {
-              "event_name": "order_created",
-              "custom_data": {
-                resumeId: "FOOL"
-              }
-            },
+            
           },
         }),
       });
