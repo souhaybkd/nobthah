@@ -29,6 +29,8 @@ export default function Resume() {
   ];
   const { id } = useParams();
   const [image, setImage] = useState(null);
+  const [user, setUser] = useState(null);
+
   const resumeTemplate = useRef()
   const handlePrint = useReactToPrint({
     content: () => resumeTemplate.current,
@@ -38,19 +40,20 @@ export default function Resume() {
   });
   const fileInputRef = useRef(null);
   const navigate = useNavigate();
-  let user
+
   useEffect(() => {
     async function getAuthStatus() {
       try {
-        user = await account.get();
-
+        const user = await account.get();
+        setUser(user); // Set user data to state
       } catch (error) {
         console.log("No user logged in", error);
-        navigate("/login")
+        navigate("/login");
       }
     }
     getAuthStatus();
   }, [navigate]);
+
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -118,7 +121,7 @@ export default function Resume() {
       console.log("SAVED");
     }
   }, [personalInfo, experiences, skills, languages, certificates, education, id, dataLoaded]);
-  
+
 
   // Personal Info state
 
@@ -248,12 +251,17 @@ export default function Resume() {
             attributes: {
               checkout_data: {
                 email: user.email,
-                custom: [user.$id],
               }
             },
             relationships: {
               store: { data: { type: "stores", id: "96692" } },
               variant: { data: { type: "variants", id: "427561" } },
+            },
+            meta: {
+              "event_name": "order_created",
+              "custom_data": {
+                resumeId: "FOOL"
+              }
             },
           },
         }),
@@ -261,8 +269,8 @@ export default function Resume() {
       const checkout = await response.json();
       console.log(checkout)
 
-      const newWindow = window.open(checkout.data.attributes.url, "Lemon Squeezy", "width=500,height=600");
-      resumeTemplate.current.style.display = "flex"
+      window.location.href = checkout.data.attributes.url;
+            resumeTemplate.current.style.display = "flex"
       handlePrint()
       resumeTemplate.current.style.display = "none"
     } catch (error) {
