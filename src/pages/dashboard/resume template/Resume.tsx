@@ -14,8 +14,10 @@ import London from "./templates/London/London";
 import Singapore from "./templates/Singapore/Singapore";
 import Rome from "./templates/Rome/Rome";
 import Diamond from "./templates/Diamond/Diamond";
+
 import Barcelona from "./templates/Barcelona/Barcelona";
-import { toPng } from "html-to-image";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { account } from "../../../appwrite/appwrite.config";
 
 export default function Resume() {
@@ -241,38 +243,65 @@ export default function Resume() {
     };
 
     try {
-      console.log(user)
-      const response = await fetch("https://api.lemonsqueezy.com/v1/checkouts", {
-        method: "POST",
-        headers: headers,
-        body: JSON.stringify({
-          data: {
-            type: "checkouts",
-            attributes: {
-              checkout_data: {
-                email: user.email,
-                custom: {
-                  resumeId: "FOOL"
-                }
-              }
-            },
-            relationships: {
-              store: { data: { type: "stores", id: "96692" } },
-              variant: { data: { type: "variants", id: "427561" } },
-            },
-            
-          },
-        }),
-      });
-      const checkout = await response.json();
-      console.log(checkout)
+      console.log("Checking user labels...");
 
-      window.location.href = checkout.data.attributes.url;
-            resumeTemplate.current.style.display = "flex"
-      handlePrint()
-      resumeTemplate.current.style.display = "none"
+      // Check if user has a label matching the id
+      const hasLabel = user.labels.some(item => item === id);
+
+      if (hasLabel) {
+        console.log("Label found, printing resume...");
+
+        // Display resume template and trigger print
+        resumeTemplate.current.style.display = "flex";
+        handlePrint();
+        resumeTemplate.current.style.display = "none";
+      } else {
+        console.log("Label not found, initiating payment...");
+
+
+        // Fetch request to create a checkout session
+        const fetchPromise = fetch("https://api.lemonsqueezy.com/v1/checkouts", {
+          method: "POST",
+          headers: headers,
+          body: JSON.stringify({
+            data: {
+              type: "checkouts",
+              attributes: {
+                checkout_data: {
+                  email: user.email,
+                  custom: {
+                    resumeId: id
+                  }
+                }
+              },
+              relationships: {
+                store: { data: { type: "stores", id: "96692" } },
+                variant: { data: { type: "variants", id: "427561" } }
+              }
+            }
+          })
+        });
+
+        toast.promise(
+          fetchPromise,
+          {
+            pending: "Processing Payment Request...",
+            success: "Opening Payment Page...",
+            error: "Server Error. Please try again."
+          }
+        ).then(async (response) => {
+          const checkout = await response.json();
+          console.log("Checkout created:", checkout);
+
+          // Redirect to the checkout URL
+          window.location.href = checkout.data.attributes.url;
+        }).catch(error => {
+          console.error("Error:", error);
+        });
+
+      }
     } catch (error) {
-      console.error("Error creating checkout:", error);
+      console.error("Error:", error);
     }
   };
 
@@ -811,6 +840,7 @@ export default function Resume() {
             <button className="next-button" onClick={prevStep}>Go Back</button>
             <button className="prev-button" onClick={nextStep}>Next</button>
           </div>
+          
         </div>
       );
     }
@@ -862,6 +892,21 @@ export default function Resume() {
           </motion.div>
         </div>
       </div>
+      <ToastContainer
+            position="bottom-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            style={{
+              width: "500px"
+            }}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="dark"
+          />
     </div>
   );
 }

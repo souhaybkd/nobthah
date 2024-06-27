@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { account } from "../../appwrite/appwrite.config";
 import { Link } from "react-router-dom";
 
+
 export default function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
