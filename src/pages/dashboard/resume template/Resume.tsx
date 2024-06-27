@@ -251,7 +251,9 @@ export default function Resume() {
             attributes: {
               checkout_data: {
                 email: user.email,
-                resumeId: "FOOL"
+                custom: {
+                  resumeId: "FOOL"
+                }
               }
             },
             relationships: {
