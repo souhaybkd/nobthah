@@ -10,8 +10,37 @@ export default async ({ req, res, log, error }) => {
   const users = new Users(client);
 
   if (req.method === 'POST' && req.path === '/webhook') {
-    const order = req.body.data.attributes;
+    const order = req.body;
     log(req.body);
+
+    const userEmail = order.data.attributes.user_email;
+    const label = order.meta.custom_data.resumeId;
+
+    if (!userEmail || !label) {
+      context.error('User email or label not found in webhook payload.');
+      return res.json({ success: false }, 400);
+    }
+
+    
+    try {
+      const searchResult = await users.list([Query.equal("email", [userEmail])	]);
+      if (!searchResult || searchResult.users.length === 0) {
+        context.error(`User with email ${userEmail} not found.`);
+        return res.json({ success: false }, 404);
+      }
+
+      // Update user labels
+      const user = searchResult.users[0];
+      const updatedLabels = [...new Set([...(user.labels || []), label])];
+      await users.updateLabels(user.$id, updatedLabels)
+      context.log(`Added "${label}" label to user ${user.$id}.`);
+
+      return res.json({ success: true });
+    } catch (err) {
+      context.error(`Failed to update user: ${err.message}`);
+      return res.json({ success: false }, 500);
+    }
+
   } else {
     return res.send('HELLO !!', 200);
   }
