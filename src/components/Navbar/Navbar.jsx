@@ -16,7 +16,7 @@ export default function Navbar() {
             </div>
 
             <div className="btns">
-                <Link to={"/dashboard/create-resume-from-scratch"}>
+                <Link to={"navigate/dashboard/create-resume-from-scratch"}>
                     <button>
                         <h2>Create Resume</h2>
                     </button>

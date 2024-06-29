@@ -18,7 +18,7 @@ export default function Home() {
             spending hours on it. Get good resumes & get hired quickly & easily. Try Now !!
           </p>
           <div className="btns">
-            <button className="button" onClick={() => navigate("/dashboard/create-resume-from-scratch")}>
+            <button className="button" onClick={() => navigate("navigate/dashboard/create-resume-from-scratch")}>
               <h2>Create Resume</h2>
             </button>
           </div>

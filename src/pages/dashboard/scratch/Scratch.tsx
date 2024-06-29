@@ -15,6 +15,7 @@ import Singapore from "../../../assets/singapore.png";
 import Diamond from "../../../assets/diamond.png";
 import Santiago from "../../../assets/santiago.png";
 import London from "../../../assets/london.png";
+import { CircleUserRound } from "lucide-react";
 
 const tabData = {
   Modern: [
@@ -95,9 +96,15 @@ export default function Scratch() {
       <nav>
         <div className="container">
           <h1>Nobthah</h1>
-          <button onClick={logout} className="logoutBtn">
-            <h2>Log Out</h2>
-          </button>
+          <div className="btns">
+            <button onClick={logout} className="logoutBtn">
+              <h2>Log Out</h2>
+            </button>
+
+            <button className="logoutBtn user" onClick={() => navigate("/account")}>
+              <CircleUserRound size={30}/>
+            </button>
+          </div>
         </div>
       </nav>
 

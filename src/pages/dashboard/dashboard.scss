@@ -12,7 +12,18 @@
     padding: 0.5em 1em;
     margin: auto;
     position: relative;
+    
+    .btns {
+    display: flex;
+    gap: 1em;
 
+    .user {
+      padding: .25em .5em !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    }
     h1 {
       font-size: 2rem; /* Adjust as needed */
     }
