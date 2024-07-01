@@ -3,7 +3,7 @@ import "./account.scss";
 import React, { useEffect, useState } from 'react';
 
 export default function Account() {
-  const [userData, setUserData] = useState(null); // Initialize state with null
+  const [userData, setUserData] = useState<any>(); // Initialize state with null
 
   useEffect(() => {
     async function getAuthStatus() {
