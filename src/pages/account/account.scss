@@ -1,0 +1,182 @@
+.account {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  
+    .parrent-container {
+      .line {
+        width: 75%;
+        height: 8px;
+        background: #000;
+        border-radius: 100px;
+        margin: 1em auto;
+      }
+  
+      .btns {
+        display: flex;
+        align-items: center;
+        gap: 1em;
+        margin-top: 1em;
+  
+        button {
+          width: 50%;
+          padding: 0.75em;
+          border: 2px solid #000;
+          font-family: "Cairo";
+          font-weight: 700;
+          font-size: 1.2rem;
+          border-radius: 0.5em;
+          line-height: 1;
+          cursor: pointer;
+        }
+  
+        button:nth-child(2) {
+          background: rgb(215, 76, 76);
+        }
+      }
+  
+      padding: 1em;
+      border-radius: 1em;
+      margin-top: 2em;
+      border: 3px solid #000;
+      font-family: "Cairo";
+      width: 50%;
+      box-shadow: 15px 15px 0 0 #000;
+  
+      .left {
+        position: relative;
+  
+        img {
+          filter: brightness(50%) !important;
+        }
+      }
+  
+      .left h1 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff;
+        font-size: 3rem;
+        font-weight: 1000;
+        letter-spacing: 2px;
+        -webkit-text-stroke: 2px #000;
+        text-stroke: 2px #000;
+      }
+  
+      h1,
+      h2 {
+        text-align: center;
+        line-height: 1;
+      }
+  
+      .right h2 {
+        font-size: 1.8rem !important;
+      }
+  
+      img {
+        width: 100%;
+        height: 20vh;
+        object-fit: cover;
+        border-radius: 0.8em;
+        border: 3px solid #000;
+        filter: brightness(80%);
+      }
+  
+      .resumes {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        width: 100%;
+        gap: 1em;
+        padding-right: 1em;
+  
+        .resume-img {
+          position: relative;
+          width: 100%;
+          aspect-ratio: 1 / 1.41;
+          height: auto;
+  
+          > img {
+            width: 100%;
+            height: 100% !important;
+          }
+  
+          > button {
+            position: absolute;
+            bottom: 6%;
+            left: 50%;
+            cursor: pointer;
+            transform: translate(-50%, 0);
+            width: 90%;
+            z-index: 99;
+            padding: 0.8em;
+            border: 3px solid #000;
+            border-radius: 0.5em;
+            font-family: "Cairo";
+            line-height: 1;
+            font-weight: 700;
+          }
+  
+          > img:hover,
+          > img:not(:hover) {
+            transition: all 0.5s ease;
+          }
+        }
+      }
+    }
+  
+    @media (max-width: 1024px) {
+      .parrent-container {
+        width: 70%;
+      }
+    }
+  
+    @media (max-width: 768px) {
+      .parrent-container {
+        width: 90%;
+        
+        .resumes {
+          grid-template-columns: 1fr 1fr;
+        }
+  
+        .left h1 {
+          font-size: 2rem;
+        }
+  
+        .right h2 {
+          font-size: 1.5rem;
+        }
+  
+        img {
+          height: 15vh;
+        }
+      }
+    }
+  
+    @media (max-width: 480px) {
+      .parrent-container {
+        width: 100%;
+        
+        .resumes {
+          grid-template-columns: 1fr;
+        }
+  
+        .left h1 {
+          font-size: 1.5rem;
+        }
+  
+        .right h2 {
+          font-size: 1.2rem;
+        }
+  
+        img {
+          height: 10vh;
+        }
+  
+        .btns button {
+          width: 100%;
+        }
+      }
+    }
+  }
+  

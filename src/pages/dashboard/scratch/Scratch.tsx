@@ -69,6 +69,18 @@ export default function Scratch() {
   const [exiting, setExiting] = useState(false);
 
   useEffect(() => {
+    async function getAuthStatus() {
+      try {
+        const user = await account.get();
+      } catch (error) {
+        console.log("No user logged in", error);
+        navigate("/login");
+      }
+    }
+    getAuthStatus();
+  }, [navigate]);
+
+  useEffect(() => {
     if (!exiting) {
       setCards(tabData[activeTab]);
     }
