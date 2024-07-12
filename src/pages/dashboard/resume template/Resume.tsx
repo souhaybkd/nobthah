@@ -268,7 +268,7 @@ export default function Resume() {
               type: "checkouts",
               attributes: {
                 checkout_data: {
-                  email: user.email,
+                  // email: user.email,
                   custom: {
                     resumeId: id
                   }
