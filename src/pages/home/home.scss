@@ -22,11 +22,11 @@
   width: 100%;
 }
 
-.hero-section__subtitle {
+.hero-section__subtitle-ar {
   font-size: 4.5rem;
-  line-height: 1;
+  line-height: 1.4;
   margin-top: 0.1em;
-  letter-spacing: 1.3px;
+  letter-spacing: 1.4px;
   font-weight: 900;
 }
 
@@ -116,7 +116,7 @@
     width: 70% !important;
   }
 
-  .hero-section__subtitle {
+  .hero-section__subtitle-ar {
     margin-top: 0.25em;
   }
 
@@ -135,7 +135,7 @@
     font-size: 1.2rem;
   }
 
-  .hero-section__subtitle {
+  .hero-section__subtitle-ar {
     width: fit-content !important;
     font-size: 3rem;
   }
@@ -161,7 +161,7 @@
 }
 
 @media screen and (max-width: 921px) {
-  .hero-section__subtitle {
+  .hero-section__subtitle-ar {
     font-size: 4rem;
   }
 
@@ -172,7 +172,7 @@
 }
 
 @media screen and (max-width: 720px) {
-  .hero-section__subtitle {
+  .hero-section__subtitle-ar {
     font-size: 3.5rem;
   }
 
@@ -192,7 +192,7 @@
 }
 
 @media screen and (max-width: 650px) {
-  .hero-section__subtitle {
+  .hero-section__subtitle-ar {
     font-size: 3rem;
   }
 
@@ -212,7 +212,7 @@
 }
 
 @media screen and (max-width: 580px) {
-  .hero-section__subtitle {
+  .hero-section__subtitle-ar {
     font-size: 2.5rem;
     width: 110% !important;
   }
@@ -295,14 +295,14 @@
   margin-top: 2em;
 }
 
-.swiper-container .hero-section__subtitle {
+.swiper-container .hero-section__subtitle-ar {
   text-align: center !important;
   // max-width: 60%;
   font-size: 3.5rem;
   margin-bottom: 0.5em;
 }
 
-.swiper-container .hero-section__subtitle > span {
+.swiper-container .hero-section__subtitle-ar > span {
   display: block;
   font-size: 4rem;
 }
@@ -329,36 +329,36 @@
 }
 
 @media screen and (max-width: 1340px) {
-  .swiper-container .hero-section__subtitle {
+  .swiper-container .hero-section__subtitle-ar {
     font-size: 3rem;
     width: 100% !important;
     margin-bottom: 1em;
   }
 
-  .swiper-container .hero-section__subtitle > span {
+  .swiper-container .hero-section__subtitle-ar > span {
     font-size: 3.5rem;
   }
 }
 
 @media screen and (max-width: 921px) {
-  .swiper-container .hero-section__subtitle {
+  .swiper-container .hero-section__subtitle-ar {
     font-size: 2.5rem;
     width: 100% !important;
   }
 
-  .swiper-container .hero-section__subtitle > span {
+  .swiper-container .hero-section__subtitle-ar > span {
     font-size: 3rem;
   }
 }
 
 
 @media screen and (max-width: 700px) {
-  .swiper-container .hero-section__subtitle {
+  .swiper-container .hero-section__subtitle-ar {
     font-size: 2.25rem;
     width: 100% !important;
   }
 
-  .swiper-container .hero-section__subtitle > span {
+  .swiper-container .hero-section__subtitle-ar > span {
     font-size: 2.5rem;
   }
 }

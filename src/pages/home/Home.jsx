@@ -33,7 +33,7 @@ export default function Home() {
       <div id="home" className="hero-section" dir="rtl">
   <div className="hero-section__left">
     <h1 className="hero-section__title">سيرة ذاتية جميلة ومتوافقة مع أنظمة التوظيف (ATS) !!</h1>
-    <h2 className="hero-section__subtitle">أنشئ سيرة ذاتية أفضل</h2>
+    <h2 className="hero-section__subtitle-ar">أنشئ سيرة ذاتية أفضل</h2>
     <p className="hero-section__description">
       بخطوات بسيطة (3 نقرات فقط) يمكنك إنشاء سيرة ذاتية احترافية وجميلة
       ومتوافقة مع أنظمة التوظيف دون إضاعة ساعات طويلة. احصل على سيرة ذاتية قوية
@@ -55,7 +55,7 @@ export default function Home() {
 
 
       <div id="portfolio" className="swiper-container">
-      <h1 className="hero-section__subtitle" style={{ textAlign: 'center' }}>
+      <h1 className="hero-section__subtitle-ar" style={{ textAlign: 'center' }}>
     <span>مع تصميم سيرة ذاتية </span> احترافي
   </h1>
         <Swiper
@@ -108,7 +108,7 @@ export default function Home() {
       <div id="home" className="hero-section" dir="rtl">
   <div className="hero-section__left">
     <h1 className="hero-section__title">فقط 2% من السير الذاتية تتجاوز الجولة الأولى !!</h1>
-    <h2 className="hero-section__subtitle">كن ضمن أفضل 2%</h2>
+    <h2 className="hero-section__subtitle-ar">كن ضمن أفضل 2%</h2>
     <p className="hero-section__description">
       بخطوات بسيطة (3 نقرات فقط) يمكنك إنشاء سيرة ذاتية جميلة ومتوافقة مع أنظمة التوظيف (ATS) 
       دون الحاجة لقضاء ساعات طويلة. احصل على سيرة ذاتية قوية واحصل على وظيفة بسرعة وسهولة. 
@@ -135,7 +135,7 @@ export default function Home() {
   <div class="hero-section__left">
     <div>
       <h1 class="hero-section__title">خلينا على تواصل 💼</h1>
-      <h2 class="hero-section__subtitle">اتصل بنا</h2>
+      <h2 class="hero-section__subtitle-ar">اتصل بنا</h2>
       <p class="hero-section__description">
         تحتاج مساعدة؟ تواصل مع فريق الدعم الودود لدينا، وسنكون سعداء بالإجابة على أي استفسارات لديك.
       </p>
