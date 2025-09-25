@@ -1,8 +1,7 @@
-//@ts-ignore
+// @ts-ignore
 import { account } from "../../appwrite/appwrite.config";
 import "./account.scss";
-import React, { useEffect, useState } from 'react';
-import banner from "../../assets/banner.png"
+import React, { useEffect, useState } from "react";
 import profile from "../../assets/profile.png";
 
 import Madrid from "../../assets/madrid.jpg";
@@ -15,32 +14,28 @@ import Diamond from "../../assets/diamond.png";
 import Santiago from "../../assets/santiago.png";
 import London from "../../assets/london.png";
 
-import { useNavigate } from "react-router-dom"
-  ;
+import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
+
 export default function Account() {
-  const [userData, setUserData] = useState<any>(); // Initialize state with null
-  const navigate = useNavigate()
+  const [userData, setUserData] = useState<any>();
+  const navigate = useNavigate();
 
-
-
-  async function logOut() {
+  async function logout() {
     const promise = account.deleteSession("current");
-    // Show toast notification for the operation
     toast.promise(promise, {
-      pending: "Logging Out...",
-      success: "Logged Out Sucessfully!",
-      error: "Failed to Logout. Please try again.",
+      pending: "جاري تسجيل الخروج...",
+      success: "تم تسجيل الخروج بنجاح!",
+      error: "فشل تسجيل الخروج. حاول مرة أخرى.",
     });
 
-    // Handle promise if needed
     promise
       .then(() => {
-        console.log("Document updated successfully");
+        console.log("تم تسجيل الخروج");
         navigate("/");
       })
       .catch((error) => {
-        console.error("Error updating document:", error);
+        console.error("خطأ أثناء تسجيل الخروج:", error);
       });
   }
 
@@ -51,108 +46,184 @@ export default function Account() {
         setUserData(user);
         console.log(user);
       } catch (error) {
-        console.log("No user logged in", error);
-        navigate("/")
+        console.log("لا يوجد مستخدم مسجل الدخول", error);
+        navigate("/");
       }
     }
     getAuthStatus();
   }, []);
 
   if (!userData) {
-    return <h1>Loading...</h1>; // Display loading message while userData is null
+    return <h1>جارٍ التحميل...</h1>;
   }
 
-  async function logout() {
-    const promise = account.deleteSession("current");
-    // Show toast notification for the operation
-    toast.promise(promise, {
-      pending: "Logging Out...",
-      success: "Logged Out Sucessfully!",
-      error: "Failed to Logout. Please try again.",
-    });
-
-    // Handle promise if needed
-    promise
-      .then(() => {
-        console.log("Document updated successfully");
-        navigate("/");
-      })
-      .catch((error) => {
-        console.error("Error updating document:", error);
-      });
-  }
   return (
-
-    <div className="account-settings">
+    <div className="account-settings" dir="rtl">
       <div className="dashboard">
-        <img className="profile-pic" src={profile} alt="" />
+        <img className="profile-pic" src={profile} alt="صورة الملف الشخصي" />
         <div className="content">
-          <h1>Hello There {userData.name} !!</h1>
+          <h1>مرحباً {userData.name} 👋</h1>
           <h2>{userData.email}</h2>
           <div className="btns">
             <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kota.baby.work@gmail.com">
-              <button>
-                Contact Us
-
-              </button></a>
-            <button onClick={logout}>Sign Out</button>
+              <button>تواصل معنا</button>
+            </a>
+            <button onClick={logout}>تسجيل الخروج</button>
           </div>
         </div>
       </div>
 
-          <div className="resumes">
-            {
-              userData.labels.map((item) => {
-                if (item === "madrid") {
-                  return <div className="resume-img">
-                    <button onClick={() => navigate("/navigate/dashboard/create-resume-from-scratch/resume/" + item)}>EDIT RESUME</button>
-                    <img src={Madrid} alt="" />
-                  </div>
-                } else if (item === "berlin") {
-                  return <div className="resume-img">
-                    <button onClick={() => navigate("/navigate/dashboard/create-resume-from-scratch/resume/" + item)}>EDIT RESUME</button>
-                    <img src={Berlin} alt="" />
-                  </div>
-                } else if (item === "crisp") {
-                  return <div className="resume-img">
-                    <button onClick={() => navigate("/navigate/dashboard/create-resume-from-scratch/resume/" + item)}>EDIT RESUME</button>
-                    <img src={Crisp} alt="" />
-                  </div>
-                } else if (item === "santiago") {
-                  return <div className="resume-img">
-                    <button onClick={() => navigate("/navigate/dashboard/create-resume-from-scratch/resume/" + item)}>EDIT RESUME</button>
-                    <img src={Santiago} alt="" />
-                  </div>
-                } else if (item === "london") {
-                  return <div className="resume-img">
-                    <button onClick={() => navigate("/navigate/dashboard/create-resume-from-scratch/resume/" + item)}>EDIT RESUME</button>
-                    <img src={London} alt="" />
-                  </div>
-                } else if (item === "singapore") {
-                  return <div className="resume-img">
-                    <button onClick={() => navigate("/navigate/dashboard/create-resume-from-scratch/resume/" + item)}>EDIT RESUME</button>
-                    <img src={Singapore} alt="" />
-                  </div>
-                } else if (item === "rome") {
-                  return <div className="resume-img">
-                    <button onClick={() => navigate("/navigate/dashboard/create-resume-from-scratch/resume/" + item)}>EDIT RESUME</button>
-                    <img src={Rome} alt="" />
-                  </div>
-                } else if (item === "diamond") {
-                  return <div className="resume-img">
-                    <button onClick={() => navigate("/navigate/dashboard/create-resume-from-scratch/resume/" + item)}>EDIT RESUME</button>
-                    <img src={Diamond} alt="" />
-                  </div>
-                } else if (item === "barcelona") {
-                  return <div className="resume-img">
-                    <button onClick={() => navigate("/navigate/dashboard/create-resume-from-scratch/resume/" + item)}>EDIT RESUME</button>
-                    <img src={Barcelona} alt="" />
-                  </div>
-                }
-                return <li>{item}</li>
-              })
-            }
-          </div>
+      <div className="resumes">
+        {userData.labels.map((item) => {
+          if (item === "madrid") {
+            return (
+              <div className="resume-img">
+                <button
+                  onClick={() =>
+                    navigate(
+                      "/navigate/dashboard/create-resume-from-scratch/resume/" +
+                        item
+                    )
+                  }
+                >
+                  تعديل السيرة الذاتية
+                </button>
+                <img src={Madrid} alt="نموذج مدريد" />
+              </div>
+            );
+          } else if (item === "berlin") {
+            return (
+              <div className="resume-img">
+                <button
+                  onClick={() =>
+                    navigate(
+                      "/navigate/dashboard/create-resume-from-scratch/resume/" +
+                        item
+                    )
+                  }
+                >
+                  تعديل السيرة الذاتية
+                </button>
+                <img src={Berlin} alt="نموذج برلين" />
+              </div>
+            );
+          } else if (item === "crisp") {
+            return (
+              <div className="resume-img">
+                <button
+                  onClick={() =>
+                    navigate(
+                      "/navigate/dashboard/create-resume-from-scratch/resume/" +
+                        item
+                    )
+                  }
+                >
+                  تعديل السيرة الذاتية
+                </button>
+                <img src={Crisp} alt="نموذج كريسپ" />
+              </div>
+            );
+          } else if (item === "santiago") {
+            return (
+              <div className="resume-img">
+                <button
+                  onClick={() =>
+                    navigate(
+                      "/navigate/dashboard/create-resume-from-scratch/resume/" +
+                        item
+                    )
+                  }
+                >
+                  تعديل السيرة الذاتية
+                </button>
+                <img src={Santiago} alt="نموذج سانتياغو" />
+              </div>
+            );
+          } else if (item === "london") {
+            return (
+              <div className="resume-img">
+                <button
+                  onClick={() =>
+                    navigate(
+                      "/navigate/dashboard/create-resume-from-scratch/resume/" +
+                        item
+                    )
+                  }
+                >
+                  تعديل السيرة الذاتية
+                </button>
+                <img src={London} alt="نموذج لندن" />
+              </div>
+            );
+          } else if (item === "singapore") {
+            return (
+              <div className="resume-img">
+                <button
+                  onClick={() =>
+                    navigate(
+                      "/navigate/dashboard/create-resume-from-scratch/resume/" +
+                        item
+                    )
+                  }
+                >
+                  تعديل السيرة الذاتية
+                </button>
+                <img src={Singapore} alt="نموذج سنغافورة" />
+              </div>
+            );
+          } else if (item === "rome") {
+            return (
+              <div className="resume-img">
+                <button
+                  onClick={() =>
+                    navigate(
+                      "/navigate/dashboard/create-resume-from-scratch/resume/" +
+                        item
+                    )
+                  }
+                >
+                  تعديل السيرة الذاتية
+                </button>
+                <img src={Rome} alt="نموذج روما" />
+              </div>
+            );
+          } else if (item === "diamond") {
+            return (
+              <div className="resume-img">
+                <button
+                  onClick={() =>
+                    navigate(
+                      "/navigate/dashboard/create-resume-from-scratch/resume/" +
+                        item
+                    )
+                  }
+                >
+                  تعديل السيرة الذاتية
+                </button>
+                <img src={Diamond} alt="نموذج دايموند" />
+              </div>
+            );
+          } else if (item === "barcelona") {
+            return (
+              <div className="resume-img">
+                <button
+                  onClick={() =>
+                    navigate(
+                      "/navigate/dashboard/create-resume-from-scratch/resume/" +
+                        item
+                    )
+                  }
+                >
+                  تعديل السيرة الذاتية
+                </button>
+                <img src={Barcelona} alt="نموذج برشلونة" />
+              </div>
+            );
+          }
+          return <li>{item}</li>;
+        })}
+      </div>
+
       <ToastContainer
         style={{ width: "500px" }}
         position="bottom-center"
@@ -160,7 +231,7 @@ export default function Account() {
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
-        rtl={false}
+        rtl={true}
         pauseOnFocusLoss
         draggable
         pauseOnHover
@@ -169,4 +240,3 @@ export default function Account() {
     </div>
   );
 }
-

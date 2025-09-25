@@ -1,0 +1,150 @@
+.singapore-resume {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    width: 100%;
+    padding: 1em;
+  
+    h1:first-child {
+        font-size: 2.5rem;
+    }
+
+    h2:first-child {
+        font-size: 1.2rem;
+    }
+
+    .dual {
+        display: flex;
+        gap: 1em;
+        align-items: flex-start;
+        .card {
+            width: 50%;
+            border: 2px solid #000;
+            // background: #000;
+            // color: #fff;
+            padding: 1em;
+            border-radius: 1em;
+            h2 {
+                text-align: center;
+            }
+
+            .skills {
+                margin-top: 1em;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: .5em 2em;
+
+                .skill {
+                    margin-top: .5em;
+                    .bar-container {
+                        width: 100%;
+                        height: 10px;
+                        // border: 2px solid #fff;
+                        border: 2px solid #000;
+                        border-radius: 1em;
+                        margin-top: .25em;
+
+                        .bar {
+                            width: 100%;
+                            height: 100%;
+                            background: #fff;
+                            background: #000;
+                        }
+                    }
+                }
+            }
+        }
+
+        .card.v2 {
+            .skills {
+                grid-template-columns: 1fr !important;
+                .skill {
+                    color: #fff;
+                    background: #000;
+                    padding: .5em;
+                    margin: 0 !important;
+                    border-radius: 5px;
+                }
+            }
+        }
+    }
+
+    .grid {
+        margin-top: 1.5em;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 75%;
+            margin-top: .5em;
+
+            h2, p {
+                width: 50%;
+            }
+
+            p {
+                width: 80% !important;
+                margin-left: 1em;
+            }
+        }
+    }
+
+    .profile {
+        margin-top: 2em;
+        display: flex;
+        align-items: flex-start;
+
+        h2 {
+            width: 30%;
+            text-decoration: underline;
+            text-underline-offset: 8px;
+            font-weight: 900;
+        }
+
+        p {
+            width: 70%;
+        }
+    }
+
+    .exp {
+        margin-top: 2em;
+
+        h2 {
+            text-decoration: underline;
+            text-underline-offset: 8px;
+            font-weight: 900;
+        }
+
+        .exp-item {
+            display: flex;
+            margin-top: 1em;
+
+            .exp-dates {
+                width: 30%;
+            }
+
+            .exp-details {
+                width: 70%;
+
+                h3, p {
+                    margin: 0;
+                }
+
+                h3 {
+                    font-size: 1rem;
+                    margin-bottom: .5em;
+                }
+
+                p {
+                    font-size: .9rem;
+                }
+            }
+        }
+    }
+
+    .edu {
+        margin-top: 1em !important;
+    }
+}

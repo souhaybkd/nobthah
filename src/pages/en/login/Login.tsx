@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
-import "./register.scss";
+import "./login.scss";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ID } from "appwrite";
 import { useNavigate } from "react-router-dom";
-import { account } from "../../appwrite/appwrite.config";
+import { account } from "../../../appwrite/appwrite.config";
 import { Link } from "react-router-dom";
 
-export default function Register() {
-  const [name, setName] = useState("");
+export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -27,65 +26,61 @@ export default function Register() {
     getAuthStatus();
   }, [navigate]);
 
-  const handleRegistration = async () => {
+  const handleLogin = async () => {
     if (email && password) {
-      const accountCreationPromise = account.create(ID.unique(), email, password, name);
+      const loginPromise = account.createEmailPasswordSession(email, password);
       toast
-        .promise(accountCreationPromise, {
-          pending: "جاري إنشاء الحساب...",
-          success: "تم إنشاء الحساب بنجاح!",
-          error: "حدث خطأ أثناء إنشاء الحساب. الرجاء المحاولة مرة أخرى.",
+        .promise(loginPromise, {
+          pending: "Logging In To Your Account...",
+          success: "Logged In successfully!",
+          error: "Incorrect email/password.",
         })
         .then(() => {
-          navigate("/navigate/dashboard/create-resume-from-scratch");
+          console.log("Navigating to dashboard");
+          navigate("/navigate/dashboard/create-resume-from-scratch"); // Assuming your dashboard route is "/dashboard"
         })
         .catch((error) => {
-          console.error("Registration failed:", error);
+          console.error("Login failed:", error);
         });
     } else {
-      toast.error("الرجاء إدخال جميع الحقول المطلوبة.");
+      toast.error("Please enter both email and password.");
     }
   };
 
   return (
-    <main className="register-page" dir="rtl">
+    <main className="register-page login-page">
       <div className="form">
-        <div className="left">x</div>
+        <div className="left">
+          {/* You can remove this section if not required */}
+          {/* x */}
+        </div>
         <div className="right">
-          <h2>إنشاء حساب في نبذة</h2>
-          <p>احصل على وظيفة أسرع 10 مرات مع نبذة</p>
-
+          <h2>Welcome To Nobthah</h2>
+          <p>Create beautiful resumes at speed</p>
+          {/* Removed name input as per your requirement */}
           <input
+            type="text"
             className="name-input"
-            type="text"
-            placeholder="أدخل اسمك"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="أدخل بريدك الإلكتروني"
+            placeholder="Enter Your Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
             type="password"
-            placeholder="أنشئ كلمة مرور جديدة"
+            placeholder="Enter Your Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button onClick={handleRegistration}>إنشاء حساب جديد</button>
-
+          <button onClick={handleLogin}>Log In</button>
           <div className="or">
             <div className="line"></div>
-            <span>أو</span>
+            <span>OR</span>
             <div className="line"></div>
           </div>
-
-          <Link to="/login">
-            <button>زيارة صفحة تسجيل الدخول</button>
+          <Link to="/register">
+            <button>Create A New Account</button>
           </Link>
-          <button>هل نسيت كلمة المرور؟</button>
+          <button>Forgot Your Password</button>
         </div>
       </div>
       <div className="overlay"></div>
@@ -95,7 +90,7 @@ export default function Register() {
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
-        rtl={true}
+        rtl={false}
         style={{
           width: "500px",
         }}

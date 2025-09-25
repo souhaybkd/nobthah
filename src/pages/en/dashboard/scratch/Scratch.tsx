@@ -2,61 +2,61 @@
 import "./scratch.scss";
 import "../dashboard.scss";
 import React, { useState, useEffect } from "react";
-import { account } from "../../../appwrite/appwrite.config";
+import { account } from "../../../../appwrite/appwrite.config";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import Madrid from "../../../assets/madrid.jpg";
-import Berlin from "../../../assets/berlin.png";
-import Rome from "../../../assets/rome.png";
-import Crisp from "../../../assets/crisp.png";
-import Barcelona from "../../../assets/barcelona.png";
-import Singapore from "../../../assets/singapore.png";
-import Diamond from "../../../assets/diamond.png";
-import Santiago from "../../../assets/santiago.png";
-import London from "../../../assets/london.png";
+import Madrid from "../../../../assets/madrid.jpg";
+import Berlin from "../../../../assets/berlin.png";
+import Rome from "../../../../assets/rome.png";
+import Crisp from "../../../../assets/crisp.png";
+import Barcelona from "../../../../assets/barcelona.png";
+import Singapore from "../../../../assets/singapore.png";
+import Diamond from "../../../../assets/diamond.png";
+import Santiago from "../../../../assets/santiago.png";
+import London from "../../../../assets/london.png";
 import { CircleUserRound } from "lucide-react";
 
 const tabData = {
-  "حديث": [
+  Modern: [
     {
-      html: <div className="card" key="creative1"><img src={Madrid} alt="نموذج مدريد" /></div>,
+      html: <div className="card" key="creative1"><img src={Madrid} alt="" /></div>,
       route: "/madrid"
     },
     {
-      html: <div className="card" key="creative2"><img src={Berlin} alt="نموذج برلين" /></div>,
+      html: <div className="card" key="creative2"><img src={Berlin} alt="" /></div>,
       route: "/berlin"
     },
     {
-      html: <div className="card" key="creative3"><img src={Rome} alt="نموذج روما" /></div>,
+      html: <div className="card" key="creative3"><img src={Rome} alt="" /></div>,
       route: "/rome"
     },
   ],
-  "احترافي": [
+  Professional: [
     {
-      html: <div className="card" key="professional1"><img src={Crisp} alt="نموذج كريسپ" /></div>,
+      html: <div className="card" key="professional1"><img src={Crisp} alt="" /></div>,
       route: "/crisp"
     },
     {
-      html: <div className="card" key="professional2"><img src={Barcelona} alt="نموذج برشلونة" /></div>,
+      html: <div className="card" key="professional2"><img src={Barcelona} alt="" /></div>,
       route: "/barcelona"
     },
     {
-      html: <div className="card" key="professional3"><img src={Diamond} alt="نموذج دايموند" /></div>,
+      html: <div className="card" key="professional3"><img src={Diamond} alt="" /></div>,
       route: "/diamond"
     },
   ],
-  "بسيط": [
+  Minimalistic: [
     {
-      html: <div className="card" key="minimalistic1"><img src={Singapore} alt="نموذج سنغافورة" /></div>,
+      html: <div className="card" key="minimalistic1"><img src={Singapore} alt="" /></div>,
       route: "/singapore"
     },
     {
-      html: <div className="card" key="minimalistic2"><img src={Santiago} alt="نموذج سانتياغو" /></div>,
+      html: <div className="card" key="minimalistic2"><img src={Santiago} alt="" /></div>,
       route: "/santiago"
     },
     {
-      html: <div className="card" key="minimalistic3"><img src={London} alt="نموذج لندن" /></div>,
+      html: <div className="card" key="minimalistic3"><img src={London} alt="" /></div>,
       route: "/london"
     },
   ]
@@ -64,16 +64,16 @@ const tabData = {
 
 export default function Scratch() {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState("حديث");
+  const [activeTab, setActiveTab] = useState("Modern");
   const [cards, setCards] = useState(tabData[activeTab]);
   const [exiting, setExiting] = useState(false);
 
   useEffect(() => {
     async function getAuthStatus() {
       try {
-        await account.get();
+        const user = await account.get();
       } catch (error) {
-        console.log("لا يوجد مستخدم مسجل الدخول", error);
+        console.log("No user logged in", error);
         navigate("/login");
       }
     }
@@ -89,9 +89,9 @@ export default function Scratch() {
   async function logout() {
     const promise = account.deleteSession("current");
     toast.promise(promise, {
-      pending: "جاري تسجيل الخروج...",
-      success: "تم تسجيل الخروج بنجاح!",
-      error: "فشل تسجيل الخروج. حاول مرة أخرى.",
+      pending: "Logging Out...",
+      success: "Logged Out Successfully!",
+      error: "Failed to Logout. Please try again.",
     });
 
     promise
@@ -99,18 +99,18 @@ export default function Scratch() {
         navigate("/");
       })
       .catch((error) => {
-        console.error("خطأ أثناء تسجيل الخروج:", error);
+        console.error("Error logging out:", error);
       });
   }
 
   return (
-    <div className="dashboard" dir="rtl">
+    <div className="dashboard">
       <nav>
         <div className="container">
-          <h1>نبذة</h1>
+          <h1>Nobthah</h1>
           <div className="btns">
             <button onClick={logout} className="logoutBtn">
-              <h2>تسجيل الخروج</h2>
+              <h2>Log Out</h2>
             </button>
 
             <button className="logoutBtn user" onClick={() => navigate("/account")}>
@@ -121,11 +121,8 @@ export default function Scratch() {
       </nav>
 
       <div className="mainSection">
-        <h1>قوالب سير ذاتية تساعدك على الفوز بالوظائف</h1>
-        <p>
-          كل قالب سيرة ذاتية مصمم باحترافية ويتبع قواعد التوظيف التي يبحث عنها مديرو الموارد البشرية.
-          تميّز واحصل على وظيفة أسرع مع قوالب مجرّبة وفعّالة.
-        </p>
+        <h1>Job-winning resume templates</h1>
+        <p>Each resume template is expertly designed and follows the exact “resume rules” hiring managers look for. Stand out and get hired faster with field-tested resume templates.</p>
         <div className="menu">
           {Object.keys(tabData).map(tab => (
             <button
@@ -173,7 +170,7 @@ export default function Scratch() {
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
-        rtl={true}
+        rtl={false}
         pauseOnFocusLoss
         draggable
         pauseOnHover

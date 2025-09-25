@@ -1,0 +1,34 @@
+@media screen and (max-width: 1081px) {
+    .login-page {
+        .left {
+          background: url("https://i.fbcd.co/products/resized/resized-750-500/sub-preview-2ac6a27cfaa5baacfd668fe407f5e86e7e2d14c51d42ba089702b4c82c98e735.webp")
+            #7b6fb9 no-repeat center center !important;
+        }
+      
+        .form {
+          width: fit-content !important;
+          .left,
+          .right {
+            width: 100% !important;
+            background-size: cover !important;
+          }
+        }
+      }
+}
+.login-page {
+  .left {
+    background: url("https://i.fbcd.co/products/resized/resized-750-500/sub-preview-2ac6a27cfaa5baacfd668fe407f5e86e7e2d14c51d42ba089702b4c82c98e735.webp")
+      #7b6fb9 no-repeat center center !important;
+  }
+
+  .form {
+    width: 60vw;
+    .left,
+    .right {
+    //   width: 50% !important;
+      background-size: cover !important;
+    }
+  }
+}
+
+

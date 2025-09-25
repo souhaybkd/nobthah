@@ -4,8 +4,9 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ID } from "appwrite";
 import { useNavigate } from "react-router-dom";
-import { account } from "../../appwrite/appwrite.config";
+import { account } from "../../../appwrite/appwrite.config";
 import { Link } from "react-router-dom";
+
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -30,62 +31,61 @@ export default function Register() {
   const handleRegistration = async () => {
     if (email && password) {
       const accountCreationPromise = account.create(ID.unique(), email, password, name);
-      toast
-        .promise(accountCreationPromise, {
-          pending: "جاري إنشاء الحساب...",
-          success: "تم إنشاء الحساب بنجاح!",
-          error: "حدث خطأ أثناء إنشاء الحساب. الرجاء المحاولة مرة أخرى.",
-        })
-        .then(() => {
-          navigate("/navigate/dashboard/create-resume-from-scratch");
-        })
-        .catch((error) => {
-          console.error("Registration failed:", error);
-        });
+      toast.promise(
+        accountCreationPromise,
+        {
+          pending: "Creating account...",
+          success: "Account created successfully!",
+          error: "Error creating account. Please try again."
+        }
+      ).then(() => {
+        navigate("/navigate/dashboard/create-resume-from-scratch");
+      }).catch(error => {
+        console.error("Registration failed:", error);
+      });
     } else {
-      toast.error("الرجاء إدخال جميع الحقول المطلوبة.");
+      toast.error("Please enter all required fields.");
     }
   };
 
   return (
-    <main className="register-page" dir="rtl">
+    <main className="register-page">
       <div className="form">
-        <div className="left">x</div>
+        <div className="left">
+          x
+        </div>
         <div className="right">
-          <h2>إنشاء حساب في نبذة</h2>
-          <p>احصل على وظيفة أسرع 10 مرات مع نبذة</p>
-
+          <h2>Register In Nobthah</h2>
+          <p>Get Hired 10x Faster With Nobthah</p>
           <input
             className="name-input"
             type="text"
-            placeholder="أدخل اسمك"
+            placeholder="Enter Your Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
           <input
             type="text"
-            placeholder="أدخل بريدك الإلكتروني"
+            placeholder="Enter Your Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
             type="password"
-            placeholder="أنشئ كلمة مرور جديدة"
+            placeholder="Create A New Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button onClick={handleRegistration}>إنشاء حساب جديد</button>
-
+          <button onClick={handleRegistration}>Create A New Account</button>
           <div className="or">
             <div className="line"></div>
-            <span>أو</span>
+            <span>OR</span>
             <div className="line"></div>
           </div>
-
           <Link to="/login">
-            <button>زيارة صفحة تسجيل الدخول</button>
+            <button>Visit Login Page</button>
           </Link>
-          <button>هل نسيت كلمة المرور؟</button>
+          <button>Forgot Your Password</button>
         </div>
       </div>
       <div className="overlay"></div>
@@ -95,9 +95,9 @@ export default function Register() {
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
-        rtl={true}
+        rtl={false}
         style={{
-          width: "500px",
+          width: "500px"
         }}
         pauseOnFocusLoss
         draggable

@@ -3,8 +3,8 @@ const client = new Client();
 
 
 client
-    .setEndpoint('https://cloud.appwrite.io/v1')
-    .setProject('665eb96b0012e6af0002');
+    .setEndpoint('https://fra.cloud.appwrite.io/v1')
+    .setProject('66cf1e960032fa93109c');
 
 export const account = new Account(client);
 export const databases = new Databases(client);

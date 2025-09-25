@@ -1,0 +1,159 @@
+
+.santiago-resume {
+  padding: 2em;
+  zoom:80%;
+  font-family: "Times New Roman", Times, serif;
+  width: 100%;
+.certification {
+  background: #c8c7c7;
+  width: 100% !important;
+  margin-top: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+
+  h3 {
+    margin-top: 0 !important;
+    width: 25%;
+  }
+
+  .grid {
+    width: 75% !important;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  padding: 1em;
+  border-radius: 1em;
+  border: 2px solid #000;
+}
+  .dual {
+    display: flex;
+    width: 100%;
+    gap: 1em;
+    margin-top: 1em;
+
+    .child {
+      background: #c8c7c7;
+      width: 50% !important;
+
+      h3 {
+        margin-top: 0 !important;
+      }
+      padding: 1em;
+      border-radius: 1em;
+      border: 2px solid #000;
+    }
+  }
+
+  > h1 {
+    font-size: 2.8rem;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  .address {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  .phone-email {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1em;
+    p {
+      font-size: 1rem;
+    }
+  }
+
+  .line {
+    width: 100%;
+    border-radius: 100px;
+    height: 3px;
+    background: #000;
+    margin-top: 1em;
+  }
+
+  h3 {
+    width: 100%;
+    background: #c8c7c7;
+    text-decoration: underline;
+    margin: 1em 0 1em 0;
+    text-align: center;
+    padding: 0.25em;
+    letter-spacing: 1px;
+    font-size: 1.5rem;
+    text-underline-offset: 4px;
+  }
+
+  .profile-desc {
+    text-align: center;
+  }
+
+  .flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  ul {
+    width: calc(100% - 2.5%);
+    margin-left: 2.5%;
+    li {
+      width: 100%;
+      margin-top: 1em;
+    }
+
+    p {
+      width: 75%;
+      margin-top: 0.25em;
+      font-size: 0.9rem;
+      line-height: 1.2;
+    }
+
+    .time {
+      font-weight: 400;
+
+      font-size: 1rem;
+    }
+  }
+  .grid {
+    display: grid;
+    gap: 0.8em 1em;
+    grid-template-columns: 1fr;
+  }
+
+  .skill-line {
+    position: relative;
+    width: 100%;
+  }
+
+  .skill-line span:first-child {
+    margin-right: 1em;
+  }
+
+  .skill-line:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    border-top: 1px dotted black;
+    z-index: 0;
+  }
+
+  .skill-line span {
+    background: #c8c7c7;
+    position: relative;
+    z-index: 1;
+    padding-left: 1em;
+  }
+  .skill-line span:first-child {
+    padding-right: 1em;
+  }
+}

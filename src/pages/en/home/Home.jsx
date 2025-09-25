@@ -3,23 +3,22 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/scss';
 import 'swiper/scss/navigation';
 import 'swiper/scss/pagination';
-import Woman from "../../assets/woman.png";
+import Woman from "../../../assets/woman.png";
 import { Autoplay } from 'swiper/modules';
 
-
-import NavbarAr from "../../components/Navbar_ar/Navbar";
+import Navbar from "../../../components/Navbar/Navbar";
 import "./home.scss";
 import { useNavigate } from "react-router-dom";
 
-import Berlin from "../../assets/berlin.png";
-import Barcelona from "../../assets/barcelona.png";
-import Crisp from "../../assets/crisp.png";
-import Diamond from "../../assets/diamond.png";
-import London from "../../assets/london.png";
-import Madrid from "../../assets/madrid.jpg";
-import Rome from "../../assets/rome.png";
-import Santiago from "../../assets/santiago.png";
-import Singapore from "../../assets/singapore.png";
+import Berlin from "../../../assets/berlin.png";
+import Barcelona from "../../../assets/barcelona.png";
+import Crisp from "../../../assets/crisp.png";
+import Diamond from "../../../assets/diamond.png";
+import London from "../../../assets/london.png";
+import Madrid from "../../../assets/madrid.jpg";
+import Rome from "../../../assets/rome.png";
+import Santiago from "../../../assets/santiago.png";
+import Singapore from "../../../assets/singapore.png";
 
 // Import Swiper modules
 
@@ -28,36 +27,30 @@ export default function Home() {
 
   return (
     <div className="home-page">
-      <NavbarAr />
+      <Navbar />
 
-      <div id="home" className="hero-section" dir="rtl">
-  <div className="hero-section__left">
-    <h1 className="hero-section__title">سيرة ذاتية جميلة ومتوافقة مع أنظمة التوظيف (ATS) !!</h1>
-    <h2 className="hero-section__subtitle">أنشئ سيرة ذاتية أفضل</h2>
-    <p className="hero-section__description">
-      بخطوات بسيطة (3 نقرات فقط) يمكنك إنشاء سيرة ذاتية احترافية وجميلة
-      ومتوافقة مع أنظمة التوظيف دون إضاعة ساعات طويلة. احصل على سيرة ذاتية قوية
-      واحصل على وظيفة بسرعة وسهولة. جرّب الآن !!
-    </p>
-    <div className="hero-section__btns">
-      <button
-        className="hero-section__button"
-        onClick={() => navigate("navigate/dashboard/create-resume-from-scratch")}
-      >
-        <h2 className="hero-section__button-text">أنشئ سيرتك الذاتية</h2>
-      </button>
-    </div>
-  </div>
-  <div className="hero-section__right">
-    <img src={Woman} alt="امرأة" className="hero-section__image" />
-  </div>
-</div>
-
+      <div id="home" className="hero-section">
+        <div className="hero-section__left">
+          <h1 className="hero-section__title">ATS Friendly & Beautiful Resume !!</h1>
+          <h2 className="hero-section__subtitle">CREATE BETTER RESUMES</h2>
+          <p className="hero-section__description">
+            Just in a matter of 3 clicks create a beautiful & ATS friendly resume without
+            spending hours on it. Get good resumes & get hired quickly & easily. Try Now !!
+          </p>
+          <div className="hero-section__btns">
+            <button className="hero-section__button" onClick={() => navigate("navigate/dashboard/create-resume-from-scratch")}>
+              <h2 className="hero-section__button-text">Create Resume</h2>
+            </button>
+          </div>
+        </div>
+        <div className="hero-section__right">
+          <img src={Woman} alt="Woman" className="hero-section__image" />
+        </div>
+      </div>
 
       <div id="portfolio" className="swiper-container">
-      <h1 className="hero-section__subtitle" style={{ textAlign: 'center' }}>
-    <span>مع تصميم سيرة ذاتية </span> احترافي
-  </h1>
+        <h1 className="hero-section__subtitle" style={{ textAlign: 'center' }}><span>WITH PROFESSIONAL </span> RESUME DESIGN</h1>
+
         <Swiper
           slidesPerView={'auto'}
           spaceBetween={30}
@@ -105,49 +98,47 @@ export default function Home() {
         </Swiper>
       </div>
 
-      <div id="home" className="hero-section" dir="rtl">
-  <div className="hero-section__left">
-    <h1 className="hero-section__title">فقط 2% من السير الذاتية تتجاوز الجولة الأولى !!</h1>
-    <h2 className="hero-section__subtitle">كن ضمن أفضل 2%</h2>
-    <p className="hero-section__description">
-      بخطوات بسيطة (3 نقرات فقط) يمكنك إنشاء سيرة ذاتية جميلة ومتوافقة مع أنظمة التوظيف (ATS) 
-      دون الحاجة لقضاء ساعات طويلة. احصل على سيرة ذاتية قوية واحصل على وظيفة بسرعة وسهولة. 
-      جرّب الآن !!
-    </p>
-    <div className="hero-section__btns">
-      <button
-        className="hero-section__button"
-        onClick={() => navigate("navigate/dashboard/create-resume-from-scratch")}
-      >
-        <h2 className="hero-section__button-text">أنشئ سيرتك الذاتية</h2>
-      </button>
-    </div>
-  </div>
+      <div id="home" className="hero-section">
+        <div className="hero-section__left">
+          <h1 className="hero-section__title">Only 2% of resumes make it past the first round !!</h1>
+          <h2 className="hero-section__subtitle">ENJOY BECOMING THE TOP 2%</h2>
+          <p className="hero-section__description">
+            Just in a matter of 3 clicks create a beautiful & ATS friendly resume without
+            spending hours on it. Get good resumes & get hired quickly & easily. Try Now !!
+          </p>
+          <div className="hero-section__btns">
+            <button className="hero-section__button" onClick={() => navigate("navigate/dashboard/create-resume-from-scratch")}>
+              <h2 className="hero-section__button-text">Create Resume</h2>
+            </button>
+          </div>
+        </div>
 
-  <div className="hero-section__right">
-    <img src={Woman} alt="امرأة" className="hero-section__image" />
-  </div>
-</div>
+        <div className="hero-section__right">
+          <img src={Woman} alt="Woman" className="hero-section__image" />
+        </div>
+      </div>
 
 
+      <div id="contact" class="hero-section contact-us">
+        <div class="hero-section__left">
+          <div>
+            <h1 class="hero-section__title">lets Stay In Touch 💼</h1>
+            <h2 class="hero-section__subtitle">CONTACT US</h2>
+            <p class="hero-section__description">
+              Need Help? Get in touch with our friendly support team who are happy to answer any questions you might have.
 
-<div id="contact" class="hero-section contact-us" dir="rtl">
-  <div class="hero-section__left">
-    <div>
-      <h1 class="hero-section__title">خلينا على تواصل 💼</h1>
-      <h2 class="hero-section__subtitle">اتصل بنا</h2>
-      <p class="hero-section__description">
-        تحتاج مساعدة؟ تواصل مع فريق الدعم الودود لدينا، وسنكون سعداء بالإجابة على أي استفسارات لديك.
-      </p>
-    </div>
+            </p>
+          </div>
 
-    <div class="social">
-      <div class="right">
-        <h3>تابعنا على:</h3>
-        <div class="icons">
-          <div class="icon">
-            <a>
-            <svg width="38" height="38" viewBox="0 0 38 38" fill="none"
+          <div class="social">
+
+
+            <div class="right">
+              <h3>Follow Me:- </h3>
+              <div class="icons">
+                <div class="icon">
+                  <a>
+                    <svg width="38" height="38" viewBox="0 0 38 38" fill="none"
                       xmlns="http://www.w3.org/2000/svg">
                       <path fill-rule="evenodd" clip-rule="evenodd"
                         d="M13.6289 26.7835C15.1495 27.8436 16.999 28.4697 18.9931 28.4697C20.0006 28.4697 20.945 28.2646 21.8605 27.9751C21.6975 25.7574 21.2634 23.5686 20.6058 21.4614C17.8434 22.4479 15.3969 24.2763 13.6289 26.7835Z"
@@ -171,11 +162,12 @@ export default function Home() {
                         d="M19 0C8.50659 0 0 8.50659 0 19V19C0 29.4934 8.50659 38 19 38V38C29.4934 38 38 29.4934 38 19V19C38 8.50659 29.4934 0 19 0V0ZM18.9935 30.5767C12.6112 30.5767 7.42328 25.3756 7.42328 18.9934C7.42328 12.6112 12.6112 7.42328 18.9935 7.42328C25.3756 7.42328 30.5767 12.6112 30.5767 18.9934C30.5767 25.3756 25.3756 30.5767 18.9935 30.5767Z"
                         fill="#0D0C22"></path>
                     </svg>
-            </a>
-          </div>
+                  </a>
 
-          <div class="icon">
-          <svg width="38" height="38" viewBox="0 0 38 38" fill="none"
+                </div>
+
+                <div class="icon">
+                  <svg width="38" height="38" viewBox="0 0 38 38" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
                       d="M22.6367 19C22.6367 21.0085 21.0085 22.6367 19 22.6367C16.9915 22.6367 15.3633 21.0085 15.3633 19C15.3633 16.9915 16.9915 15.3633 19 15.3633C21.0085 15.3633 22.6367 16.9915 22.6367 19Z"
@@ -187,75 +179,76 @@ export default function Home() {
                       d="M19 0C8.50819 0 0 8.50819 0 19C0 29.4918 8.50819 38 19 38C29.4918 38 38 29.4918 38 19C38 8.50819 29.4918 0 19 0ZM29.8443 23.4981C29.7916 24.6595 29.6069 25.4524 29.3373 26.1465C28.7705 27.612 27.612 28.7705 26.1465 29.3373C25.4527 29.6069 24.6595 29.7913 23.4984 29.8443C22.3349 29.8974 21.9632 29.9102 19.0003 29.9102C16.037 29.9102 15.6657 29.8974 14.5019 29.8443C13.3408 29.7913 12.5476 29.6069 11.8538 29.3373C11.1256 29.0633 10.4663 28.6339 9.92125 28.0788C9.36635 27.534 8.93698 26.8744 8.66301 26.1465C8.39339 25.4527 8.20871 24.6595 8.15594 23.4984C8.10231 22.3346 8.08984 21.963 8.08984 19C8.08984 16.037 8.10231 15.6654 8.15565 14.5019C8.20842 13.3405 8.39281 12.5476 8.66243 11.8535C8.9364 11.1256 9.36606 10.466 9.92125 9.92125C10.466 9.36606 11.1256 8.93669 11.8535 8.66272C12.5476 8.3931 13.3405 8.20871 14.5019 8.15565C15.6654 8.1026 16.037 8.08984 19 8.08984C21.963 8.08984 22.3346 8.1026 23.4981 8.15594C24.6595 8.20871 25.4524 8.3931 26.1465 8.66243C26.8744 8.9364 27.534 9.36606 28.079 9.92125C28.6339 10.4663 29.0636 11.1256 29.3373 11.8535C29.6072 12.5476 29.7916 13.3405 29.8446 14.5019C29.8977 15.6654 29.9102 16.037 29.9102 19C29.9102 21.963 29.8977 22.3346 29.8443 23.4981Z"
                       fill="#0D0C22"></path>
                   </svg>
-          </div>
+                </div>
 
-          <div class="icon">
-            <a href="https://x.com/1imcris">
-            <svg width="38" height="38" viewBox="0 0 38 38" fill="none"
+                <div class="icon">
+
+                  <a href="https://x.com/1imcris">
+                    <svg width="38" height="38" viewBox="0 0 38 38" fill="none"
                       xmlns="http://www.w3.org/2000/svg">
                       <path
                         d="M19 0C8.50819 0 0 8.50819 0 19C0 29.4918 8.50819 38 19 38C29.4918 38 38 29.4918 38 19C38 8.50819 29.4918 0 19 0ZM27.6752 14.8142C27.6836 15.0012 27.6877 15.189 27.6877 15.3778C27.6877 21.1405 23.3012 27.7856 15.2795 27.7859H15.2798H15.2795C12.8167 27.7859 10.5249 27.064 8.59488 25.827C8.93611 25.8673 9.28343 25.8873 9.6351 25.8873C11.6784 25.8873 13.5588 25.1903 15.0516 24.0205C13.1425 23.9851 11.5329 22.7243 10.9774 20.9914C11.2433 21.0425 11.5167 21.0703 11.797 21.0703C12.1951 21.0703 12.5807 21.0167 12.9471 20.9166C10.9516 20.5171 9.44839 18.7536 9.44839 16.6418C9.44839 16.6221 9.44839 16.6044 9.44897 16.5862C10.0366 16.9129 10.7087 17.1095 11.4242 17.1315C10.2532 16.3502 9.48347 15.0145 9.48347 13.5014C9.48347 12.7024 9.69946 11.9539 10.074 11.3094C12.2246 13.9482 15.4387 15.6836 19.0632 15.866C18.9884 15.5465 18.9498 15.2137 18.9498 14.8716C18.9498 12.4641 20.903 10.5109 23.3114 10.5109C24.5658 10.5109 25.6988 11.0412 26.4946 11.8889C27.4882 11.6929 28.4211 11.33 29.2639 10.8304C28.9378 11.8483 28.2466 12.7024 27.3461 13.2425C28.2283 13.137 29.0691 12.903 29.8504 12.5557C29.2668 13.4304 28.5267 14.1987 27.6752 14.8142Z"
                         fill="#0D0C22"></path>
-                    </svg>
-            </a>
-          </div>
+                    </svg></a>
 
-          <div class="icon">
-            <a>
-            <svg width="38" height="38" viewBox="0 0 38 38" fill="none"
+                </div>
+
+                <div class="icon">
+                  <a>
+                    <svg width="38" height="38" viewBox="0 0 38 38" fill="none"
                       xmlns="http://www.w3.org/2000/svg">
                       <path
                         d="M19 0C8.50819 0 0 8.50819 0 19C0 29.4918 8.50819 38 19 38C29.4918 38 38 29.4918 38 19C38 8.50819 29.4918 0 19 0ZM13.4788 28.7227H8.85146V14.8011H13.4788V28.7227ZM11.1653 12.9001H11.1351C9.58234 12.9001 8.57806 11.8312 8.57806 10.4953C8.57806 9.1292 9.61307 8.08984 11.196 8.08984C12.779 8.08984 13.7531 9.1292 13.7832 10.4953C13.7832 11.8312 12.779 12.9001 11.1653 12.9001ZM30.1641 28.7227H25.5373V21.275C25.5373 19.4033 24.8673 18.1268 23.1931 18.1268C21.9148 18.1268 21.1535 18.9878 20.8189 19.819C20.6966 20.1165 20.6667 20.5322 20.6667 20.9482V28.7227H16.0397C16.0397 28.7227 16.1003 16.1072 16.0397 14.8011H20.6667V16.7723C21.2816 15.8237 22.3819 14.4744 24.8369 14.4744C27.8813 14.4744 30.1641 16.4641 30.1641 20.7401V28.7227Z"
                         fill="#0D0C22"></path>
                     </svg>
-            </a>
+                  </a>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+        <div class="hero-section__right">
+          <div class="form-row">
+            <input type="text" placeholder="Enter Your Name" />
+            <input type="text" placeholder="Enter Your E-Mail" />
+          </div>
+
+          <div class="form-row">
+            <select name="cars" id="cars">
+              <option value="volvo">Contact Reason</option>
+              <option value="mercedes">📞 Customer Support</option>
+              <option value="mercedes">🐞Bug Report</option>
+              <option value="mercedes">💡 Feedback/Ideas</option>
+            </select>
+            <select name="cars" id="cars">
+              <option value="volvo">Urgency</option>
+              <option value="saab">Immediate</option>
+              <option value="mercedes">Mediocre</option>
+              <option value="mercedes">Minor</option>
+            </select>
+          </div>
+
+          <input class="full-width" type="text" placeholder="Enter Your Phone Number" />
+          <textarea class="project-desc" placeholder="Type Anything Here !!"></textarea>
+          <div class="btns">
+
+            <button onclick="goToContact()">Contact Customer Support</button>
           </div>
         </div>
       </div>
-    </div>
-  </div>
+      <footer className='home-page-footer'>
 
-  <div class="hero-section__right">
-    <div class="form-row">
-      <input type="text" placeholder="أدخل اسمك" />
-      <input type="text" placeholder="أدخل بريدك الإلكتروني" />
-    </div>
+        <div className="breaker"></div>
+        <div className="flex">
+        <h1>Nobthah</h1>
 
-    <div class="form-row">
-      <select name="reason" id="reason">
-        <option value="volvo">سبب التواصل</option>
-        <option value="support">📞 دعم العملاء</option>
-        <option value="bug">🐞 الإبلاغ عن خطأ</option>
-        <option value="idea">💡 ملاحظات/أفكار</option>
-      </select>
-      <select name="urgency" id="urgency">
-        <option value="volvo">درجة الأهمية</option>
-        <option value="immediate">فوري</option>
-        <option value="medium">متوسط</option>
-        <option value="minor">بسيط</option>
-      </select>
-    </div>
-
-    <input class="full-width" type="text" placeholder="أدخل رقم هاتفك" />
-    <textarea class="project-desc" placeholder="اكتب أي شيء هنا !!"></textarea>
-    <div class="btns">
-      <button onclick="goToContact()">تواصل مع فريق الدعم</button>
-    </div>
-  </div>
-</div>
-
-
-
-<footer class='home-page-footer' dir="rtl">
-
-  <div className="breaker"></div>
-  <div className="flex">
-    <h1>نبذة</h1>
-
-    <div class="icons">
-      <div class="icon">
-        <a>
-        <svg width="38" height="38" viewBox="0 0 38 38" fill="none"
+<div class="icons">
+        <div class="icon">
+          <a>
+            <svg width="38" height="38" viewBox="0 0 38 38" fill="none"
               xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" clip-rule="evenodd"
                 d="M13.6289 26.7835C15.1495 27.8436 16.999 28.4697 18.9931 28.4697C20.0006 28.4697 20.945 28.2646 21.8605 27.9751C21.6975 25.7574 21.2634 23.5686 20.6058 21.4614C17.8434 22.4479 15.3969 24.2763 13.6289 26.7835Z"
@@ -279,11 +272,12 @@ export default function Home() {
                 d="M19 0C8.50659 0 0 8.50659 0 19V19C0 29.4934 8.50659 38 19 38V38C29.4934 38 38 29.4934 38 19V19C38 8.50659 29.4934 0 19 0V0ZM18.9935 30.5767C12.6112 30.5767 7.42328 25.3756 7.42328 18.9934C7.42328 12.6112 12.6112 7.42328 18.9935 7.42328C25.3756 7.42328 30.5767 12.6112 30.5767 18.9934C30.5767 25.3756 25.3756 30.5767 18.9935 30.5767Z"
                 fill="#0D0C22"></path>
             </svg>
-        </a>
-      </div>
+          </a>
 
-      <div class="icon">
-      <svg width="38" height="38" viewBox="0 0 38 38" fill="none"
+        </div>
+
+        <div class="icon">
+          <svg width="38" height="38" viewBox="0 0 38 38" fill="none"
             xmlns="http://www.w3.org/2000/svg">
             <path
               d="M22.6367 19C22.6367 21.0085 21.0085 22.6367 19 22.6367C16.9915 22.6367 15.3633 21.0085 15.3633 19C15.3633 16.9915 16.9915 15.3633 19 15.3633C21.0085 15.3633 22.6367 16.9915 22.6367 19Z"
@@ -295,33 +289,34 @@ export default function Home() {
               d="M19 0C8.50819 0 0 8.50819 0 19C0 29.4918 8.50819 38 19 38C29.4918 38 38 29.4918 38 19C38 8.50819 29.4918 0 19 0ZM29.8443 23.4981C29.7916 24.6595 29.6069 25.4524 29.3373 26.1465C28.7705 27.612 27.612 28.7705 26.1465 29.3373C25.4527 29.6069 24.6595 29.7913 23.4984 29.8443C22.3349 29.8974 21.9632 29.9102 19.0003 29.9102C16.037 29.9102 15.6657 29.8974 14.5019 29.8443C13.3408 29.7913 12.5476 29.6069 11.8538 29.3373C11.1256 29.0633 10.4663 28.6339 9.92125 28.0788C9.36635 27.534 8.93698 26.8744 8.66301 26.1465C8.39339 25.4527 8.20871 24.6595 8.15594 23.4984C8.10231 22.3346 8.08984 21.963 8.08984 19C8.08984 16.037 8.10231 15.6654 8.15565 14.5019C8.20842 13.3405 8.39281 12.5476 8.66243 11.8535C8.9364 11.1256 9.36606 10.466 9.92125 9.92125C10.466 9.36606 11.1256 8.93669 11.8535 8.66272C12.5476 8.3931 13.3405 8.20871 14.5019 8.15565C15.6654 8.1026 16.037 8.08984 19 8.08984C21.963 8.08984 22.3346 8.1026 23.4981 8.15594C24.6595 8.20871 25.4524 8.3931 26.1465 8.66243C26.8744 8.9364 27.534 9.36606 28.079 9.92125C28.6339 10.4663 29.0636 11.1256 29.3373 11.8535C29.6072 12.5476 29.7916 13.3405 29.8446 14.5019C29.8977 15.6654 29.9102 16.037 29.9102 19C29.9102 21.963 29.8977 22.3346 29.8443 23.4981Z"
               fill="#0D0C22"></path>
           </svg>
-      </div>
+        </div>
 
-      <div class="icon">
-        <a href="https://x.com/1imcris">
-        <svg width="38" height="38" viewBox="0 0 38 38" fill="none"
+        <div class="icon">
+
+          <a href="https://x.com/1imcris">
+            <svg width="38" height="38" viewBox="0 0 38 38" fill="none"
               xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M19 0C8.50819 0 0 8.50819 0 19C0 29.4918 8.50819 38 19 38C29.4918 38 38 29.4918 38 19C38 8.50819 29.4918 0 19 0ZM27.6752 14.8142C27.6836 15.0012 27.6877 15.189 27.6877 15.3778C27.6877 21.1405 23.3012 27.7856 15.2795 27.7859H15.2798H15.2795C12.8167 27.7859 10.5249 27.064 8.59488 25.827C8.93611 25.8673 9.28343 25.8873 9.6351 25.8873C11.6784 25.8873 13.5588 25.1903 15.0516 24.0205C13.1425 23.9851 11.5329 22.7243 10.9774 20.9914C11.2433 21.0425 11.5167 21.0703 11.797 21.0703C12.1951 21.0703 12.5807 21.0167 12.9471 20.9166C10.9516 20.5171 9.44839 18.7536 9.44839 16.6418C9.44839 16.6221 9.44839 16.6044 9.44897 16.5862C10.0366 16.9129 10.7087 17.1095 11.4242 17.1315C10.2532 16.3502 9.48347 15.0145 9.48347 13.5014C9.48347 12.7024 9.69946 11.9539 10.074 11.3094C12.2246 13.9482 15.4387 15.6836 19.0632 15.866C18.9884 15.5465 18.9498 15.2137 18.9498 14.8716C18.9498 12.4641 20.903 10.5109 23.3114 10.5109C24.5658 10.5109 25.6988 11.0412 26.4946 11.8889C27.4882 11.6929 28.4211 11.33 29.2639 10.8304C28.9378 11.8483 28.2466 12.7024 27.3461 13.2425C28.2283 13.137 29.0691 12.903 29.8504 12.5557C29.2668 13.4304 28.5267 14.1987 27.6752 14.8142Z"
                 fill="#0D0C22"></path>
-            </svg>
-        </a>
-      </div>
+            </svg></a>
 
-      <div class="icon">
-        <a>
-        <svg width="38" height="38" viewBox="0 0 38 38" fill="none"
+        </div>
+
+        <div class="icon">
+          <a>
+            <svg width="38" height="38" viewBox="0 0 38 38" fill="none"
               xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M19 0C8.50819 0 0 8.50819 0 19C0 29.4918 8.50819 38 19 38C29.4918 38 38 29.4918 38 19C38 8.50819 29.4918 0 19 0ZM13.4788 28.7227H8.85146V14.8011H13.4788V28.7227ZM11.1653 12.9001H11.1351C9.58234 12.9001 8.57806 11.8312 8.57806 10.4953C8.57806 9.1292 9.61307 8.08984 11.196 8.08984C12.779 8.08984 13.7531 9.1292 13.7832 10.4953C13.7832 11.8312 12.779 12.9001 11.1653 12.9001ZM30.1641 28.7227H25.5373V21.275C25.5373 19.4033 24.8673 18.1268 23.1931 18.1268C21.9148 18.1268 21.1535 18.9878 20.8189 19.819C20.6966 20.1165 20.6667 20.5322 20.6667 20.9482V28.7227H16.0397C16.0397 28.7227 16.1003 16.1072 16.0397 14.8011H20.6667V16.7723C21.2816 15.8237 22.3819 14.4744 24.8369 14.4744C27.8813 14.4744 30.1641 16.4641 30.1641 20.7401V28.7227Z"
                 fill="#0D0C22"></path>
             </svg>
-        </a>
-      </div>
-    </div>
-  </div>
-</footer>
+          </a>
 
+        </div>
+      </div>
+        </div>
+      </footer>
     </div>
   );
 }

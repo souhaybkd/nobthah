@@ -31,56 +31,55 @@ export default function Login() {
       const loginPromise = account.createEmailPasswordSession(email, password);
       toast
         .promise(loginPromise, {
-          pending: "Logging In To Your Account...",
-          success: "Logged In successfully!",
-          error: "Incorrect email/password.",
+          pending: "جاري تسجيل الدخول إلى حسابك...",
+          success: "تم تسجيل الدخول بنجاح!",
+          error: "البريد الإلكتروني أو كلمة المرور غير صحيحة.",
         })
         .then(() => {
           console.log("Navigating to dashboard");
-          navigate("/navigate/dashboard/create-resume-from-scratch"); // Assuming your dashboard route is "/dashboard"
+          navigate("/navigate/dashboard/create-resume-from-scratch");
         })
         .catch((error) => {
           console.error("Login failed:", error);
         });
     } else {
-      toast.error("Please enter both email and password.");
+      toast.error("الرجاء إدخال البريد الإلكتروني وكلمة المرور.");
     }
   };
 
   return (
-    <main className="register-page login-page">
+    <main className="register-page login-page" dir="rtl">
       <div className="form">
-        <div className="left">
-          {/* You can remove this section if not required */}
-          {/* x */}
-        </div>
+        <div className="left">{/* يمكن إزالة هذا القسم إذا لم يكن مطلوباً */}</div>
         <div className="right">
-          <h2>Welcome To Nobthah</h2>
-          <p>Create beautiful resumes at speed</p>
-          {/* Removed name input as per your requirement */}
+          <h2>مرحباً بك في نبذة</h2>
+          <p>أنشئ سيرتك الذاتية بسرعة وبجودة عالية</p>
+
           <input
             type="text"
             className="name-input"
-            placeholder="Enter Your Email"
+            placeholder="أدخل بريدك الإلكتروني"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
             type="password"
-            placeholder="Enter Your Password"
+            placeholder="أدخل كلمة المرور"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button onClick={handleLogin}>Log In</button>
+          <button onClick={handleLogin}>تسجيل الدخول</button>
+
           <div className="or">
             <div className="line"></div>
-            <span>OR</span>
+            <span>أو</span>
             <div className="line"></div>
           </div>
+
           <Link to="/register">
-            <button>Create A New Account</button>
+            <button>إنشاء حساب جديد</button>
           </Link>
-          <button>Forgot Your Password</button>
+          <button>هل نسيت كلمة المرور؟</button>
         </div>
       </div>
       <div className="overlay"></div>
@@ -90,7 +89,7 @@ export default function Login() {
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
-        rtl={false}
+        rtl={true}
         style={{
           width: "500px",
         }}

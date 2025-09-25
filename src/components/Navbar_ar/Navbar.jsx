@@ -3,23 +3,23 @@ import { Link } from "react-router-dom"
 import { useLanguage } from "../../contexts/LanguageContext"
 
 export default function Navbar() {
-    const { switchLanguage, isArabic } = useLanguage();
+    const { switchLanguage, isEnglish } = useLanguage();
 
     const handleLanguageSwitch = () => {
-        switchLanguage(isArabic ? 'en' : 'ar');
+        switchLanguage(isEnglish ? 'ar' : 'en');
     };
 
     return (
-        <nav className="navbar">
+        <nav className="navbar" dir="rtl">
             <div className="logo">
-                <h1>Nobthah</h1>
+                <h1>نبذة</h1>
             </div>
 
             <div className="links">
-                <a href="#">Home</a>
-                <a href="#">Features</a>
-                <a href="#">Pricing</a>
-                <a href="#">Templates</a>
+                <a href="#">الرئيسية</a>
+                <a href="#">المميزات</a>
+                <a href="#">الأسعار</a>
+                <a href="#">القوالب</a>
             </div>
 
             <div className="btns">
@@ -27,16 +27,16 @@ export default function Navbar() {
                     <button 
                         className="lang-btn" 
                         onClick={handleLanguageSwitch}
-                        title="Switch to Arabic"
+                        title="Switch to English"
                     >
                         <span className="lang-icon">🌐</span>
-                        <span className="lang-text">عربي</span>
+                        <span className="lang-text">English</span>
                     </button>
                 </div>
                 
                 <Link to={"navigate/dashboard/create-resume-from-scratch"}>
                     <button>
-                        <h2>Create Resume</h2>
+                        <h2>أنشئ سيرتك الذاتية</h2>
                     </button>
                 </Link>
             </div>
