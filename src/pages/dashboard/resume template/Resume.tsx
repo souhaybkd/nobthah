@@ -258,7 +258,17 @@ export default function Resume() {
         handlePrint();
         resumeTemplate.current.style.display = "none";
       } else {
-        console.log("Label not found, initiating payment...");
+        console.log("Label not found, but payment disabled for testing - showing resume directly...");
+        
+        // TEMPORARY: Skip payment for testing - directly show resume
+        toast.success("تم تحميل السيرة الذاتية للاختبار!");
+        
+        // Display resume template and trigger print
+        resumeTemplate.current.style.display = "flex";
+        handlePrint();
+        resumeTemplate.current.style.display = "none";
+        
+        /* PAYMENT CODE DISABLED FOR TESTING
         const fetchPromise = fetch("https://api.lemonsqueezy.com/v1/checkouts", {
           method: "POST",
           headers,
@@ -293,6 +303,7 @@ export default function Resume() {
           .catch((error) => {
             console.error("Error:", error);
           });
+        */
       }
     } catch (error) {
       console.error("Error:", error);
