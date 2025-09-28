@@ -6,8 +6,6 @@ import { ID } from "appwrite";
 import { useNavigate } from "react-router-dom";
 import { account } from "../../../appwrite/appwrite.config";
 import { Link } from "react-router-dom";
-import DebugInfo from "../../../components/DebugInfo";
-import AppwriteTest from "../../../components/AppwriteTest";
 
 
 export default function Register() {
@@ -65,8 +63,6 @@ export default function Register() {
 
   return (
     <main className="register-page">
-      <DebugInfo />
-      <AppwriteTest />
       <div className="form">
         <div className="left">
           x
