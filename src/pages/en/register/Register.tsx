@@ -6,6 +6,7 @@ import { ID } from "appwrite";
 import { useNavigate } from "react-router-dom";
 import { account } from "../../../appwrite/appwrite.config";
 import { Link } from "react-router-dom";
+import DebugInfo from "../../../components/DebugInfo";
 
 
 export default function Register() {
@@ -30,19 +31,32 @@ export default function Register() {
 
   const handleRegistration = async () => {
     if (email && password) {
-      const accountCreationPromise = account.create(ID.unique(), email, password, name);
-      toast.promise(
-        accountCreationPromise,
-        {
-          pending: "Creating account...",
-          success: "Account created successfully!",
-          error: "Error creating account. Please try again."
-        }
-      ).then(() => {
-        navigate("/navigate/dashboard/create-resume-from-scratch");
-      }).catch(error => {
-        console.error("Registration failed:", error);
-      });
+      try {
+        const accountCreationPromise = account.create(ID.unique(), email, password, name);
+        toast.promise(
+          accountCreationPromise,
+          {
+            pending: "Creating account...",
+            success: "Account created successfully!",
+            error: "Error creating account. Please try again."
+          }
+        ).then(() => {
+          navigate("/navigate/dashboard/create-resume-from-scratch");
+        }).catch(error => {
+          console.error("Registration failed:", error);
+          // Enhanced error logging for debugging
+          console.error("Error details:", {
+            message: error.message,
+            type: error.type,
+            code: error.code,
+            response: error.response
+          });
+          toast.error(`Detailed error: ${error.message || 'Unknown error'}`);
+        });
+      } catch (error) {
+        console.error("Registration error:", error);
+        toast.error(`Connection error: ${error.message || 'Check your internet connection'}`);
+      }
     } else {
       toast.error("Please enter all required fields.");
     }
@@ -50,6 +64,7 @@ export default function Register() {
 
   return (
     <main className="register-page">
+      <DebugInfo />
       <div className="form">
         <div className="left">
           x

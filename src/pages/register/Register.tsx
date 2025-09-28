@@ -6,6 +6,7 @@ import { ID } from "appwrite";
 import { useNavigate } from "react-router-dom";
 import { account } from "../../appwrite/appwrite.config";
 import { Link } from "react-router-dom";
+import DebugInfo from "../../components/DebugInfo";
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -29,19 +30,32 @@ export default function Register() {
 
   const handleRegistration = async () => {
     if (email && password) {
-      const accountCreationPromise = account.create(ID.unique(), email, password, name);
-      toast
-        .promise(accountCreationPromise, {
-          pending: "جاري إنشاء الحساب...",
-          success: "تم إنشاء الحساب بنجاح!",
-          error: "حدث خطأ أثناء إنشاء الحساب. الرجاء المحاولة مرة أخرى.",
-        })
-        .then(() => {
-          navigate("/navigate/dashboard/create-resume-from-scratch");
-        })
-        .catch((error) => {
-          console.error("Registration failed:", error);
-        });
+      try {
+        const accountCreationPromise = account.create(ID.unique(), email, password, name);
+        toast
+          .promise(accountCreationPromise, {
+            pending: "جاري إنشاء الحساب...",
+            success: "تم إنشاء الحساب بنجاح!",
+            error: "حدث خطأ أثناء إنشاء الحساب. الرجاء المحاولة مرة أخرى.",
+          })
+          .then(() => {
+            navigate("/navigate/dashboard/create-resume-from-scratch");
+          })
+          .catch((error) => {
+            console.error("Registration failed:", error);
+            // Enhanced error logging for debugging
+            console.error("Error details:", {
+              message: error.message,
+              type: error.type,
+              code: error.code,
+              response: error.response
+            });
+            toast.error(`خطأ مفصل: ${error.message || 'خطأ غير معروف'}`);
+          });
+      } catch (error) {
+        console.error("Registration error:", error);
+        toast.error(`خطأ في الاتصال: ${error.message || 'تحقق من اتصال الإنترنت'}`);
+      }
     } else {
       toast.error("الرجاء إدخال جميع الحقول المطلوبة.");
     }
@@ -49,6 +63,7 @@ export default function Register() {
 
   return (
     <main className="register-page" dir="rtl">
+      <DebugInfo />
       <div className="form">
         <div className="left">x</div>
         <div className="right">
