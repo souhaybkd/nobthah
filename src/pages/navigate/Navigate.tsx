@@ -9,15 +9,17 @@ const navigate = useNavigate()
         try {
           const user = await account.get();
           handleLastLabelClick(user.labels);
+
+        //   handleLastLabelClick
         } catch (error) {
           console.log("No user logged in", error);
-          // Redirect to login immediately for better UX
+          // Redirect to login page if user is not authenticated
           navigate("/login");
         }
       }
       getAuthStatus();
 
-    }, [navigate]);
+    }, []);
   
     const handleLastLabelClick = (labels) => {
       const lastLabel = labels[labels.length - 1];

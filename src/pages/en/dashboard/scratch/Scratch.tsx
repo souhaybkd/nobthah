@@ -74,7 +74,7 @@ export default function Scratch() {
         const user = await account.get();
       } catch (error) {
         console.log("No user logged in", error);
-        navigate("/login");
+        navigate("/en/login");
       }
     }
     getAuthStatus();
