@@ -263,6 +263,9 @@ export default function Resume() {
         console.log("Label not found, initiating payment flow...");
         
         // Payment flow enabled
+        const successUrl = `${window.location.origin}/payment-success?resumeId=${id}`;
+        const failureUrl = `${window.location.origin}/payment-failed`;
+        
         const fetchPromise = fetch("https://api.lemonsqueezy.com/v1/checkouts", {
           method: "POST",
           headers,
@@ -278,6 +281,10 @@ export default function Resume() {
                   embed: false,
                   media: false,
                   logo: true,
+                },
+                product_options: {
+                  enabled_variants: [lemonSqueezyConfig.VARIANT_ID],
+                  redirect_url: successUrl,
                 },
                 expires_at: null,
                 preview: false,
