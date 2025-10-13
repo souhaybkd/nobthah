@@ -236,9 +236,11 @@ export default function Resume() {
 
   // تحميل/دفع
   const downloadResume = async () => {
+    // Use environment variables for sensitive data
     const lemonSqueezyConfig = {
-      API_KEY:
-        "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5NGQ1OWNlZi1kYmI4LTRlYTUtYjE3OC1kMjU0MGZjZDY5MTkiLCJqdGkiOiJiMzFkNjU3MjNmYzk4NTcxMGJkZjE2OGU2NTZlMTllODU0ZTdjZDE3YmFkY2NhMDNkODM1ZDdjN2FjYzNmZjhmNGZmN2EwYTUxNjBjYzQyZSIsImlhdCI6MTcxOTIzNDgwNi4wMjkxNzksIm5iZiI6MTcxOTIzNDgwNi4wMjkxODIsImV4cCI6MjAzNDc2NzYwNi4wMDA2NzQsInN1YiI6IjIyOTI3MDEiLCJzY29wZXMiOltdfQ.zHxwQFCumLAlaWTJQoX_iKb78NZ29OCS6_aH_HrduTpRVBWXIf_TPaoSAj-s9VkTgyMhch1RAYISRiNu4AaAcBq8wu-0Ayq3KA6wGWJWKbOAhClaXWqLIE8jOWK3NefNWuqgTDvmxov4MmUkGq_ij23Wp02nBVcXOyHz_SACevrMoyVREUSYP9NrN6eqTiQ-2qcc6Kwa_IazhGRtKSYHHgD1aov5ywhxv-x8SO_7eRjI1dpshdMZqZL-sFYtLl-dRz-6WLl_dAaCuUZK_G2sTwNwOCQFL0j-hwKuJl-lH-YAzA5GkjsRuARo-mfHdQAJFljWa1m5ZMpOxUGDPiO91svVO5NyyICBwz_whKeClec8veSyQNlswiLN5Nh_rSNe2LH74nXlO94C1a1cXR0Yi45G0JJsPEOHf8bcnzV8wGX1M-HKicI6oWvECyYLd9IHr3yVBUyNS6ep2FMQL2BqNeklo8fpoibmpsmQ9fT1EAln5QUmlEzT5FpOvTTS7J-Y",
+      API_KEY: import.meta.env.VITE_LEMONSQUEEZY_API_KEY || "",
+      STORE_ID: import.meta.env.VITE_LEMONSQUEEZY_STORE_ID || "96692",
+      VARIANT_ID: import.meta.env.VITE_LEMONSQUEEZY_VARIANT_ID || "427561",
       URL: "https://api.lemonsqueezy.com",
     };
 
@@ -258,17 +260,9 @@ export default function Resume() {
         handlePrint();
         resumeTemplate.current.style.display = "none";
       } else {
-        console.log("Label not found, but payment disabled for testing - showing resume directly...");
+        console.log("Label not found, initiating payment flow...");
         
-        // TEMPORARY: Skip payment for testing - directly show resume
-        toast.success("تم تحميل السيرة الذاتية للاختبار!");
-        
-        // Display resume template and trigger print
-        resumeTemplate.current.style.display = "flex";
-        handlePrint();
-        resumeTemplate.current.style.display = "none";
-        
-        /* PAYMENT CODE DISABLED FOR TESTING
+        // Payment flow enabled
         const fetchPromise = fetch("https://api.lemonsqueezy.com/v1/checkouts", {
           method: "POST",
           headers,
@@ -277,13 +271,21 @@ export default function Resume() {
               type: "checkouts",
               attributes: {
                 checkout_data: {
-                  // email: user.email,
+                  email: user?.email || "",
                   custom: { resumeId: id },
                 },
+                checkout_options: {
+                  embed: false,
+                  media: false,
+                  logo: true,
+                },
+                expires_at: null,
+                preview: false,
+                test_mode: false,
               },
               relationships: {
-                store: { data: { type: "stores", id: "96692" } },
-                variant: { data: { type: "variants", id: "427561" } },
+                store: { data: { type: "stores", id: lemonSqueezyConfig.STORE_ID } },
+                variant: { data: { type: "variants", id: lemonSqueezyConfig.VARIANT_ID } },
               },
             },
           }),
@@ -298,15 +300,22 @@ export default function Resume() {
           .then(async (response) => {
             const checkout = await response.json();
             console.log("Checkout created:", checkout);
-            window.location.href = checkout.data.attributes.url;
+            
+            if (checkout.data && checkout.data.attributes && checkout.data.attributes.url) {
+              // Redirect to LemonSqueezy checkout page
+              window.location.href = checkout.data.attributes.url;
+            } else {
+              throw new Error("Invalid checkout response");
+            }
           })
           .catch((error) => {
             console.error("Error:", error);
+            toast.error("فشل إنشاء صفحة الدفع. يرجى المحاولة مرة أخرى.");
           });
-        */
       }
     } catch (error) {
       console.error("Error:", error);
+      toast.error("حدث خطأ. يرجى المحاولة مرة أخرى.");
     }
   };
 

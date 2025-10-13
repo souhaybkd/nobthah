@@ -12,14 +12,28 @@ export default function Navbar() {
     return (
         <nav className="navbar" dir="rtl">
             <div className="logo">
-                <h1>نبذة</h1>
+                <h1 style={{ cursor: 'pointer' }} onClick={() => {
+                    document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' });
+                }}>نبذة</h1>
             </div>
 
             <div className="links">
-                <a href="#">الرئيسية</a>
-                <a href="#">المميزات</a>
-                <a href="#">الأسعار</a>
-                <a href="#">القوالب</a>
+                <a href="#home" onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' });
+                }}>الرئيسية</a>
+                <a href="#portfolio" onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' });
+                }}>القوالب</a>
+                <a href="#pricing" onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
+                }}>الأسعار</a>
+                <a href="#contact" onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                }}>تواصل معنا</a>
             </div>
 
             <div className="btns">
@@ -34,7 +48,7 @@ export default function Navbar() {
                     </button>
                 </div>
                 
-                <Link to={"navigate/dashboard/create-resume-from-scratch"}>
+                <Link to={"/navigate/dashboard/create-resume-from-scratch"}>
                     <button>
                         <h2>أنشئ سيرتك الذاتية</h2>
                     </button>

@@ -37,12 +37,12 @@ const Singapore = forwardRef(({ personalInfo, certificates, languages, education
             </div>
 
             <div className="profile">
-                <h2>01 PROFILE</h2>
+                <h2>PROFILE</h2>
                 <p>{personalInfo.profileDesc}</p>
             </div>
 
             <div className="exp">
-                <h2>02 EMPLOYMENT HISTORY</h2>
+                <h2>EMPLOYMENT HISTORY</h2>
                 {experiences.map((experience, index) => (
                     <div className="exp-item" key={index}>
                         <div className="exp-dates">
@@ -57,7 +57,7 @@ const Singapore = forwardRef(({ personalInfo, certificates, languages, education
             </div>
 
             <div className="exp edu">
-                <h2>03 EDUCATION</h2>
+                <h2>EDUCATION</h2>
                 {education.map((edu, index) => (
                     <div className="exp-item" key={index}>
                         <div className="exp-dates">
@@ -74,7 +74,7 @@ const Singapore = forwardRef(({ personalInfo, certificates, languages, education
 
             <div className="dual exp">
                 <div className="card">
-                    <h2>03 TECHNICAL & SOFT SKILLS</h2>
+                    <h2>TECHNICAL & SOFT SKILLS</h2>
                     <div className="skills">
                         {
                             skills.map((item) => {
@@ -92,7 +92,7 @@ const Singapore = forwardRef(({ personalInfo, certificates, languages, education
                 </div>
 
                 <div className="card v2">
-                    <h2>04 Certifications</h2>
+                    <h2>CERTIFICATIONS</h2>
                     <div className="skills">
                         {
                             certificates.map((item) => {

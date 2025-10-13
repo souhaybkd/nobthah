@@ -30,9 +30,6 @@ const Rome = forwardRef(({ personalInfo, education, certificates, languages, ima
             <div className="dual">
                 <div className="info profile-0">
                     <div className="title">
-                        <div>
-                            <h1>1</h1>
-                        </div>
                         <h3>PROFILE</h3>
                     </div>
                     <p>{personalInfo.profileDesc}</p>
@@ -47,9 +44,6 @@ const Rome = forwardRef(({ personalInfo, education, certificates, languages, ima
             <div className="dual">
                 <div className="info">
                     <div className="title">
-                        <div>
-                            <h1>2</h1>
-                        </div>
                         <h3>SKILLS</h3>
                     </div>
                     {skills.map((skill, index) => (
@@ -65,9 +59,6 @@ const Rome = forwardRef(({ personalInfo, education, certificates, languages, ima
                 </div>
                 <div className="info">
                     <div className="title">
-                        <div>
-                            <h1>3</h1>
-                        </div>
                         <h3>Languages</h3>
                     </div>
                     {languages.map((language, index) => (
@@ -82,11 +73,8 @@ const Rome = forwardRef(({ personalInfo, education, certificates, languages, ima
                     ))}
                 </div>
             </div>
-            <div className="info">
+                <div className="info">
                 <div className="title">
-                    <div>
-                        <h1>4</h1>
-                    </div>
                     <h3>EDUCATION</h3>
                 </div>
                 <ul>
@@ -106,9 +94,6 @@ const Rome = forwardRef(({ personalInfo, education, certificates, languages, ima
 
             <div className="info">
                 <div className="title">
-                    <div>
-                        <h1>4</h1>
-                    </div>
                     <h3>EMPLOYMENT HISTORY</h3>
                 </div>
                 <ul>

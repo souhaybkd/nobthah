@@ -95,10 +95,12 @@ export default function Register() {
             <span>OR</span>
             <div className="line"></div>
           </div>
-          <Link to="/login">
+          <Link to="/en/login">
             <button>Visit Login Page</button>
           </Link>
-          <button>Forgot Your Password</button>
+          <Link to="/en/forgot-password">
+            <button>Forgot Your Password</button>
+          </Link>
         </div>
       </div>
       <div className="overlay"></div>

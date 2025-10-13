@@ -1,9 +1,9 @@
 // src/components/Resume.scss
 .berlin-template {
   padding: 0 2em;
-  font-family: "Cairo";
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
   line-height: 1.2;
-  zoom: 80%;
+  zoom: 100%;
   width: 100%;
   .dessc {
     line-height: 1.5 !important;
@@ -11,7 +11,7 @@
   .header {
     text-align: center;
     width: 100%;
-    border-bottom: 2px solid #545353;
+    border-bottom: 1px solid #e5e7eb;
     padding-bottom: 1em;
     h1 {
       font-size: 3rem;
@@ -25,9 +25,9 @@
   .container {
     display: flex;
     .left {
-      width: 35%;
-      height: 120vh;
-      border-right: 2px solid #545353;
+      width: 28%;
+      min-height: auto;
+      border-right: 1px solid #e5e7eb;
       padding: 2em 1em;
       h2 {
         font-size: 1.8rem;
@@ -55,32 +55,35 @@
       }
 
       .certficate {
-        background: #000;
-        color: #fff;
+        background: #eff6ff;
+        color: #1e40af;
         padding: 0.5em;
         border-radius: 5px;
+        border-left: 3px solid #2563eb;
       }
       .skill {
         margin-top: 1em;
         .bar-container {
           width: 90%;
-          border: 2px solid #000;
+          border: none;
           border-radius: 100px;
-          height: 10px;
+          background: #f3f4f6;
+          height: 6px;
           margin-top: 0.5em;
 
           .bar {
             width: 50%;
             height: 100%;
-            background: #000;
+            background: linear-gradient(90deg, #2563eb, #3b82f6);
+            border-radius: 100px;
           }
         }
       }
     }
 
     .right {
-      width: 70%;
-      height: 90vh;
+      width: 72%;
+      min-height: auto;
 
       .profile {
         padding: 2em;

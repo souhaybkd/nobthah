@@ -5,6 +5,7 @@ import 'swiper/scss/navigation';
 import 'swiper/scss/pagination';
 import Woman from "../../../assets/woman.png";
 import { Autoplay } from 'swiper/modules';
+import { useState } from "react";
 
 import Navbar from "../../../components/Navbar/Navbar";
 import "./home.scss";
@@ -24,9 +25,41 @@ import Singapore from "../../../assets/singapore.png";
 
 export default function Home() {
   const navigate = useNavigate()
+  const [openFAQ, setOpenFAQ] = useState(null);
+
+  const toggleFAQ = (index) => {
+    setOpenFAQ(openFAQ === index ? null : index);
+  };
+
+  const faqs = [
+    {
+      question: "What is Nobthah?",
+      answer: "Nobthah is an innovative platform for creating professional, beautiful, and ATS-friendly resumes in minutes. We provide 9 professional templates specifically designed to help you land your dream job."
+    },
+    {
+      question: "How long does it take to create a resume?",
+      answer: "You can create your resume in 3 simple steps and in less than 10 minutes! All you need to do is enter your information, choose your preferred template, and download your high-quality PDF resume."
+    },
+    {
+      question: "What does ATS-friendly mean?",
+      answer: "ATS (Applicant Tracking System) is software that companies use to filter resumes. Our templates are designed so these systems can easily read your information, increasing your chances of getting to the interview stage."
+    },
+    {
+      question: "Can I edit my resume after creating it?",
+      answer: "Yes! You can edit your resume anytime. Your information will remain saved in your account and you can access and update it whenever you want."
+    },
+    {
+      question: "What do I get for 20 SAR?",
+      answer: "For only 20 SAR, you get full access to all nine templates, the ability to export your resume in high-quality PDF format, ATS-friendly designs, and 24/7 customer support. One payment, unlimited benefits!"
+    },
+    {
+      question: "Is my information secure?",
+      answer: "Yes, your data security is our top priority. We use the latest encryption technologies to protect your personal information and we never share your data with any third parties."
+    }
+  ];
 
   return (
-    <div className="home-page">
+    <div className="home-page home-page-en">
       <Navbar />
 
       <div id="home" className="hero-section">
@@ -38,7 +71,7 @@ export default function Home() {
             spending hours on it. Get good resumes & get hired quickly & easily. Try Now !!
           </p>
           <div className="hero-section__btns">
-            <button className="hero-section__button" onClick={() => navigate("navigate/dashboard/create-resume-from-scratch")}>
+            <button className="hero-section__button" onClick={() => navigate("/en/navigate/dashboard/create-resume-from-scratch")}>
               <h2 className="hero-section__button-text">Create Resume</h2>
             </button>
           </div>
@@ -107,7 +140,7 @@ export default function Home() {
             spending hours on it. Get good resumes & get hired quickly & easily. Try Now !!
           </p>
           <div className="hero-section__btns">
-            <button className="hero-section__button" onClick={() => navigate("navigate/dashboard/create-resume-from-scratch")}>
+            <button className="hero-section__button" onClick={() => navigate("/en/navigate/dashboard/create-resume-from-scratch")}>
               <h2 className="hero-section__button-text">Create Resume</h2>
             </button>
           </div>
@@ -118,6 +151,107 @@ export default function Home() {
         </div>
       </div>
 
+{/* Pricing Section */}
+<div id="pricing" className="pricing-section">
+  <div className="pricing-header">
+    <h1 className="hero-section__title">Unbeatable Price 💰</h1>
+    <h2 className="hero-section__subtitle">One Plan, Unlimited Value</h2>
+    <p className="hero-section__description">
+      Get a professional resume at an affordable price for everyone
+    </p>
+  </div>
+
+  <div className="pricing-card">
+    <div className="pricing-badge">
+      <span className="badge-text">Best Value</span>
+    </div>
+    
+    <div className="pricing-content">
+      <h3 className="pricing-plan-name">Complete Plan</h3>
+      
+      <div className="pricing-amount">
+        <span className="currency">SAR</span>
+        <span className="price">20</span>
+        <span className="period">One-time</span>
+      </div>
+
+      <div className="pricing-features">
+        <div className="feature-item">
+          <span className="feature-icon">✓</span>
+          <span className="feature-text">9 Professional Resume Templates</span>
+        </div>
+        <div className="feature-item">
+          <span className="feature-icon">✓</span>
+          <span className="feature-text">ATS-Friendly Designs</span>
+        </div>
+        <div className="feature-item">
+          <span className="feature-icon">✓</span>
+          <span className="feature-text">Beautiful & Modern Styles</span>
+        </div>
+        <div className="feature-item">
+          <span className="feature-icon">✓</span>
+          <span className="feature-text">High-Quality PDF Export</span>
+        </div>
+        <div className="feature-item">
+          <span className="feature-icon">✓</span>
+          <span className="feature-text">Create in Just 3 Steps</span>
+        </div>
+        <div className="feature-item">
+          <span className="feature-icon">✓</span>
+          <span className="feature-text">24/7 Customer Support</span>
+        </div>
+      </div>
+
+      <button 
+        className="pricing-button"
+        onClick={() => navigate("/en/navigate/dashboard/create-resume-from-scratch")}
+      >
+        <h3 className="pricing-button-text">Get Started</h3>
+      </button>
+    </div>
+  </div>
+</div>
+
+{/* FAQ Section */}
+<div id="faq" className="faq-section">
+  <div className="faq-header">
+    <h1 className="hero-section__title">Got Questions? 🤔</h1>
+    <h2 className="hero-section__subtitle">Frequently Asked Questions</h2>
+    <p className="hero-section__description">
+      Here are answers to the most common questions about Nobthah
+    </p>
+  </div>
+
+  <div className="faq-container">
+    {faqs.map((faq, index) => (
+      <div 
+        key={index} 
+        className={`faq-item ${openFAQ === index ? 'active' : ''}`}
+      >
+        <button 
+          className="faq-question"
+          onClick={() => toggleFAQ(index)}
+        >
+          <span className="question-text">{faq.question}</span>
+          <span className="faq-icon">{openFAQ === index ? '−' : '+'}</span>
+        </button>
+        <div className={`faq-answer ${openFAQ === index ? 'open' : ''}`}>
+          <p>{faq.answer}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div className="faq-cta">
+    <p className="faq-cta-text">Didn't find your answer?</p>
+    <button 
+      className="faq-cta-button"
+      onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
+    >
+      <h3 className="faq-cta-button-text">Contact Us</h3>
+    </button>
+  </div>
+</div>
 
       <div id="contact" class="hero-section contact-us">
         <div class="hero-section__left">
@@ -243,7 +377,15 @@ export default function Home() {
 
         <div className="breaker"></div>
         <div className="flex">
-        <h1>Nobthah</h1>
+        <div className="footer-brand">
+          <h1>Nobthah</h1>
+
+        </div>
+        <div className="footer-links">
+            <a href="/en/privacy" className="footer-link">Privacy Policy</a>
+            <span className="footer-separator">•</span>
+            <a href="/en/terms" className="footer-link">Terms of Service</a>
+          </div>
 
 <div class="icons">
         <div class="icon">

@@ -52,7 +52,7 @@ const Berlin = forwardRef(({ personalInfo, education, languages, certificates, s
                         </div>
                     ))}
 
-                    <h2 className='skills'>Certficates</h2>
+                    <h2 className='skills'>Certificates</h2>
                     <div className="line"></div>
                     {certificates.map((skill, index) => (
                         <div className="skill certficate" key={index}>

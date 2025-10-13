@@ -15,9 +15,7 @@ const Diamond = forwardRef(({ personalInfo, education, languages, certificates, 
           <h3>Details</h3>
           <p>{personalInfo.address}</p>
           <p>{personalInfo.phone}</p>
-          <p>
-          <a href={`https://mail.google.com/mail/?view=cm&fs=1&to=${personalInfo.email}`}>G-MAIL</a>
-          </p>
+          <p>{personalInfo.email}</p>
         </div>
 
         <div className="skills">

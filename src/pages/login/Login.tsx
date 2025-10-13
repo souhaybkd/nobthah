@@ -79,7 +79,9 @@ export default function Login() {
           <Link to="/register">
             <button>إنشاء حساب جديد</button>
           </Link>
-          <button>هل نسيت كلمة المرور؟</button>
+          <Link to="/forgot-password">
+            <button>هل نسيت كلمة المرور؟</button>
+          </Link>
         </div>
       </div>
       <div className="overlay"></div>

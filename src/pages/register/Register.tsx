@@ -98,7 +98,9 @@ export default function Register() {
           <Link to="/login">
             <button>زيارة صفحة تسجيل الدخول</button>
           </Link>
-          <button>هل نسيت كلمة المرور؟</button>
+          <Link to="/forgot-password">
+            <button>هل نسيت كلمة المرور؟</button>
+          </Link>
         </div>
       </div>
       <div className="overlay"></div>

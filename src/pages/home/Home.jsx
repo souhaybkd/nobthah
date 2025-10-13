@@ -5,6 +5,7 @@ import 'swiper/scss/navigation';
 import 'swiper/scss/pagination';
 import Woman from "../../assets/woman.png";
 import { Autoplay } from 'swiper/modules';
+import { useState } from "react";
 
 
 import NavbarAr from "../../components/Navbar_ar/Navbar";
@@ -25,9 +26,41 @@ import Singapore from "../../assets/singapore.png";
 
 export default function Home() {
   const navigate = useNavigate()
+  const [openFAQ, setOpenFAQ] = useState(null);
+
+  const toggleFAQ = (index) => {
+    setOpenFAQ(openFAQ === index ? null : index);
+  };
+
+  const faqs = [
+    {
+      question: "ما هي نبذة؟",
+      answer: "نبذة هي منصة مبتكرة لإنشاء سير ذاتية احترافية وجميلة ومتوافقة مع أنظمة التوظيف (ATS) في دقائق معدودة. نوفر 9 قوالب احترافية مصممة خصيصاً لتساعدك في الحصول على الوظيفة التي تحلم بها."
+    },
+    {
+      question: "كم يستغرق إنشاء السيرة الذاتية؟",
+      answer: "يمكنك إنشاء سيرتك الذاتية في 3 خطوات بسيطة وفي أقل من 10 دقائق! كل ما عليك هو إدخال معلوماتك، اختيار القالب المفضل، وتحميل سيرتك الذاتية بصيغة PDF عالية الجودة."
+    },
+    {
+      question: "ما معنى متوافق مع ATS؟",
+      answer: "ATS (نظام تتبع المتقدمين) هو برنامج تستخدمه الشركات لفرز السير الذاتية. قوالبنا مصممة بحيث يمكن لهذه الأنظمة قراءة معلوماتك بسهولة، مما يزيد من فرصك في الوصول للمقابلة الشخصية."
+    },
+    {
+      question: "هل يمكنني تعديل السيرة الذاتية بعد إنشائها؟",
+      answer: "نعم! يمكنك تعديل سيرتك الذاتية في أي وقت. ستظل معلوماتك محفوظة في حسابك ويمكنك الوصول إليها وتحديثها متى شئت."
+    },
+    {
+      question: "ما الذي أحصل عليه مقابل 20 ريال؟",
+      answer: "مقابل 20 ريال فقط، تحصل على وصول كامل لجميع القوالب التسعة، إمكانية تصدير سيرتك الذاتية بصيغة PDF عالية الجودة، تصميمات متوافقة مع ATS، ودعم فني على مدار الساعة. دفعة واحدة، فوائد لا محدودة!"
+    },
+    {
+      question: "هل معلوماتي آمنة؟",
+      answer: "نعم، أمان بياناتك هو أولويتنا القصوى. نستخدم أحدث تقنيات التشفير لحماية معلوماتك الشخصية ولا نشارك بياناتك مع أي جهة خارجية أبداً."
+    }
+  ];
 
   return (
-    <div className="home-page">
+    <div className="home-page home-page-ar">
       <NavbarAr />
 
       <div id="home" className="hero-section" dir="rtl">
@@ -42,7 +75,7 @@ export default function Home() {
     <div className="hero-section__btns">
       <button
         className="hero-section__button"
-        onClick={() => navigate("navigate/dashboard/create-resume-from-scratch")}
+         onClick={() => navigate("/navigate/dashboard/create-resume-from-scratch")}
       >
         <h2 className="hero-section__button-text">أنشئ سيرتك الذاتية</h2>
       </button>
@@ -117,7 +150,7 @@ export default function Home() {
     <div className="hero-section__btns">
       <button
         className="hero-section__button"
-        onClick={() => navigate("navigate/dashboard/create-resume-from-scratch")}
+        onClick={() => navigate("/navigate/dashboard/create-resume-from-scratch")}
       >
         <h2 className="hero-section__button-text">أنشئ سيرتك الذاتية</h2>
       </button>
@@ -129,7 +162,107 @@ export default function Home() {
   </div>
 </div>
 
+{/* Pricing Section */}
+<div id="pricing" className="pricing-section" dir="rtl">
+  <div className="pricing-header">
+    <h1 className="hero-section__title">سعر لا يُقاوم 💰</h1>
+    <h2 className="hero-section__subtitle-ar">خطة واحدة، قيمة لا محدودة</h2>
+    <p className="hero-section__description">
+      احصل على سيرة ذاتية احترافية بسعر مناسب للجميع
+    </p>
+  </div>
 
+  <div className="pricing-card">
+    <div className="pricing-badge">
+      <span className="badge-text">الأفضل قيمة</span>
+    </div>
+    
+    <div className="pricing-content">
+      <h3 className="pricing-plan-name">الخطة الكاملة</h3>
+      
+      <div className="pricing-amount">
+        <span className="currency">ريال</span>
+        <span className="price">20</span>
+        <span className="period">لمرة واحدة</span>
+      </div>
+
+      <div className="pricing-features">
+        <div className="feature-item">
+          <span className="feature-icon">✓</span>
+          <span className="feature-text">9 قوالب سيرة ذاتية احترافية</span>
+        </div>
+        <div className="feature-item">
+          <span className="feature-icon">✓</span>
+          <span className="feature-text">متوافقة مع أنظمة التوظيف (ATS)</span>
+        </div>
+        <div className="feature-item">
+          <span className="feature-icon">✓</span>
+          <span className="feature-text">تصميمات جميلة وعصرية</span>
+        </div>
+        <div className="feature-item">
+          <span className="feature-icon">✓</span>
+          <span className="feature-text">تصدير بصيغة PDF عالي الجودة</span>
+        </div>
+        <div className="feature-item">
+          <span className="feature-icon">✓</span>
+          <span className="feature-text">إنشاء سيرتك في 3 خطوات فقط</span>
+        </div>
+        <div className="feature-item">
+          <span className="feature-icon">✓</span>
+          <span className="feature-text">دعم فني على مدار الساعة</span>
+        </div>
+      </div>
+
+      <button 
+        className="pricing-button"
+        onClick={() => navigate("/navigate/dashboard/create-resume-from-scratch")}
+      >
+        <h3 className="pricing-button-text">ابدأ الآن</h3>
+      </button>
+    </div>
+  </div>
+</div>
+
+{/* FAQ Section */}
+<div id="faq" className="faq-section" dir="rtl">
+  <div className="faq-header">
+    <h1 className="hero-section__title">لديك أسئلة؟ 🤔</h1>
+    <h2 className="hero-section__subtitle-ar">الأسئلة الشائعة</h2>
+    <p className="hero-section__description">
+      إليك إجابات لأكثر الأسئلة شيوعاً حول نبذة
+    </p>
+  </div>
+
+  <div className="faq-container">
+    {faqs.map((faq, index) => (
+      <div 
+        key={index} 
+        className={`faq-item ${openFAQ === index ? 'active' : ''}`}
+      >
+        <button 
+          className="faq-question"
+          onClick={() => toggleFAQ(index)}
+        >
+          <span className="question-text">{faq.question}</span>
+          <span className="faq-icon">{openFAQ === index ? '−' : '+'}</span>
+        </button>
+        <div className={`faq-answer ${openFAQ === index ? 'open' : ''}`}>
+          <p>{faq.answer}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div className="faq-cta">
+    <p className="faq-cta-text">لم تجد إجابتك؟</p>
+    <button 
+      className="faq-cta-button"
+      onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
+    >
+      <h3 className="faq-cta-button-text">تواصل معنا</h3>
+    </button>
+  </div>
+</div>
 
 <div id="contact" class="hero-section contact-us" dir="rtl">
   <div class="hero-section__left">
@@ -250,8 +383,15 @@ export default function Home() {
 
   <div className="breaker"></div>
   <div className="flex">
-    <h1>نبذة</h1>
+    <div className="footer-brand">
+      <h1>نبذة</h1>
 
+    </div>
+    <div className="footer-links">
+        <a href="/privacy" className="footer-link">سياسة الخصوصية</a>
+        <span className="footer-separator">•</span>
+        <a href="/terms" className="footer-link">شروط الخدمة</a>
+      </div>
     <div class="icons">
       <div class="icon">
         <a>
