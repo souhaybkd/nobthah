@@ -6,7 +6,7 @@ import { Briefcase, CalendarDays, Globe, Mail, MapPin, Phone, Trash2, User } fro
 import { Rating } from 'react-simple-star-rating'
 import { useReactToPrint } from 'react-to-print';
 import Madrid from "./templates/Madrid/Madrid";
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Berlin from "./templates/Berlin/Berlin";
 import Crisp from "./templates/Crisp/Crisp";
 import Santiago from "./templates/Santiago/Santiago";
@@ -30,7 +30,6 @@ export default function Resume() {
     { stepNumber: 6, stepTitle: "STEP 6", stepDescription: "Finalize" },
   ];
   const { id } = useParams();
-  const [searchParams] = useSearchParams();
   const [image, setImage] = useState(null);
   const [user, setUser] = useState(null);
 
@@ -49,26 +48,13 @@ export default function Resume() {
       try {
         const user = await account.get();
         setUser(user); // Set user data to state
-        
-        // Auto-download if coming from payment success
-        const autoDownload = searchParams.get('autoDownload');
-        if (autoDownload === 'true' && user?.labels?.some((item) => item === id)) {
-          // Small delay to ensure page is ready
-          setTimeout(() => {
-            console.log("Auto-downloading after payment...");
-            resumeTemplate.current.style.display = "flex";
-            handlePrint();
-            resumeTemplate.current.style.display = "none";
-            toast.success("Resume downloaded successfully!");
-          }, 1000);
-        }
       } catch (error) {
         console.log("No user logged in", error);
-        navigate("/login");
+        navigate("/en/login");
       }
     }
     getAuthStatus();
-  }, [navigate, searchParams, id]);
+  }, [navigate]);
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
