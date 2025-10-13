@@ -6,7 +6,7 @@ import { Briefcase, CalendarDays, Globe, Mail, MapPin, Phone, Trash2, User } fro
 import { Rating } from "react-simple-star-rating";
 import { useReactToPrint } from "react-to-print";
 import Madrid from "./templates/Madrid/Madrid";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import Berlin from "./templates/Berlin/Berlin";
 import Crisp from "./templates/Crisp/Crisp";
 import Santiago from "./templates/Santiago/Santiago";
@@ -30,6 +30,7 @@ export default function Resume() {
   ];
 
   const { id } = useParams();
+  const [searchParams] = useSearchParams();
   const [image, setImage] = useState(null);
   const [user, setUser] = useState(null);
 
@@ -48,13 +49,26 @@ export default function Resume() {
       try {
         const user = await account.get();
         setUser(user);
+        
+        // Auto-download if coming from payment success
+        const autoDownload = searchParams.get('autoDownload');
+        if (autoDownload === 'true' && user?.labels?.some((item) => item === id)) {
+          // Small delay to ensure page is ready
+          setTimeout(() => {
+            console.log("Auto-downloading after payment...");
+            resumeTemplate.current.style.display = "flex";
+            handlePrint();
+            resumeTemplate.current.style.display = "none";
+            toast.success("تم تحميل السيرة الذاتية!");
+          }, 1000);
+        }
       } catch (error) {
         console.log("No user logged in", error);
         navigate("/login");
       }
     }
     getAuthStatus();
-  }, [navigate]);
+  }, [navigate, searchParams, id]);
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];

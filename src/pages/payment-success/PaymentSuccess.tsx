@@ -30,7 +30,8 @@ export default function PaymentSuccess() {
 
   const handleGoToResume = () => {
     if (resumeId) {
-      navigate(`/navigate/dashboard/create-resume-from-scratch/resume/${resumeId}`);
+      // Navigate with autoDownload parameter to trigger PDF download
+      navigate(`/navigate/dashboard/create-resume-from-scratch/resume/${resumeId}?autoDownload=true`);
     } else {
       navigate("/navigate");
     }
