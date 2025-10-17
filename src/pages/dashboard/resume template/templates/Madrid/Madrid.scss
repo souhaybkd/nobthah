@@ -34,6 +34,8 @@
   }
   .details p {
     font-size: 1.2rem;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
   }
 
   
@@ -121,6 +123,10 @@
     }
     .education {
         margin-top: 10px;
+        ul{
+          margin-top: 0.5em;
+          font-size: 1.1rem !important;
+        }
     }
     h3 {
       font-weight: 500;
