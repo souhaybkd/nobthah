@@ -15,58 +15,136 @@ import Singapore from "../../../assets/singapore.png";
 import Diamond from "../../../assets/diamond.png";
 import Santiago from "../../../assets/santiago.png";
 import London from "../../../assets/london.png";
-import { CircleUserRound } from "lucide-react";
+import { CircleUserRound, X } from "lucide-react";
+import MadridTemplate from "../resume template/templates/Madrid/Madrid";
+import BerlinTemplate from "../resume template/templates/Berlin/Berlin";
+import RomeTemplate from "../resume template/templates/Rome/Rome";
+import CrispTemplate from "../resume template/templates/Crisp/Crisp";
+import BarcelonaTemplate from "../resume template/templates/Barcelona/Barcelona";
+import DiamondTemplate from "../resume template/templates/Diamond/Diamond";
+import SingaporeTemplate from "../resume template/templates/Singapore/Singapore";
+import SantiagoTemplate from "../resume template/templates/Santiago/Santiago";
+import LondonTemplate from "../resume template/templates/London/London";
+import ProfileImage from "../../../assets/profile.png";
 
-const tabData = {
-  "حديث": [
+// Sample data for preview (English content for all versions)
+const sampleData = {
+  personalInfo: {
+    firstName: "John Smith",
+    lastName: "",
+    profession: "Software Developer",
+    jobTitle: "Software Developer",
+    address: "San Francisco, CA, USA",
+    phone: "+1 (555) 123-4567",
+    email: "john.smith@example.com",
+    profileDesc: "Passionate software developer with over 5 years of experience in web and mobile application development. Specialized in React and Node.js with a strong passion for creating exceptional user experiences and innovative technical solutions. Proven track record of delivering high-quality projects on time and mentoring junior developers."
+  },
+  experiences: [
     {
-      html: <div className="card" key="creative1"><img src={Madrid} alt="نموذج مدريد" /></div>,
-      route: "/madrid"
+      employerName: "Tech Innovations Inc.",
+      jobTitle: "Senior Full Stack Developer",
+      contribution: "Developed and maintained multiple web applications using React and Node.js. Improved application performance by 40% through code optimization. Led a team of 3 developers and conducted code reviews. Implemented CI/CD pipelines and automated testing.",
+      joiningDate: "January 2021",
+      endingDate: "Present"
     },
     {
-      html: <div className="card" key="creative2"><img src={Berlin} alt="نموذج برلين" /></div>,
-      route: "/berlin"
-    },
-    {
-      html: <div className="card" key="creative3"><img src={Rome} alt="نموذج روما" /></div>,
-      route: "/rome"
-    },
+      employerName: "Digital Innovation Center",
+      jobTitle: "Front-End Developer",
+      contribution: "Built interactive user interfaces using React and modern JavaScript. Collaborated with design team to implement responsive designs. Implemented best practices in web development and accessibility standards.",
+      joiningDate: "March 2019",
+      endingDate: "December 2020"
+    }
   ],
-  "احترافي": [
+  education: [
     {
-      html: <div className="card" key="professional1"><img src={Crisp} alt="نموذج كريسپ" /></div>,
-      route: "/crisp"
-    },
-    {
-      html: <div className="card" key="professional2"><img src={Barcelona} alt="نموذج برشلونة" /></div>,
-      route: "/barcelona"
-    },
-    {
-      html: <div className="card" key="professional3"><img src={Diamond} alt="نموذج دايموند" /></div>,
-      route: "/diamond"
-    },
+      institutionName: "University of California",
+      degree: "Bachelor of Computer Science",
+      contribution: "Graduated with honors, GPA 3.8/4.0. Dean's List all semesters. Led multiple group projects and participated in hackathons.",
+      joiningDate: "2015",
+      endingDate: "2019"
+    }
   ],
-  "بسيط": [
-    {
-      html: <div className="card" key="minimalistic1"><img src={Singapore} alt="نموذج سنغافورة" /></div>,
-      route: "/singapore"
-    },
-    {
-      html: <div className="card" key="minimalistic2"><img src={Santiago} alt="نموذج سانتياغو" /></div>,
-      route: "/santiago"
-    },
-    {
-      html: <div className="card" key="minimalistic3"><img src={London} alt="نموذج لندن" /></div>,
-      route: "/london"
-    },
-  ]
+  certificates: [
+    { name: "AWS Certified Developer Associate", date: "2022" },
+    { name: "Advanced React & Redux Certification", date: "2021" },
+    { name: "Project Management Professional (PMP)", date: "2020" }
+  ],
+  skills: [
+    { name: "React.js", rating: 5 },
+    { name: "Node.js", rating: 4 },
+    { name: "TypeScript", rating: 4 },
+    { name: "MongoDB", rating: 4 },
+    { name: "AWS", rating: 3 },
+    { name: "Docker", rating: 4 }
+  ],
+  languages: [
+    { name: "English", proficiency: 5 },
+    { name: "Spanish", proficiency: 4 },
+    { name: "French", proficiency: 3 }
+  ],
+  image: ProfileImage
 };
+
+const templates = [
+  {
+    route: "/madrid",
+    name: "Madrid",
+    component: MadridTemplate,
+    fallbackImage: Madrid
+  },
+  {
+    route: "/berlin",
+    name: "Berlin",
+    component: BerlinTemplate,
+    fallbackImage: Berlin
+  },
+  {
+    route: "/rome",
+    name: "Rome",
+    component: RomeTemplate,
+    fallbackImage: Rome
+  },
+  {
+    route: "/crisp",
+    name: "Crisp",
+    component: CrispTemplate,
+    fallbackImage: Crisp
+  },
+  {
+    route: "/barcelona",
+    name: "Barcelona",
+    component: BarcelonaTemplate,
+    fallbackImage: Barcelona
+  },
+  {
+    route: "/diamond",
+    name: "Diamond",
+    component: DiamondTemplate,
+    fallbackImage: Diamond
+  },
+  {
+    route: "/singapore",
+    name: "Singapore",
+    component: SingaporeTemplate,
+    fallbackImage: Singapore
+  },
+  {
+    route: "/santiago",
+    name: "Santiago",
+    component: SantiagoTemplate,
+    fallbackImage: Santiago
+  },
+  {
+    route: "/london",
+    name: "London",
+    component: LondonTemplate,
+    fallbackImage: London
+  },
+];
 
 export default function Scratch() {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState("حديث");
-  const [cards, setCards] = useState(tabData[activeTab]);
-  const [exiting, setExiting] = useState(false);
+  const [previewTemplate, setPreviewTemplate] = useState(null);
 
   useEffect(() => {
     async function getAuthStatus() {
@@ -79,12 +157,6 @@ export default function Scratch() {
     }
     getAuthStatus();
   }, [navigate]);
-
-  useEffect(() => {
-    if (!exiting) {
-      setCards(tabData[activeTab]);
-    }
-  }, [activeTab, exiting]);
 
   async function logout() {
     const promise = account.deleteSession("current");
@@ -126,45 +198,69 @@ export default function Scratch() {
           كل قالب سيرة ذاتية مصمم باحترافية ويتبع قواعد التوظيف التي يبحث عنها مديرو الموارد البشرية.
           تميّز واحصل على وظيفة أسرع مع قوالب مجرّبة وفعّالة.
         </p>
-        <div className="menu">
-          {Object.keys(tabData).map(tab => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`tab ${activeTab === tab ? "active" : ""}`}
+
+        <div className="grid">
+          {templates.map((template, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: index * 0.05 }}
+              className="template-wrapper"
             >
-              {activeTab === tab && (
-                <motion.span
-                  layoutId="bubble"
-                  className="bubble"
-                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                />
-              )}
-              <h2>{tab}</h2>
-            </button>
+              <div className="card-thumbnail">
+                <div className="card" dir="ltr">
+                  <div className="template-miniature">
+                    <template.component {...sampleData} />
+                  </div>
+                </div>
+              </div>
+              <button 
+                className="preview-btn"
+                onClick={() => setPreviewTemplate(template)}
+              >
+                معاينة القالب
+              </button>
+              <button 
+                className="choose-btn"
+                onClick={() => navigate(`resume${template.route}`)}
+              >
+                اختر هذا القالب
+              </button>
+            </motion.div>
           ))}
         </div>
 
-        <div className="grid">
-          <AnimatePresence
-            mode="wait"
-            onExitComplete={() => setExiting(false)}
-          >
-            {cards.map((card, index) => (
-              <motion.div
-                onClick={() => navigate(`resume${card.route}`)}
-                key={`${activeTab}-${index}`}
-                initial={{ opacity: 0, x: 100 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -100 }}
-                transition={{ duration: 0.3 }}
-                onAnimationStart={() => setExiting(true)}
+        {/* Preview Modal */}
+        <AnimatePresence>
+          {previewTemplate && (
+            <motion.div 
+              className="preview-modal"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setPreviewTemplate(null)}
+            >
+              <motion.div 
+                className="preview-content"
+                initial={{ scale: 0.8, y: 50 }}
+                animate={{ scale: 1, y: 0 }}
+                exit={{ scale: 0.8, y: 50 }}
+                onClick={(e) => e.stopPropagation()}
               >
-                {card.html}
+                <button 
+                  className="close-btn"
+                  onClick={() => setPreviewTemplate(null)}
+                >
+                  <X size={24} />
+                </button>
+                <div className="preview-template-container" dir="ltr">
+                  <previewTemplate.component {...sampleData} />
+                </div>
               </motion.div>
-            ))}
-          </AnimatePresence>
-        </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
       <ToastContainer

@@ -778,7 +778,7 @@ export default function Resume() {
           <h2>Dowload Your Resume</h2>
           <p className="history-desc">Download Your Customized Resume</p>
           <div className="popup">
-            <div ref={resumeTemplate} className="resumeTemplate">
+            <div ref={resumeTemplate} className="resumeTemplate" dir="ltr">
               {
                 getTemplate(id)
               }

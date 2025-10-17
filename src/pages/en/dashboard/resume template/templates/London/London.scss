@@ -48,6 +48,7 @@
 
                 p {
                     width: 20%;
+                    margin:0px;
                 }
             }
         }
@@ -81,12 +82,23 @@
 
             .left {
                 width: 30%;
+                p{
+                    margin:0px;
+                    font-size: 1.1rem !important;
+                    line-height: 1.2 !important;
+                }
             }
 
             .right {
-                width: 70%;
-                h2, p {
+                width: 90%;
+                h2 {
                     width: 100% !important;
+                }
+                p{
+                    margin:0px;
+                    margin-top: 0.5em;
+                    font-size: 1.1rem !important;
+                    line-height: 1.2 !important;
                 }
             }
         }

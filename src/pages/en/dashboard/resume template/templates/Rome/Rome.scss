@@ -18,6 +18,8 @@ zoom: 100%;
         width: 50% !important;
         p {
             width: 100% !important;
+            font-size: 1.25rem !important;
+            margin: 0px ;
         }
     }
 
@@ -164,13 +166,16 @@ zoom: 100%;
                 font-size: 1rem;
                 font-weight: 400;
             }
+
         }
 
         p {
+            margin: 0px ;
             margin-top: .5em;
             font-size: 1rem;
             width: 100% !important;
             line-height: 1.5;
+
         }
     }
 }

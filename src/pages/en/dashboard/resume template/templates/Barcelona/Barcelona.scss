@@ -5,6 +5,7 @@
 
   p {
     font-size: 1.25rem !important;
+    margin: 0px !important;
   }
 
   .certificate {
@@ -44,7 +45,7 @@
     border-left: 4px solid #2563eb;
     padding-left: 12px;
     border-bottom: none;
-    margin-top: .5em;
+    margin-top: 2rem;
     margin-bottom: 1.5rem;
   }
 
@@ -68,7 +69,6 @@
 
   .new-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
     margin-top: 1em;
     gap: 1em 2em;
 

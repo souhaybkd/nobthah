@@ -60,6 +60,13 @@
 }
 .resumeTemplate {
   display: none;
+  // Force LTR layout for all CV templates (English writing style)
+  direction: ltr !important;
+  text-align: left !important;
+  
+  * {
+    direction: ltr !important;
+  }
 }
 
 .resume-form {

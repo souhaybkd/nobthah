@@ -18,7 +18,7 @@
     }
 
     h2 {
-      font-size: 2.5rem;
+      font-size: 2rem;
     }
   }
 
@@ -47,6 +47,7 @@
         p {
           width: 80%;
           font-size: 0.9rem;
+          margin: 0px ;
         }
       }
 
@@ -89,6 +90,8 @@
         padding: 2em;
         p {
           margin-top: 0.5em;
+          font-size: 1.25rem !important;
+          margin: 0px ;
         }
         border-bottom: 2px solid #545353;
         .history {

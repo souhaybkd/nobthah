@@ -19,6 +19,8 @@
       border-radius: 5px;
       border-left: 3px solid #2563eb;
       width: 100%;
+      font-weight: 400;
+      font-size: 1.25rem !important;
     }
   }
   > h1 {
@@ -30,10 +32,14 @@
     font-size: 1.25rem;
     color: #515151;
     font-weight: 400;
+    margin-top: 10px !important;
   }
 
   > p {
     line-height: 1.4 !important;
+    font-size: 1.25rem !important;
+    margin: 0px !important;
+    margin-top: 10px !important;
   }
 
   .main {
@@ -65,6 +71,10 @@
             }
           }
         }
+        p {
+          font-size: 1.25rem !important;
+          margin: 0px !important;
+        }
       }
 
       h3 {
@@ -87,11 +97,14 @@
 
       .personalInfo h4,
       .personalInfo p {
-        line-height: 1.5 !important;
+        line-height: 1.2 !important;
+        font-size: 1.25rem !important;
       }
 
       .personalInfo h4 {
         margin-top: 1em;
+        font-weight: 500;
+        font-size: 1rem !important;
       }
     }
 

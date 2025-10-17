@@ -1168,7 +1168,7 @@ export default function Resume() {
           <p className="history-desc">قم بتحميل سيرتك الذاتية المخصصة.</p>
 
           <div className="popup">
-            <div ref={resumeTemplate} className="resumeTemplate">
+            <div ref={resumeTemplate} className="resumeTemplate" dir="ltr">
               {getTemplate(id)}
             </div>
           </div>
