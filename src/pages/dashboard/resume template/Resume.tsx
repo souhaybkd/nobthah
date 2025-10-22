@@ -73,7 +73,7 @@ export default function Resume() {
 
   const [activeStep, setActiveStep] = useState(steps[0].stepNumber);
   const [experiences, setExperiences] = useState([
-    { employerName: "", jobTitle: "", contribution: "", joiningDate: "", endingDate: "" },
+    { employerName: "", jobTitle: "", contribution: "", joiningDate: "", endingDate: "", isPresent: false },
   ]);
   const [skills, setSkills] = useState([{ name: "", rating: 0 }]);
   const [languages, setLanguages] = useState([{ name: "", proficiency: 0 }]);
@@ -89,7 +89,7 @@ export default function Resume() {
   });
 
   const [education, setEducation] = useState([
-    { institutionName: "", degree: "", contribution: "", joiningDate: "", endingDate: "" },
+    { institutionName: "", degree: "", contribution: "", joiningDate: "", endingDate: "", isPresent: false },
   ]);
 
   useEffect(() => {
@@ -109,7 +109,7 @@ export default function Resume() {
       );
       setExperiences(
         parsedData.experiences || [
-          { employerName: "", jobTitle: "", contribution: "", joiningDate: "", endingDate: "" },
+          { employerName: "", jobTitle: "", contribution: "", joiningDate: "", endingDate: "", isPresent: false },
         ]
       );
       setSkills(parsedData.skills || [{ name: "", rating: 0 }]);
@@ -117,7 +117,7 @@ export default function Resume() {
       setCertificates(parsedData.certificates || [{ name: "", date: "" }]);
       setEducation(
         parsedData.education || [
-          { institutionName: "", degree: "", contribution: "", joiningDate: "", endingDate: "" },
+          { institutionName: "", degree: "", contribution: "", joiningDate: "", endingDate: "", isPresent: false },
         ]
       );
     }
@@ -160,7 +160,7 @@ export default function Resume() {
   function addEducation() {
     setEducation([
       ...education,
-      { institutionName: "", degree: "", contribution: "", joiningDate: "", endingDate: "" },
+      { institutionName: "", degree: "", contribution: "", joiningDate: "", endingDate: "", isPresent: false },
     ]);
   }
   function deleteEducation(index) {
@@ -222,7 +222,7 @@ export default function Resume() {
   function addNewExperience() {
     setExperiences([
       ...experiences,
-      { employerName: "", jobTitle: "", contribution: "", joiningDate: "", endingDate: "" },
+      { employerName: "", jobTitle: "", contribution: "", joiningDate: "", endingDate: "", isPresent: false },
     ]);
   }
   function handleExperienceChange(index, field, value) {
@@ -628,9 +628,8 @@ export default function Resume() {
                           <div className="input-icon">
                             <CalendarDays />
                             <input
-                              type="text"
+                              type="date"
                               id={`joiningDate${index}`}
-                              placeholder="مثال: 7 أبريل 2020"
                               value={experiences[index].joiningDate}
                               onChange={(e) =>
                                 handleExperienceChange(index, "joiningDate", e.target.value)
@@ -644,15 +643,33 @@ export default function Resume() {
                           <div className="input-icon">
                             <CalendarDays />
                             <input
-                              type="text"
+                              type="date"
                               id={`endingDate${index}`}
-                              placeholder="مثال: 7 أبريل 2021"
                               value={experiences[index].endingDate}
                               onChange={(e) =>
                                 handleExperienceChange(index, "endingDate", e.target.value)
                               }
+                              disabled={experiences[index].isPresent}
                             />
                           </div>
+                        </div>
+                        
+                        <div className="form-group checkbox-group">
+                          <label className="checkbox-label">
+                            <input
+                              type="checkbox"
+                              checked={experiences[index].isPresent}
+                              onChange={(e) => {
+                                handleExperienceChange(index, "isPresent", e.target.checked);
+                                if (e.target.checked) {
+                                  handleExperienceChange(index, "endingDate", "Present");
+                                } else {
+                                  handleExperienceChange(index, "endingDate", "");
+                                }
+                              }}
+                            />
+                            <span className="checkbox-text">أعمل حالياً في هذا المنصب</span>
+                          </label>
                         </div>
                       </div>
 
@@ -787,9 +804,8 @@ export default function Resume() {
                           <div className="input-icon">
                             <CalendarDays />
                             <input
-                              type="text"
+                              type="date"
                               id={`joiningDateEdu${index}`}
-                              placeholder="مثال: 7 أبريل 2020"
                               value={edu.joiningDate}
                               onChange={(e) =>
                                 handleEducationChange(index, "joiningDate", e.target.value)
@@ -803,15 +819,33 @@ export default function Resume() {
                           <div className="input-icon">
                             <CalendarDays />
                             <input
-                              type="text"
+                              type="date"
                               id={`endingDateEdu${index}`}
-                              placeholder="مثال: 17 فبراير 2024"
                               value={edu.endingDate}
                               onChange={(e) =>
                                 handleEducationChange(index, "endingDate", e.target.value)
                               }
+                              disabled={edu.isPresent}
                             />
                           </div>
+                        </div>
+                        
+                        <div className="form-group checkbox-group">
+                          <label className="checkbox-label">
+                            <input
+                              type="checkbox"
+                              checked={edu.isPresent}
+                              onChange={(e) => {
+                                handleEducationChange(index, "isPresent", e.target.checked);
+                                if (e.target.checked) {
+                                  handleEducationChange(index, "endingDate", "Present");
+                                } else {
+                                  handleEducationChange(index, "endingDate", "");
+                                }
+                              }}
+                            />
+                            <span className="checkbox-text">أدرس حالياً في هذا المؤسسة</span>
+                          </label>
                         </div>
                       </div>
 

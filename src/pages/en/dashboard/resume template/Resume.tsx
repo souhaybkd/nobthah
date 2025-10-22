@@ -72,7 +72,7 @@ export default function Resume() {
   };
 
   const [activeStep, setActiveStep] = useState(steps[0].stepNumber);
-  const [experiences, setExperiences] = useState([{ employerName: '', jobTitle: '', contribution: '', joiningDate: '', endingDate: '' }]);
+  const [experiences, setExperiences] = useState([{ employerName: '', jobTitle: '', contribution: '', joiningDate: '', endingDate: '', isPresent: false }]);
   const [skills, setSkills] = useState([{ name: '', rating: 0 }]);
   const [languages, setLanguages] = useState([{ name: '', proficiency: 0 }]);
   const [certificates, setCertificates] = useState([{ name: '', date: '' }]);
@@ -86,7 +86,7 @@ export default function Resume() {
     profileDesc: ""
   });
 
-  const [education, setEducation] = useState([{ institutionName: '', degree: '', contribution: '', joiningDate: '', endingDate: '' }]);
+  const [education, setEducation] = useState([{ institutionName: '', degree: '', contribution: '', joiningDate: '', endingDate: '', isPresent: false }]);
   useEffect(() => {
     const savedData = localStorage.getItem(`resume-${id}`);
     console.log(savedData);
@@ -100,11 +100,11 @@ export default function Resume() {
         email: '',
         profileDesc: ""
       });
-      setExperiences(parsedData.experiences || [{ employerName: '', jobTitle: '', contribution: '', joiningDate: '', endingDate: '' }]);
+      setExperiences(parsedData.experiences || [{ employerName: '', jobTitle: '', contribution: '', joiningDate: '', endingDate: '', isPresent: false }]);
       setSkills(parsedData.skills || [{ name: '', rating: 0 }]);
       setLanguages(parsedData.languages || [{ name: '', proficiency: 0 }]);
       setCertificates(parsedData.certificates || [{ name: '', date: '' }]);
-      setEducation(parsedData.education || [{ institutionName: '', degree: '', contribution: '', joiningDate: '', endingDate: '' }]);
+      setEducation(parsedData.education || [{ institutionName: '', degree: '', contribution: '', joiningDate: '', endingDate: '', isPresent: false }]);
     }
     setDataLoaded(true); // Set flag to true after loading data
   }, [id]);
@@ -147,7 +147,7 @@ export default function Resume() {
   }
 
   function addEducation() {
-    setEducation([...education, { institutionName: '', degree: '', contribution: '', joiningDate: '', endingDate: '' }]);
+    setEducation([...education, { institutionName: '', degree: '', contribution: '', joiningDate: '', endingDate: '', isPresent: false }]);
   }
 
   function deleteEducation(index) {
@@ -215,7 +215,7 @@ export default function Resume() {
   }
 
   function addNewExperience() {
-    setExperiences([...experiences, { employerName: '', jobTitle: '', contribution: '', joiningDate: '', endingDate: '' }]);
+    setExperiences([...experiences, { employerName: '', jobTitle: '', contribution: '', joiningDate: '', endingDate: '', isPresent: false }]);
   }
 
   function handleExperienceChange(index, field, value) {
@@ -495,24 +495,44 @@ export default function Resume() {
                         <div className="input-icon">
                           <CalendarDays />
                           <input
-                            type="text"
-                            id={`employerName${index}`}
-                            placeholder="eg:- 7th April 2020" value={experiences[index].joiningDate}
+                            type="date"
+                            id={`joiningDate${index}`}
+                            value={experiences[index].joiningDate}
                             onChange={(e) => handleExperienceChange(index, 'joiningDate', e.target.value)}
                           />
                         </div>
                       </div>
-                      <div className="form-group">
-                        <label htmlFor={`endingDate${index}`}>Ending Date</label>
-                        <div className="input-icon">
-                          <CalendarDays />
-                          <input
-                            type="text"
-                            id={`employerName${index}`}
-                            placeholder="eg:- 7th April 2020" value={experiences[index].endingDate}
-                            onChange={(e) => handleExperienceChange(index, 'endingDate', e.target.value)}
-                          />                      </div>
-                      </div>
+                        <div className="form-group">
+                          <label htmlFor={`endingDate${index}`}>Ending Date</label>
+                          <div className="input-icon">
+                            <CalendarDays />
+                            <input
+                              type="date"
+                              id={`endingDate${index}`}
+                              value={experiences[index].endingDate}
+                              onChange={(e) => handleExperienceChange(index, 'endingDate', e.target.value)}
+                              disabled={experiences[index].isPresent}
+                            />
+                          </div>
+                        </div>
+                        
+                        <div className="form-group checkbox-group">
+                          <label className="checkbox-label">
+                            <input
+                              type="checkbox"
+                              checked={experiences[index].isPresent}
+                              onChange={(e) => {
+                                handleExperienceChange(index, 'isPresent', e.target.checked);
+                                if (e.target.checked) {
+                                  handleExperienceChange(index, 'endingDate', 'Present');
+                                } else {
+                                  handleExperienceChange(index, 'endingDate', '');
+                                }
+                              }}
+                            />
+                            <span className="checkbox-text">Currently working here</span>
+                          </label>
+                        </div>
                     </div>
                     <motion.button
                       className="delete-button"
@@ -628,27 +648,44 @@ export default function Resume() {
                           <label htmlFor={`joiningDate${index}`}>Joining Date</label>
                           <div className="input-icon">
                             <CalendarDays />
-                            <input
-                              type="text"
-                              id={`joiningDate${index}`}
-                              placeholder="eg:- 7th April 2020"
-                              value={edu.joiningDate}
-                              onChange={(e) => handleEducationChange(index, "joiningDate", e.target.value)}
-                            />
+                          <input
+                            type="date"
+                            id={`joiningDate${index}`}
+                            value={edu.joiningDate}
+                            onChange={(e) => handleEducationChange(index, "joiningDate", e.target.value)}
+                          />
                           </div>
                         </div>
                         <div className="form-group">
                           <label htmlFor={`endingDate${index}`}>Ending Date (Expected)</label>
                           <div className="input-icon">
                             <CalendarDays />
-                            <input
-                              type="text"
-                              id={`endingDate${index}`}
-                              placeholder="eg:- 17th Feb 2024"
-                              value={edu.endingDate}
-                              onChange={(e) => handleEducationChange(index, "endingDate", e.target.value)}
-                            />
+                          <input
+                            type="date"
+                            id={`endingDate${index}`}
+                            value={edu.endingDate}
+                            onChange={(e) => handleEducationChange(index, "endingDate", e.target.value)}
+                            disabled={edu.isPresent}
+                          />
                           </div>
+                        </div>
+                        
+                        <div className="form-group checkbox-group">
+                          <label className="checkbox-label">
+                            <input
+                              type="checkbox"
+                              checked={edu.isPresent}
+                              onChange={(e) => {
+                                handleEducationChange(index, 'isPresent', e.target.checked);
+                                if (e.target.checked) {
+                                  handleEducationChange(index, 'endingDate', 'Present');
+                                } else {
+                                  handleEducationChange(index, 'endingDate', '');
+                                }
+                              }}
+                            />
+                            <span className="checkbox-text">Currently studying here</span>
+                          </label>
                         </div>
                       </div>
                       <motion.button

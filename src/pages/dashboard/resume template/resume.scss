@@ -431,6 +431,31 @@ width: 50% ;
       font-size: 1rem;
     }
 
+    // Checkbox styles
+    .checkbox-group {
+      margin-top: 0.5em;
+      
+      .checkbox-label {
+        display: flex;
+        align-items: center;
+        gap: 0.5em;
+        cursor: pointer;
+        font-size: 0.9rem;
+        
+        input[type="checkbox"] {
+          width: 18px;
+          height: 18px;
+          margin: 0;
+          cursor: pointer;
+        }
+        
+        .checkbox-text {
+          color: #333;
+          font-weight: 500;
+        }
+      }
+    }
+
     button {
       width: fit-content !important;
       display: grid;
