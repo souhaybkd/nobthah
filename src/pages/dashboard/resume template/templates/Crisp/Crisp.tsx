@@ -22,77 +22,87 @@ const Crisp = forwardRef(({ personalInfo, education, languages, certificates, im
                     </div>
 
                     {/* SKILLS */}
-                    <div className="personalInfo">
-                        <h3><Puzzle size={20} /> Skills</h3>
-                        {skills.map((skill, index) => (
-                            <div className="skill" key={index}>
-                                <h4>{skill.name}</h4>
-                                <div className="bar-container">
-                                    <div className="bar" style={{ width: `${(skill.rating / 5) * 100}%` }}></div>
+                    {skills && skills.length > 0 && skills.some(skill => skill.name) && (
+                        <div className="personalInfo">
+                            <h3><Puzzle size={20} /> Skills</h3>
+                            {skills.map((skill, index) => (
+                                <div className="skill" key={index}>
+                                    <h4>{skill.name}</h4>
+                                    <div className="bar-container">
+                                        <div className="bar" style={{ width: `${(skill.rating / 5) * 100}%` }}></div>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
-                    </div>
+                            ))}
+                        </div>
+                    )}
 
                     {/* LANGUAGES */}
-                    <div className="personalInfo">
-                        <h3><Languages size={20} /> Languages</h3>
-                        {languages.map((language, index) => (
-                            <div className="skill" key={index}>
-                                <h4>{language.name}</h4>
-                                <div className="bar-container">
-                                <div className="bar" style={{ width: `${(language.proficiency / 5) * 100}%` }}></div>
+                    {languages && languages.length > 0 && languages.some(lang => lang.name) && (
+                        <div className="personalInfo">
+                            <h3><Languages size={20} /> Languages</h3>
+                            {languages.map((language, index) => (
+                                <div className="skill" key={index}>
+                                    <h4>{language.name}</h4>
+                                    <div className="bar-container">
+                                    <div className="bar" style={{ width: `${(language.proficiency / 5) * 100}%` }}></div>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
-                    </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
                 <div className="right left">
-                    <div className="personalInfo">
-                        <h3><Puzzle size={20} /> Experience</h3>
-                        {experiences.map((experience, index) => (
-                            <div className="experience" key={index}>
-                                <div className="lefty">
-                                    <h4>{experience.joiningDate} -</h4>
-                                    <h4>{experience.endingDate}</h4>
+                    {experiences && experiences.length > 0 && experiences.some(exp => exp.jobTitle || exp.employerName || exp.contribution) && (
+                        <div className="personalInfo">
+                            <h3><Puzzle size={20} /> Experience</h3>
+                            {experiences.map((experience, index) => (
+                                <div className="experience" key={index}>
+                                    <div className="lefty">
+                                        <h4>{experience.joiningDate} -</h4>
+                                        <h4>{experience.endingDate}</h4>
+                                    </div>
+                                    <div className="righty">
+                                        <h1>{experience.jobTitle}</h1>
+                                        <h4>{experience.employerName}</h4>
+                                        <p>{experience.contribution}</p>
+                                    </div>
                                 </div>
-                                <div className="righty">
-                                    <h1>{experience.jobTitle}</h1>
-                                    <h4>{experience.employerName}</h4>
-                                    <p>{experience.contribution}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-
-                    <div className="personalInfo">
-                        <h3><BookMarked size={20} /> Education</h3>
-                        {education.map((edu, index) => (
-                            <div className="experience" key={index}>
-                                <div className="lefty">
-                                    <h4>{edu.joiningDate} -</h4>
-                                    <h4>{edu.endingDate}</h4>
-                                </div>
-                                <div className="righty">
-                                    <h1>{edu.degree}</h1>
-                                    <h4>{edu.institutionName}</h4>
-                                    <p>{edu.contribution}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-
-
-                    <div className="personalInfo">
-                        <h3><ShieldCheck size={20} />Certifications</h3>
-                        <div className="grid">
-                        {certificates.map((edu, index) => (
-                            <div className="certificate" key={index}>
-                                <h4>{edu.name} - {edu.date}</h4>
-                            </div>
-                        ))}
+                            ))}
                         </div>
-                    </div>
+                    )}
+
+                    {education && education.length > 0 && education.some(edu => edu.degree || edu.institutionName || edu.contribution) && (
+                        <div className="personalInfo">
+                            <h3><BookMarked size={20} /> Education</h3>
+                            {education.map((edu, index) => (
+                                <div className="experience" key={index}>
+                                    <div className="lefty">
+                                        <h4>{edu.joiningDate} -</h4>
+                                        <h4>{edu.endingDate}</h4>
+                                    </div>
+                                    <div className="righty">
+                                        <h1>{edu.degree}</h1>
+                                        <h4>{edu.institutionName}</h4>
+                                        <p>{edu.contribution}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+
+
+                    {certificates && certificates.length > 0 && certificates.some(cert => cert.name || cert.date) && (
+                        <div className="personalInfo">
+                            <h3><ShieldCheck size={20} />Certifications</h3>
+                            <div className="grid">
+                            {certificates.map((edu, index) => (
+                                <div className="certificate" key={index}>
+                                    <h4>{edu.name} - {edu.date}</h4>
+                                </div>
+                            ))}
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

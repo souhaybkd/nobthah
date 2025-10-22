@@ -35,81 +35,91 @@ const Rome = forwardRef(({ personalInfo, education, certificates, languages, ima
                     <p>{personalInfo.profileDesc}</p>
                 </div>
 
-                <div className="certificates">
-                    {certificates.map((skill, index) => (
-                        <h2 className='certificate'>{skill.name}, {skill.date}</h2>
-                    ))}
-                </div>
+                {certificates && certificates.length > 0 && certificates.some(cert => cert.name || cert.date) && (
+                    <div className="certificates">
+                        {certificates.map((skill, index) => (
+                            <h2 className='certificate' key={index}>{skill.name}, {skill.date}</h2>
+                        ))}
+                    </div>
+                )}
             </div>
             <div className="dual">
-                <div className="info">
-                    <div className="title">
-                        <h3>SKILLS</h3>
-                    </div>
-                    {skills.map((skill, index) => (
-                        <div className="rating" key={index}>
-                            <p>{skill.name}</p>
-                            <div className="circles">
-                                {[...Array(5)].map((_, i) => {
-                                    return (<div key={i} className={`circle ${i < skill.rating ? 'filled' : ''}`}></div>)
-                                })}
-                            </div>
+                {skills && skills.length > 0 && skills.some(skill => skill.name) && (
+                    <div className="info">
+                        <div className="title">
+                            <h3>SKILLS</h3>
                         </div>
-                    ))}
-                </div>
-                <div className="info">
-                    <div className="title">
-                        <h3>Languages</h3>
-                    </div>
-                    {languages.map((language, index) => (
-                        <div className="rating" key={index}>
-                            <p>{language.name}</p>
-                            <div className="circles">
-                                {[...Array(5)].map((_, i) => (
-                                    <div key={i} className={`circle ${i < language.proficiency ? 'filled' : ''}`}></div>
-                                ))}
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-                <div className="info">
-                <div className="title">
-                    <h3>EDUCATION</h3>
-                </div>
-                <ul>
-                    {education.map((experience, index) => (
-                        <li key={index} className="experience-item">
-                            <div className="flex">
-                                <div>
-                                    <h3>{experience.degree} at {experience.institutionName}</h3>
+                        {skills.map((skill, index) => (
+                            <div className="rating" key={index}>
+                                <p>{skill.name}</p>
+                                <div className="circles">
+                                    {[...Array(5)].map((_, i) => {
+                                        return (<div key={i} className={`circle ${i < skill.rating ? 'filled' : ''}`}></div>)
+                                    })}
                                 </div>
-                                <h2 className='time'>{experience.joiningDate} - {experience.endingDate}</h2>
                             </div>
-                            <p>{experience.contribution}</p>
-                        </li>
-                    ))}
-                </ul>
+                        ))}
+                    </div>
+                )}
+                {languages && languages.length > 0 && languages.some(lang => lang.name) && (
+                    <div className="info">
+                        <div className="title">
+                            <h3>Languages</h3>
+                        </div>
+                        {languages.map((language, index) => (
+                            <div className="rating" key={index}>
+                                <p>{language.name}</p>
+                                <div className="circles">
+                                    {[...Array(5)].map((_, i) => (
+                                        <div key={i} className={`circle ${i < language.proficiency ? 'filled' : ''}`}></div>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                )}
             </div>
+            {education && education.length > 0 && education.some(edu => edu.degree || edu.institutionName || edu.contribution) && (
+                <div className="info">
+                    <div className="title">
+                        <h3>EDUCATION</h3>
+                    </div>
+                    <ul>
+                        {education.map((experience, index) => (
+                            <li key={index} className="experience-item">
+                                <div className="flex">
+                                    <div>
+                                        <h3>{experience.degree} at {experience.institutionName}</h3>
+                                    </div>
+                                    <h2 className='time'>{experience.joiningDate} - {experience.endingDate}</h2>
+                                </div>
+                                <p>{experience.contribution}</p>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
 
-            <div className="info">
-                <div className="title">
-                    <h3>EMPLOYMENT HISTORY</h3>
-                </div>
-                <ul>
-                    {experiences.map((experience, index) => (
-                        <li key={index} className="experience-item">
-                            <div className="flex">
-                                <div>
-                                    <h3>{experience.jobTitle} at {experience.employerName}</h3>
+            {experiences && experiences.length > 0 && experiences.some(exp => exp.jobTitle || exp.employerName || exp.contribution) && (
+                <div className="info">
+                    <div className="title">
+                        <h3>EMPLOYMENT HISTORY</h3>
+                    </div>
+                    <ul>
+                        {experiences.map((experience, index) => (
+                            <li key={index} className="experience-item">
+                                <div className="flex">
+                                    <div>
+                                        <h3>{experience.jobTitle} at {experience.employerName}</h3>
+                                    </div>
+                                    <h2 className='time'>{experience.joiningDate} - {experience.endingDate}</h2>
                                 </div>
-                                <h2 className='time'>{experience.joiningDate} - {experience.endingDate}</h2>
-                            </div>
-                            <p>{experience.contribution}</p>
-                        </li>
-                    ))}
-                </ul>
-            </div>
+                                <p>{experience.contribution}</p>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
 
 
         </div>

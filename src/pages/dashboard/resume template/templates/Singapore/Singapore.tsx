@@ -25,15 +25,16 @@ const Singapore = forwardRef(({ personalInfo, certificates, languages, education
                     <p>{personalInfo.email}</p>
                 </div>
 
-                <div className="item">
-                    <h4>Languages</h4>
-                    <p>{
-                        languages.map((item) => {
-                            return item.name + ", "
-                        })
-                    }</p>
-
-                </div>
+                {languages && languages.length > 0 && languages.some(lang => lang.name) && (
+                    <div className="item">
+                        <h4>Languages</h4>
+                        <p>{
+                            languages.map((item) => {
+                                return item.name + ", "
+                            })
+                        }</p>
+                    </div>
+                )}
             </div>
 
             <div className="profile">
@@ -41,70 +42,78 @@ const Singapore = forwardRef(({ personalInfo, certificates, languages, education
                 <p>{personalInfo.profileDesc}</p>
             </div>
 
-            <div className="exp">
-                <h2>EMPLOYMENT HISTORY</h2>
-                {experiences.map((experience, index) => (
-                    <div className="exp-item" key={index}>
-                        <div className="exp-dates">
-                            <p>{experience.joiningDate} - {experience.endingDate}</p>
+            {experiences && experiences.length > 0 && experiences.some(exp => exp.jobTitle || exp.employerName || exp.contribution) && (
+                <div className="exp">
+                    <h2>EMPLOYMENT HISTORY</h2>
+                    {experiences.map((experience, index) => (
+                        <div className="exp-item" key={index}>
+                            <div className="exp-dates">
+                                <p>{experience.joiningDate} - {experience.endingDate}</p>
+                            </div>
+                            <div className="exp-details">
+                                <h3>{experience.jobTitle} at {experience.employerName}</h3>
+                                <p>{experience.contribution}</p>
+                            </div>
                         </div>
-                        <div className="exp-details">
-                            <h3>{experience.jobTitle} at {experience.employerName}</h3>
-                            <p>{experience.contribution}</p>
-                        </div>
-                    </div>
-                ))}
-            </div>
+                    ))}
+                </div>
+            )}
 
-            <div className="exp edu">
-                <h2>EDUCATION</h2>
-                {education.map((edu, index) => (
-                    <div className="exp-item" key={index}>
-                        <div className="exp-dates">
-                            <p>{edu.joiningDate} - {edu.endingDate}</p>
+            {education && education.length > 0 && education.some(edu => edu.degree || edu.institutionName || edu.contribution) && (
+                <div className="exp edu">
+                    <h2>EDUCATION</h2>
+                    {education.map((edu, index) => (
+                        <div className="exp-item" key={index}>
+                            <div className="exp-dates">
+                                <p>{edu.joiningDate} - {edu.endingDate}</p>
+                            </div>
+                            <div className="exp-details">
+                                <h3>{edu.degree}</h3>
+                                <p>{edu.institutionName}</p>
+                                <p>{edu.contribution}</p>
+                            </div>
                         </div>
-                        <div className="exp-details">
-                            <h3>{edu.degree}</h3>
-                            <p>{edu.institutionName}</p>
-                            <p>{edu.contribution}</p>
-                        </div>
-                    </div>
-                ))}
-            </div>
+                    ))}
+                </div>
+            )}
 
             <div className="dual exp">
-                <div className="card">
-                    <h2>TECHNICAL & SOFT SKILLS</h2>
-                    <div className="skills">
-                        {
-                            skills.map((item) => {
-                                return (
-                                    <div className="skill">
-                                        <h4>{item.name}</h4>
-                                        <div className="bar-container">
-                                            <div className="bar" style={{width: (item.rating/5) * 100}}></div>
+                {skills && skills.length > 0 && skills.some(skill => skill.name) && (
+                    <div className="card">
+                        <h2>TECHNICAL & SOFT SKILLS</h2>
+                        <div className="skills">
+                            {
+                                skills.map((item, index) => {
+                                    return (
+                                        <div className="skill" key={index}>
+                                            <h4>{item.name}</h4>
+                                            <div className="bar-container">
+                                                <div className="bar" style={{width: (item.rating/5) * 100}}></div>
+                                            </div>
                                         </div>
-                                    </div>
-                                )
-                            })
-                        }
+                                    )
+                                })
+                            }
+                        </div>
                     </div>
-                </div>
+                )}
 
-                <div className="card v2">
-                    <h2>CERTIFICATIONS</h2>
-                    <div className="skills">
-                        {
-                            certificates.map((item) => {
-                                return (
-                                    <div className="skill">
-                                        <h4>{item.name}, {item.date}</h4>
-                                    </div>
-                                )
-                            })
-                        }
+                {certificates && certificates.length > 0 && certificates.some(cert => cert.name || cert.date) && (
+                    <div className="card v2">
+                        <h2>CERTIFICATIONS</h2>
+                        <div className="skills">
+                            {
+                                certificates.map((item, index) => {
+                                    return (
+                                        <div className="skill" key={index}>
+                                            <h4>{item.name}, {item.date}</h4>
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
                     </div>
-                </div>
+                )}
             </div>
         </div>
     );

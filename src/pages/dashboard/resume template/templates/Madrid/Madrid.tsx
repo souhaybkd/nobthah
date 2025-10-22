@@ -58,66 +58,63 @@ const Madrid = forwardRef(({ personalInfo, education, languages, certificates, i
             </div>
 
             <div className="dual">
-                <div className="educations">
-                    <h2>Education</h2>
-                    {education.map((edu, index) => (
+                {education && education.length > 0 && education.some(edu => edu.degree || edu.institutionName || edu.contribution) && (
+                    <div className="educations">
+                        <h2>Education</h2>
+                        {education.map((edu, index) => (
+                            <div className="education" key={index}>
+                                <h3>{edu.degree}, {edu.institutionName}</h3>
+                                <h4>{edu.joiningDate} - {edu.endingDate}</h4>
+                                <ul>
+                                    {edu.contribution}
+                                </ul>
+                            </div>
+                        ))}
+                    </div>
+                )}
+
+                {certificates && certificates.length > 0 && certificates.some(cert => cert.name || cert.date) && (
+                    <div className="educations">
+                        <h2>Certificates</h2>
+                        {certificates.map((edu, index) => (
+                            <div className="education certificate" key={index}>
+                                <h3>{edu.name} {edu.date}</h3>
+                            </div>
+                        ))}
+                    </div>
+                )}
+            </div>
+
+            {experiences && experiences.length > 0 && experiences.some(exp => exp.jobTitle || exp.employerName || exp.contribution) && (
+                <div className="emplymentHistory">
+                    <h2>EMPLOYMENT HISTORY</h2>
+                    {experiences.map((exp, index) => (
                         <div className="education" key={index}>
-                            <h3>{edu.degree}, {edu.institutionName}</h3>
-                            <h4>{edu.joiningDate} - {edu.endingDate}</h4>
+                            <h3>{exp.jobTitle} At {exp.employerName}</h3>
+                            <h4>{exp.joiningDate} - {exp.endingDate}</h4>
                             <ul>
-                                {edu.contribution}
+                                {exp.contribution}
                             </ul>
                         </div>
                     ))}
-
-
-
                 </div>
+            )}
 
-                <div className="educations">
-                    <h2>Certificates</h2>
-                    {certificates.map((edu, index) => (
-                        <div className="education certificate" key={index}>
-                            <h3>{edu.name} {edu.date}</h3>
-
-                        </div>
-                    ))}
-
-
-
-                </div>
-            </div>
-
-            <div className="emplymentHistory">
-                <h2>EMPLOYMENT HISTORY</h2>
-                {experiences.map((exp, index) => (
-                    <div className="education">
-                        <h3>{exp.jobTitle} At {exp.employerName}</h3>
-                        <h4>{exp.joiningDate} - {exp.endingDate}</h4>
-                        <ul>
-                            {exp.contribution}
-
-                        </ul>
-                    </div>
-                ))}
-
-            </div>
-
-            <div className="skills">
-                <h2>SKILLS</h2>
-                <div className="grid unique">
-                    {skills.map((skill, index) => (
-                        <div className="skill" key={index}>
-                            <h3>{skill.name}</h3>
-                            <div className="bar">
-                                <div className="barCompleted" style={{ width: `${(skill.rating / 5) * 100}%` }}></div>
+            {skills && skills.length > 0 && skills.some(skill => skill.name) && (
+                <div className="skills">
+                    <h2>SKILLS</h2>
+                    <div className="grid unique">
+                        {skills.map((skill, index) => (
+                            <div className="skill" key={index}>
+                                <h3>{skill.name}</h3>
+                                <div className="bar">
+                                    <div className="barCompleted" style={{ width: `${(skill.rating / 5) * 100}%` }}></div>
+                                </div>
                             </div>
-                        </div>
-                    ))}
-
-
+                        ))}
+                    </div>
                 </div>
-            </div>
+            )}
 
 
         </div>

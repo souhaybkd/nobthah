@@ -25,78 +25,89 @@ const Barcelona = forwardRef(({ personalInfo, languages, certificates, education
         <p>{personalInfo.profileDesc}</p>
       </div>
 
-      <h3>Experience</h3>
-      {experiences.map((experience, index) => (
-        <div className="exp" key={index}>
-          <div className="left">
-            <h4>{experience.joiningDate} - {experience.endingDate}</h4>
-          </div>
-          <div className="right">
-            <h2>{experience.jobTitle} at {experience.employerName}</h2>
-            <p>{experience.contribution}</p>
-          </div>
-        </div>
-      ))}
-
-      <h3>Education</h3>
-      {education.map((edu, index) => (
-        <div className="exp" key={index}>
-          <div className="left">
-            <h4>{edu.joiningDate} - {edu.endingDate}</h4>
-          </div>
-          <div className="right">
-            <h2>{edu.degree}</h2>
-            <p>{edu.contribution}</p>
-          </div>
-        </div>
-      ))}
-
-      <h3>Certificates</h3>
-      <div className="new-grid">
-
-
-        {certificates.map((skill, index) => (
-          <div className="skill certificate" key={index}>
-            <h4>{skill.name}, {skill.date}</h4>
-          </div>
-        ))}
-
-      </div>
-
-      <h3>Core Skills</h3>
-      <div className="new-grid">
-
-
-        {skills.map((skill, index) => (
-          <div className="skill" key={index}>
-            <h4>{skill.name}</h4>
-            <div className="rating-box">
-              {[...Array(5)].map((_, i) => {
-                return (<div key={i} className={`box ${i < skill.rating ? 'filled' : ''}`}></div>)
-              })}
+      {experiences && experiences.length > 0 && experiences.some(exp => exp.jobTitle || exp.employerName || exp.contribution) && (
+        <>
+          <h3>Experience</h3>
+          {experiences.map((experience, index) => (
+            <div className="exp" key={index}>
+              <div className="left">
+                <h4>{experience.joiningDate} - {experience.endingDate}</h4>
+              </div>
+              <div className="right">
+                <h2>{experience.jobTitle} at {experience.employerName}</h2>
+                <p>{experience.contribution}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </>
+      )}
 
-      </div>
-
-
-      <h3>Languages</h3>
-      <div className="new-grid">
-
-
-        {languages.map((skill, index) => (
-          <div className="skill" key={index}>
-            <h4>{skill.name}</h4>
-            <div className="rating-box">
-              {[...Array(5)].map((_, i) => {
-                return (<div key={i} className={`box ${i < skill.proficiency ? 'filled' : ''}`}></div>)
-              })}
+      {education && education.length > 0 && education.some(edu => edu.degree || edu.institutionName || edu.contribution) && (
+        <>
+          <h3>Education</h3>
+          {education.map((edu, index) => (
+            <div className="exp" key={index}>
+              <div className="left">
+                <h4>{edu.joiningDate} - {edu.endingDate}</h4>
+              </div>
+              <div className="right">
+                <h2>{edu.degree}</h2>
+                <p>{edu.contribution}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </>
+      )}
 
-      </div>
+      {certificates && certificates.length > 0 && certificates.some(cert => cert.name || cert.date) && (
+        <>
+          <h3>Certificates</h3>
+          <div className="new-grid">
+            {certificates.map((skill, index) => (
+              <div className="skill certificate" key={index}>
+                <h4>{skill.name}, {skill.date}</h4>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
+
+      {skills && skills.length > 0 && skills.some(skill => skill.name) && (
+        <>
+          <h3>Core Skills</h3>
+          <div className="new-grid">
+            {skills.map((skill, index) => (
+              <div className="skill" key={index}>
+                <h4>{skill.name}</h4>
+                <div className="rating-box">
+                  {[...Array(5)].map((_, i) => {
+                    return (<div key={i} className={`box ${i < skill.rating ? 'filled' : ''}`}></div>)
+                  })}
+                </div>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
+
+
+      {languages && languages.length > 0 && languages.some(lang => lang.name) && (
+        <>
+          <h3>Languages</h3>
+          <div className="new-grid">
+            {languages.map((skill, index) => (
+              <div className="skill" key={index}>
+                <h4>{skill.name}</h4>
+                <div className="rating-box">
+                  {[...Array(5)].map((_, i) => {
+                    return (<div key={i} className={`box ${i < skill.proficiency ? 'filled' : ''}`}></div>)
+                  })}
+                </div>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 });
