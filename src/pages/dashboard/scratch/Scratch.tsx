@@ -6,15 +6,15 @@ import { account } from "../../../appwrite/appwrite.config";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import Madrid from "../../../assets/madrid.jpg";
-import Berlin from "../../../assets/berlin.png";
-import Rome from "../../../assets/rome.png";
-import Crisp from "../../../assets/crisp.png";
-import Barcelona from "../../../assets/barcelona.png";
-import Singapore from "../../../assets/singapore.png";
-import Diamond from "../../../assets/diamond.png";
-import Santiago from "../../../assets/santiago.png";
-import London from "../../../assets/london.png";
+import MadridCover from "../../../assets/templates-cover/madrid-template.png";
+import BerlinCover from "../../../assets/templates-cover/berlin-template.png";
+import RomeCover from "../../../assets/templates-cover/rome-resume.png";
+import CrispCover from "../../../assets/templates-cover/crisp-resume.png";
+import BarcelonaCover from "../../../assets/templates-cover/barcelona-resume.png";
+import SingaporeCover from "../../../assets/templates-cover/singapore-resume.png";
+import DiamondCover from "../../../assets/templates-cover/diamond-resume.png";
+import SantiagoCover from "../../../assets/templates-cover/santiago-resume.png";
+import LondonCover from "../../../assets/templates-cover/london-resume.png";
 import { CircleUserRound, X } from "lucide-react";
 import MadridTemplate from "../resume template/templates/Madrid/Madrid";
 import BerlinTemplate from "../resume template/templates/Berlin/Berlin";
@@ -90,55 +90,55 @@ const templates = [
     route: "/madrid",
     name: "Madrid",
     component: MadridTemplate,
-    fallbackImage: Madrid
+    coverImage: MadridCover
   },
   {
     route: "/berlin",
     name: "Berlin",
     component: BerlinTemplate,
-    fallbackImage: Berlin
+    coverImage: BerlinCover
   },
   {
     route: "/rome",
     name: "Rome",
     component: RomeTemplate,
-    fallbackImage: Rome
+    coverImage: RomeCover
   },
   {
     route: "/crisp",
     name: "Crisp",
     component: CrispTemplate,
-    fallbackImage: Crisp
+    coverImage: CrispCover
   },
   {
     route: "/barcelona",
     name: "Barcelona",
     component: BarcelonaTemplate,
-    fallbackImage: Barcelona
+    coverImage: BarcelonaCover
   },
   {
     route: "/diamond",
     name: "Diamond",
     component: DiamondTemplate,
-    fallbackImage: Diamond
+    coverImage: DiamondCover
   },
   {
     route: "/singapore",
     name: "Singapore",
     component: SingaporeTemplate,
-    fallbackImage: Singapore
+    coverImage: SingaporeCover
   },
   {
     route: "/santiago",
     name: "Santiago",
     component: SantiagoTemplate,
-    fallbackImage: Santiago
+    coverImage: SantiagoCover
   },
   {
     route: "/london",
     name: "London",
     component: LondonTemplate,
-    fallbackImage: London
+    coverImage: LondonCover
   },
 ];
 
@@ -210,9 +210,7 @@ export default function Scratch() {
             >
               <div className="card-thumbnail">
                 <div className="card" dir="ltr">
-                  <div className="template-miniature">
-                    <template.component {...sampleData} />
-                  </div>
+                  <img src={template.coverImage} alt={`${template.name} template`} />
                 </div>
               </div>
               <button 
