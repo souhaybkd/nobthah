@@ -1,11 +1,7 @@
-// import SwiperCore, { Pagination } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/scss';
-import 'swiper/scss/navigation';
-import 'swiper/scss/pagination';
 import Woman from "../../../assets/woman.png";
-import { Autoplay } from 'swiper/modules';
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { X } from "lucide-react";
 
 import Navbar from "../../../components/Navbar/Navbar";
 import "./home.scss";
@@ -21,11 +17,139 @@ import Rome from "../../../assets/templates-cover/rome-resume.png";
 import Santiago from "../../../assets/templates-cover/santiago-resume.png";
 import Singapore from "../../../assets/templates-cover/singapore-resume.png";
 
+// Import all templates
+import MadridTemplate from "../../../pages/dashboard/resume template/templates/Madrid/Madrid";
+import BerlinTemplate from "../../../pages/dashboard/resume template/templates/Berlin/Berlin";
+import RomeTemplate from "../../../pages/dashboard/resume template/templates/Rome/Rome";
+import CrispTemplate from "../../../pages/dashboard/resume template/templates/Crisp/Crisp";
+import BarcelonaTemplate from "../../../pages/dashboard/resume template/templates/Barcelona/Barcelona";
+import DiamondTemplate from "../../../pages/dashboard/resume template/templates/Diamond/Diamond";
+import SingaporeTemplate from "../../../pages/dashboard/resume template/templates/Singapore/Singapore";
+import SantiagoTemplate from "../../../pages/dashboard/resume template/templates/Santiago/Santiago";
+import LondonTemplate from "../../../pages/dashboard/resume template/templates/London/London";
+import ProfileImage from "../../../assets/profile.png";
+
+// Sample data for preview
+const sampleData = {
+  personalInfo: {
+    firstName: "John Smith",
+    lastName: "",
+    profession: "Software Developer",
+    jobTitle: "Software Developer",
+    address: "San Francisco, CA, USA",
+    phone: "+1 (555) 123-4567",
+    email: "john.smith@example.com",
+    profileDesc: "Passionate software developer with over 5 years of experience in web and mobile application development. Specialized in React and Node.js with a strong passion for creating exceptional user experiences and innovative technical solutions. Proven track record of delivering high-quality projects on time and mentoring junior developers."
+  },
+  experiences: [
+    {
+      employerName: "Tech Innovations Inc.",
+      jobTitle: "Senior Full Stack Developer",
+      contribution: "Developed and maintained multiple web applications using React and Node.js. Improved application performance by 40% through code optimization. Led a team of 3 developers and conducted code reviews. Implemented CI/CD pipelines and automated testing.",
+      joiningDate: "January 2021",
+      endingDate: "Present"
+    },
+    {
+      employerName: "Digital Innovation Center",
+      jobTitle: "Front-End Developer",
+      contribution: "Built interactive user interfaces using React and modern JavaScript. Collaborated with design team to implement responsive designs. Implemented best practices in web development and accessibility standards.",
+      joiningDate: "March 2019",
+      endingDate: "December 2020"
+    }
+  ],
+  education: [
+    {
+      institutionName: "University of California",
+      degree: "Bachelor of Computer Science",
+      contribution: "Graduated with honors, GPA 3.8/4.0. Dean's List all semesters. Led multiple group projects and participated in hackathons.",
+      joiningDate: "2015",
+      endingDate: "2019"
+    }
+  ],
+  certificates: [
+    { name: "AWS Certified Developer Associate", date: "2022" },
+    { name: "Advanced React & Redux Certification", date: "2021" },
+    { name: "Project Management Professional (PMP)", date: "2020" }
+  ],
+  skills: [
+    { name: "React.js", rating: 5 },
+    { name: "Node.js", rating: 4 },
+    { name: "TypeScript", rating: 4 },
+    { name: "MongoDB", rating: 4 },
+    { name: "AWS", rating: 3 },
+    { name: "Docker", rating: 4 }
+  ],
+  languages: [
+    { name: "English", proficiency: 5 },
+    { name: "Spanish", proficiency: 4 },
+    { name: "French", proficiency: 3 }
+  ],
+  image: ProfileImage
+};
+
+const templates = [
+  {
+    route: "/madrid",
+    name: "Madrid",
+    component: MadridTemplate,
+    coverImage: Madrid
+  },
+  {
+    route: "/berlin",
+    name: "Berlin",
+    component: BerlinTemplate,
+    coverImage: Berlin
+  },
+  {
+    route: "/rome",
+    name: "Rome",
+    component: RomeTemplate,
+    coverImage: Rome
+  },
+  {
+    route: "/crisp",
+    name: "Crisp",
+    component: CrispTemplate,
+    coverImage: Crisp
+  },
+  {
+    route: "/barcelona",
+    name: "Barcelona",
+    component: BarcelonaTemplate,
+    coverImage: Barcelona
+  },
+  {
+    route: "/diamond",
+    name: "Diamond",
+    component: DiamondTemplate,
+    coverImage: Diamond
+  },
+  {
+    route: "/singapore",
+    name: "Singapore",
+    component: SingaporeTemplate,
+    coverImage: Singapore
+  },
+  {
+    route: "/santiago",
+    name: "Santiago",
+    component: SantiagoTemplate,
+    coverImage: Santiago
+  },
+  {
+    route: "/london",
+    name: "London",
+    component: LondonTemplate,
+    coverImage: London
+  },
+];
+
 // Import Swiper modules
 
 export default function Home() {
   const navigate = useNavigate()
   const [openFAQ, setOpenFAQ] = useState(null);
+  const [previewTemplate, setPreviewTemplate] = useState(null);
 
   const toggleFAQ = (index) => {
     setOpenFAQ(openFAQ === index ? null : index);
@@ -81,54 +205,69 @@ export default function Home() {
         </div>
       </div>
 
-      <div id="portfolio" className="swiper-container">
+      <div id="portfolio" className="cv-section">
         <h1 className="hero-section__subtitle" style={{ textAlign: 'center' }}><span>WITH PROFESSIONAL </span> RESUME DESIGN</h1>
+        
+        <div className="grid">
+          {templates.map((template, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: index * 0.05 }}
+              className="template-wrapper"
+            >
+              <div className="card-thumbnail">
+                <div className="card" dir="ltr">
+                  <img src={template.coverImage} alt={`${template.name} template`} />
+                </div>
+              </div>
+              <button 
+                className="preview-btn"
+                onClick={() => setPreviewTemplate(template)}
+              >
+                Preview Template
+              </button>
+              <button 
+                className="choose-btn"
+                onClick={() => navigate("/en/navigate/dashboard/create-resume-from-scratch")}
+              >
+                Choose This Template
+              </button>
+            </motion.div>
+          ))}
+        </div>
 
-        <Swiper
-          slidesPerView={'auto'}
-          spaceBetween={30}
-          centeredSlides={true}
-          loop={true}
-          className="swiper-wrapper"
-
-          autoplay={{
-            delay: 2500,
-          }}
-          pagination={{
-            clickable: true
-          }}
-          modules={[Autoplay]}
-        >
-          <SwiperSlide className="swiper-slide">
-            <img src={Berlin} alt="Juice Plus Product" />
-          </SwiperSlide>
-          <SwiperSlide className="swiper-slide">
-            <img src={Barcelona} alt="Artisans Craft" />
-          </SwiperSlide>
-          <SwiperSlide className="swiper-slide">
-            <img src={Santiago} alt="Transform FIT" />
-          </SwiperSlide>
-
-          <SwiperSlide className="swiper-slide">
-            <img src={Crisp} alt="Juice Plus Product" />
-          </SwiperSlide>
-          <SwiperSlide className="swiper-slide">
-            <img src={Diamond} alt="Artisans Craft" />
-          </SwiperSlide>
-          <SwiperSlide className="swiper-slide">
-            <img src={Singapore} alt="Transform FIT" />
-          </SwiperSlide>
-
-          <SwiperSlide className="swiper-slide">
-            <img src={Madrid} alt="Juice Plus Product" />
-          </SwiperSlide>
-          <SwiperSlide className="swiper-slide">
-            <img src={Rome} alt="Artisans Craft" />
-          </SwiperSlide>
-          <SwiperSlide className="swiper-slide">
-            <img src={London} alt="Transform FIT" />
-          </SwiperSlide>
-        </Swiper>
+        {/* Preview Modal */}
+        <AnimatePresence>
+          {previewTemplate && (
+            <motion.div 
+              className="preview-modal"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setPreviewTemplate(null)}
+            >
+              <motion.div 
+                className="preview-content"
+                initial={{ scale: 0.8, y: 50 }}
+                animate={{ scale: 1, y: 0 }}
+                exit={{ scale: 0.8, y: 50 }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button 
+                  className="close-btn"
+                  onClick={() => setPreviewTemplate(null)}
+                >
+                  <X size={24} />
+                </button>
+                <div className="preview-template-container" dir="ltr">
+                  <previewTemplate.component {...sampleData} />
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
       <div id="home" className="hero-section">
