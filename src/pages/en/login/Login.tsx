@@ -17,7 +17,7 @@ export default function Login() {
       try {
         const user = await account.get();
         if (user) {
-          navigate("/navigate/dashboard/create-resume-from-scratch");
+          navigate("/en/navigate/dashboard/create-resume-from-scratch");
         }
       } catch (error) {
         console.log("No user logged in", error);
@@ -37,7 +37,7 @@ export default function Login() {
         })
         .then(() => {
           console.log("Navigating to dashboard");
-          navigate("/navigate/dashboard/create-resume-from-scratch"); // Assuming your dashboard route is "/dashboard"
+          navigate("/en/navigate/dashboard/create-resume-from-scratch"); // Assuming your dashboard route is "/dashboard"
         })
         .catch((error) => {
           console.error("Login failed:", error);

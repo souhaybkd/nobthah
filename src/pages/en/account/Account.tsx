@@ -37,7 +37,7 @@ export default function Account() {
     promise
       .then(() => {
         console.log("Document updated successfully");
-        navigate("/");
+        navigate("/en");
       })
       .catch((error) => {
         console.error("Error updating document:", error);
@@ -52,7 +52,7 @@ export default function Account() {
         console.log(user);
       } catch (error) {
         console.log("No user logged in", error);
-        navigate("/")
+        navigate("/en")
       }
     }
     getAuthStatus();
@@ -75,7 +75,7 @@ export default function Account() {
     promise
       .then(() => {
         console.log("Document updated successfully");
-        navigate("/");
+        navigate("/en");
       })
       .catch((error) => {
         console.error("Error updating document:", error);
@@ -105,47 +105,47 @@ export default function Account() {
               userData.labels.map((item) => {
                 if (item === "madrid") {
                   return <div className="resume-img">
-                    <button onClick={() => navigate("/navigate/dashboard/create-resume-from-scratch/resume/" + item)}>EDIT RESUME</button>
+                    <button onClick={() => navigate("/en/navigate/dashboard/create-resume-from-scratch/resume/" + item)}>EDIT RESUME</button>
                     <img src={Madrid} alt="" />
                   </div>
                 } else if (item === "berlin") {
                   return <div className="resume-img">
-                    <button onClick={() => navigate("/navigate/dashboard/create-resume-from-scratch/resume/" + item)}>EDIT RESUME</button>
+                    <button onClick={() => navigate("/en/navigate/dashboard/create-resume-from-scratch/resume/" + item)}>EDIT RESUME</button>
                     <img src={Berlin} alt="" />
                   </div>
                 } else if (item === "crisp") {
                   return <div className="resume-img">
-                    <button onClick={() => navigate("/navigate/dashboard/create-resume-from-scratch/resume/" + item)}>EDIT RESUME</button>
+                    <button onClick={() => navigate("/en/navigate/dashboard/create-resume-from-scratch/resume/" + item)}>EDIT RESUME</button>
                     <img src={Crisp} alt="" />
                   </div>
                 } else if (item === "santiago") {
                   return <div className="resume-img">
-                    <button onClick={() => navigate("/navigate/dashboard/create-resume-from-scratch/resume/" + item)}>EDIT RESUME</button>
+                    <button onClick={() => navigate("/en/navigate/dashboard/create-resume-from-scratch/resume/" + item)}>EDIT RESUME</button>
                     <img src={Santiago} alt="" />
                   </div>
                 } else if (item === "london") {
                   return <div className="resume-img">
-                    <button onClick={() => navigate("/navigate/dashboard/create-resume-from-scratch/resume/" + item)}>EDIT RESUME</button>
+                    <button onClick={() => navigate("/en/navigate/dashboard/create-resume-from-scratch/resume/" + item)}>EDIT RESUME</button>
                     <img src={London} alt="" />
                   </div>
                 } else if (item === "singapore") {
                   return <div className="resume-img">
-                    <button onClick={() => navigate("/navigate/dashboard/create-resume-from-scratch/resume/" + item)}>EDIT RESUME</button>
+                    <button onClick={() => navigate("/en/navigate/dashboard/create-resume-from-scratch/resume/" + item)}>EDIT RESUME</button>
                     <img src={Singapore} alt="" />
                   </div>
                 } else if (item === "rome") {
                   return <div className="resume-img">
-                    <button onClick={() => navigate("/navigate/dashboard/create-resume-from-scratch/resume/" + item)}>EDIT RESUME</button>
+                    <button onClick={() => navigate("/en/navigate/dashboard/create-resume-from-scratch/resume/" + item)}>EDIT RESUME</button>
                     <img src={Rome} alt="" />
                   </div>
                 } else if (item === "diamond") {
                   return <div className="resume-img">
-                    <button onClick={() => navigate("/navigate/dashboard/create-resume-from-scratch/resume/" + item)}>EDIT RESUME</button>
+                    <button onClick={() => navigate("/en/navigate/dashboard/create-resume-from-scratch/resume/" + item)}>EDIT RESUME</button>
                     <img src={Diamond} alt="" />
                   </div>
                 } else if (item === "barcelona") {
                   return <div className="resume-img">
-                    <button onClick={() => navigate("/navigate/dashboard/create-resume-from-scratch/resume/" + item)}>EDIT RESUME</button>
+                    <button onClick={() => navigate("/en/navigate/dashboard/create-resume-from-scratch/resume/" + item)}>EDIT RESUME</button>
                     <img src={Barcelona} alt="" />
                   </div>
                 }

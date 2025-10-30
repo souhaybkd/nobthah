@@ -16,7 +16,7 @@ export default function ForgotPassword() {
       try {
         const user = await account.get();
         if (user) {
-          navigate("/navigate/dashboard/create-resume-from-scratch");
+          navigate("/en/navigate/dashboard/create-resume-from-scratch");
         }
       } catch (error) {
         console.log("No user logged in", error);

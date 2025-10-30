@@ -12,15 +12,15 @@ import NavbarAr from "../../components/Navbar_ar/Navbar";
 import "./home.scss";
 import { useNavigate } from "react-router-dom";
 
-import Berlin from "../../assets/berlin.png";
-import Barcelona from "../../assets/barcelona.png";
-import Crisp from "../../assets/crisp.png";
-import Diamond from "../../assets/diamond.png";
-import London from "../../assets/london.png";
-import Madrid from "../../assets/madrid.jpg";
-import Rome from "../../assets/rome.png";
-import Santiago from "../../assets/santiago.png";
-import Singapore from "../../assets/singapore.png";
+import Berlin from "../../assets/templates-cover/berlin-template.png";
+import Barcelona from "../../assets/templates-cover/barcelona-resume.png";
+import Crisp from "../../assets/templates-cover/crisp-resume.png";
+import Diamond from "../../assets/templates-cover/diamond-resume.png";
+import London from "../../assets/templates-cover/london-resume.png";
+import Madrid from "../../assets/templates-cover/madrid-template.png";
+import Rome from "../../assets/templates-cover/rome-resume.png";
+import Santiago from "../../assets/templates-cover/santiago-resume.png";
+import Singapore from "../../assets/templates-cover/singapore-resume.png";
 
 // Import Swiper modules
 

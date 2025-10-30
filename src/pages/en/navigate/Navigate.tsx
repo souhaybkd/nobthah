@@ -25,9 +25,9 @@ const navigate = useNavigate()
       const lastLabel = labels[labels.length - 1];
       if (lastLabel) {
         console.log(lastLabel)
-        navigate("dashboard/create-resume-from-scratch/resume/" + lastLabel)
+        navigate("/en/navigate/dashboard/create-resume-from-scratch/resume/" + lastLabel)
       } else {
-        navigate("/")
+        navigate("/en")
       }
     };
 
